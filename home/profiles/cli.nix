@@ -6,9 +6,7 @@
     userName = "bryewalks";
     userEmail = "bryewalks@gmail.com";
     extraConfig = {
-      safe = {
-        directory = [ "/etc/nixos" ];
-      };
+      safe.directory = "/etc/nixos";
     };
   };
 

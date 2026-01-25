@@ -43,11 +43,6 @@
 
   programs.git = {
     enable = true;
-    extraConfig = {
-      safe = {
-        directory = [ "/etc/nixos" ];
-      };
-    };
   };
 
   system.stateVersion = "25.11";

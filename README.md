@@ -30,11 +30,17 @@ sudo nixos-generate-config --no-filesystems \
 git add .
 ```
 
+sudo nixos-generate-config --no-filesystems --root /mnt
+
+cp /mnt/etc/nixos/hardware-configuration.nix /tmp/etc/nixos/nixos/hosts/<hostname>/hardware.nix
+
 ### Install NixOS
 ```sh
 sudo nixos-install --flake \
   /tmp/etc/nixos/nixos#<hostname>
 ```
+
+mv /tmp/etc/nixos /mnt/etc/nixos
 
 ## Notes
 
