@@ -45,5 +45,7 @@
     enable = true;
   };
 
+  environment.etc."nixos".source = "/home/brye/nixos";
+
   system.stateVersion = "25.11";
 }
