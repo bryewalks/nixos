@@ -9,6 +9,10 @@
   };
 
   programs.zsh.enable = true;
+  services.udiskie = {
+    enable = true;
+    automount = true;
+  };
 
   home.packages = with pkgs; [
     ripgrep

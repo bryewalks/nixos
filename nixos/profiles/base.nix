@@ -15,7 +15,7 @@
 
   users.users.brye = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" "storage" ];
     shell = pkgs.zsh;
     initialPassword = "password"; # Replace after install with passwd command
   };
@@ -23,7 +23,9 @@
   programs.zsh.enable = true;
 
   security.sudo.wheelNeedsPassword = true;
-
+  
+  services.udisks2.enable = true;
+  security.polkit.enable = true;
   services.openssh.enable = true;
 
   services.pipewire = {
