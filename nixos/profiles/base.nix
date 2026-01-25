@@ -17,6 +17,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" ];
     shell = pkgs.zsh;
+    initialPassword = "password"; # Replace after install with passwd command
   };
 
   programs.zsh.enable = true;
