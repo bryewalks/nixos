@@ -6,60 +6,57 @@ Quick install notes for this flake. Uses disko and Home Manager.
 
 Replace `<hostname>` with the host folder under `nixos/hosts`.
 
-### Clone repo into ISO
+### Format drive using disko
 ```sh
-git clone https://github.com/bryewalks/nixos /tmp/etc/nixos
-
-cd /tmp/etc/nixos
+sudo nix --extra-experimental-features "nix-command flakes" \
+  run github:nix-community/disko \
+  -- --mode destroy,format,mount \
+  --flake github:bryewalks/nixos#<hostname>
 ```
+* Make sure the disk device in `nixos/hosts/<hostname>/disko.nix` matches the target disk.
 
-### Format disk with disko
+### Clone repo into mounted disk
 ```sh
-sudo nix run github:nix-community/disko \
-  --extra-experimental-features "nix-command flakes" \
-  -- --mode disko \
-  /tmp/etc/nixos/nixos/hosts/<hostname>/disko.nix
+sudo git clone https://github.com/bryewalks/nixos /mnt/etc/nixos \
+  && git config --global --add safe.directory /mnt/etc/nixos
 ```
 
 ### Generate hardware config
+* Skip straight to install nixos if hardware config already exists in repo.
+ 
 ```sh
 sudo nixos-generate-config --no-filesystems \
   --show-hardware-config \
-  > /tmp/etc/nixos/nixos/hosts/<hostname>/hardware.nix
-
-git add .
+  | sudo tee /mnt/etc/nixos/nixos/hosts/<hostname>/hardware.nix \
+  > /dev/null
 ```
 
-sudo nixos-generate-config --no-filesystems --root /mnt
-
-cp /mnt/etc/nixos/hardware-configuration.nix /tmp/etc/nixos/nixos/hosts/<hostname>/hardware.nix
+```sh
+sudo git -C /mnt/etc/nixos add .
+```
 
 ### Install NixOS
 ```sh
 sudo nixos-install --flake \
-  /tmp/etc/nixos/nixos#<hostname>
+  /mnt/etc/nixos/nixos#<hostname>
 ```
 
-mv /tmp/etc/nixos /mnt/etc/nixos
-
-## Notes
-
-- The `git add .` step ensures newly generated files (like `hardware.nix`) are tracked so flakes can see them.
-- Make sure the disk device in `nixos/hosts/<hostname>/disko.nix` matches the target disk.
+### Reboot
+```sh
+sudo reboot
+```
 
 ## First boot
 
 ###
-Use temp password (password)
+Use temp password
+```sh
+password: password
+```
 
 ###
 Update password
 
 ```sh
 passwd
-```
-
-### Clone repo
-```sh
-sudo git clone https://github.com/bryewalks/nixos /etc/nixos
 ```
