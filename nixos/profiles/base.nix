@@ -45,7 +45,10 @@
     enable = true;
   };
 
-  environment.etc."nixos".source = "/home/brye/nixos";
+  # Create /home/brye/nixos -> /etc/nixos on boot/activation.
+  systemd.tmpfiles.rules = [
+    "L+ /home/brye/nixos - - - - /etc/nixos"
+  ];
 
   system.stateVersion = "25.11";
 }
