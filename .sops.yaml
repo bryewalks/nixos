@@ -1,0 +1,5 @@
+creation_rules:
+  - path_regex: ^nixos/hosts/[^/]+/secrets\.yaml$
+    key_groups:
+      - age:
+          - "age1lavkychuqdgra9flallfmnphw5u23uy23fsv5gja49744tqmaqxqwqq967"

@@ -3,9 +3,9 @@
 {
   programs.git = {
     enable = true;
-    userName = "bryewalks";
-    userEmail = "bryewalks@gmail.com";
-    extraConfig.safe.directory = [ "/etc/nixos" ];
+    settings.user.name = "bryewalks";
+    settings.user.email = "bryewalks@gmail.com";
+    settings.safe.directory = [ "/etc/nixos" ];
   };
 
   programs.zsh.enable = true;

@@ -6,13 +6,18 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    disko = {
-      url = "github:nix-community/disko";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -20,6 +25,7 @@
   outputs = {
     self,
     nixpkgs,
+    sops-nix,
     home-manager,
     disko,
     ...
@@ -31,6 +37,8 @@
     mkHost = hostName: nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
+        sops-nix.nixosModules.sops
+        ./nixos/profiles/sops/default.nix
         ./nixos/profiles/base.nix
         ./nixos/profiles/hyprland.nix
 
@@ -53,6 +61,8 @@
         disko.nixosModules.disko
         ./nixos/hosts/${hostName}/disko.nix
 
+        sops-nix.nixosModules.sops
+        ./nixos/profiles/sops/default.nix
         ./nixos/profiles/base.nix
         ./nixos/profiles/hyprland.nix
 
