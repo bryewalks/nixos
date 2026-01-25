@@ -2,7 +2,7 @@
   description = "Brye's NixOS";
 
   inputs = {
-    nixpkgs {
+    nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
