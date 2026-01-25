@@ -15,19 +15,25 @@ cd /tmp/etc/nixos
 
 ### Format disk with disko
 ```sh
-sudo nix run github:nix-community/disko --extra-experimental-features "nix-command flakes" -- --mode disko /tmp/etc/nixos/nixos/hosts/<hostname>/disko.nix
+sudo nix run github:nix-community/disko \
+  --extra-experimental-features "nix-command flakes" \
+  -- --mode disko \
+  /tmp/etc/nixos/nixos/hosts/<hostname>/disko.nix
 ```
 
 ### Generate hardware config
 ```sh
-sudo nixos-generate-config --no-filesystems --show-hardware-config > /tmp/etc/nixos/nixos/hosts/<hostname>/hardware.nix
+sudo nixos-generate-config --no-filesystems \
+  --show-hardware-config \
+  > /tmp/etc/nixos/nixos/hosts/<hostname>/hardware.nix
 
 git add .
 ```
 
 ### Install NixOS
 ```sh
-sudo nixos-install --flake /tmp/etc/nixos/nixos#<hostname>
+sudo nixos-install --flake \
+  /tmp/etc/nixos/nixos#<hostname>
 ```
 
 ## Notes
