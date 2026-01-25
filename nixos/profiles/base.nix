@@ -43,8 +43,6 @@
 
   programs.git = {
     enable = true;
-    userName = "bryewalks";
-    userEmail = "bryewalks@gmail.com";
   };
 
   system.stateVersion = "25.11";
