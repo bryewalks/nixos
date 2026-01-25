@@ -6,7 +6,7 @@ Quick install notes for this flake. Uses disko and Home Manager.
 
 Replace `<hostname>` with the host folder under `nixos/hosts`.
 
-### Clone repo
+### Clone repo into ISO
 ```sh
 git clone https://github.com/bryewalks/nixos /tmp/etc/nixos
 
@@ -43,10 +43,17 @@ sudo nixos-install --flake \
 
 ## First boot
 
+###
 Use temp password (password)
 
+###
 Update password
 
 ```sh
 passwd
+```
+
+### Clone repo
+```sh
+sudo git clone https://github.com/bryewalks/nixos /etc/nixos
 ```
