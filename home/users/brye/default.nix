@@ -6,7 +6,7 @@
   home.stateVersion = "25.11";
   environment.etc."nixos" = {
     source = "/etc/nixos";
-    target = "${home.homeDirectory}/nixos";
+    target = "/home/brye/nixos";
   };
 
   imports = [
