@@ -70,6 +70,7 @@
     };
   in
   {
+    diskoConfigurations.laptop = import ./nixos/hosts/laptop/disko.nix;
     nixosConfigurations.vm = mkHost "vm";
     nixosConfigurations.laptop = mkHostWithDisko "laptop";
   };
