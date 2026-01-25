@@ -3,8 +3,8 @@
 {
   programs.git = {
     enable = true;
-    userName = "bryewalks";
-    userEmail = "bryewalks@gmail.com";
+    user.name = "bryewalks";
+    user.email = "bryewalks@gmail.com";
     extraConfig.safe.directory = [ "/etc/nixos" ];
   };
 

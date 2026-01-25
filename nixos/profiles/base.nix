@@ -43,6 +43,10 @@
 
   programs.git = {
     enable = true;
+    config = {
+      user.name = "bryewalks";
+      user.email = "bryewalks@gmail.com";
+    };
   };
 
   # Create /home/brye/nixos -> /etc/nixos on boot/activation.
