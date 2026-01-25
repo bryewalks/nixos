@@ -43,6 +43,11 @@
 
   programs.git = {
     enable = true;
+    userName = "bryewalks";
+    userEmail = "bryewalks@gmail.com";
+    extraConfig = {
+      safe.directory = "/etc/nixos";
+    };
   };
 
   system.stateVersion = "25.11";
