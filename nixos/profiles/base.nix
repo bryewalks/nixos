@@ -51,6 +51,10 @@
     };
   };
 
+  fileSystems."/persist" = {
+    neededForBoot = true;
+  };
+
   # Create /home/brye/nixos -> /etc/nixos on boot/activation.
   systemd.tmpfiles.rules = [
     "L+ /etc/nixos - - - - /home/brye/nixos"
