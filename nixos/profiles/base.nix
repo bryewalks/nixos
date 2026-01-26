@@ -54,6 +54,7 @@
   # Create /home/brye/nixos -> /etc/nixos on boot/activation.
   systemd.tmpfiles.rules = [
     "L+ /home/brye/nixos - - - - /etc/nixos"
+    "d /home/brye/.ssh/ 0700 brye users -"
   ];
 
   system.stateVersion = "25.11";
