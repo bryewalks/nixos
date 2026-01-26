@@ -1,7 +1,7 @@
 # Brye's NixOS
 
 Quick install notes for this flake. Uses disko and Home Manager.
--
+
 
 ## Fresh install (NixOS ISO)
 
