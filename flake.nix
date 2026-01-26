@@ -11,13 +11,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
+    impermanence = {
+      url = "github:nix-community/impermanence";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -61,8 +66,12 @@
         disko.nixosModules.disko
         ./nixos/hosts/${hostName}/disko.nix
 
+        impermanence.nixosModules.impermanence
+        ./nixos/profiles/impermanence/default.nix
+
         sops-nix.nixosModules.sops
         ./nixos/profiles/sops/default.nix
+
         ./nixos/profiles/base.nix
         ./nixos/profiles/hyprland.nix
 

@@ -61,3 +61,21 @@ Update password
 ```sh
 passwd
 ```
+
+
+
+## Reformat (hardware and disko config exists in repo)
+
+Format drive using disko config and install NixOS in one step:
+```sh
+sudo nix --extra-experimental-features "nix-command flakes" run github:nix-community/disko -- \
+  disko-install --flake github:bryewalks/nixos#<hostname>
+```
+
+Add sops decryption key:
+```sh
+sudo mkdir /mnt/persist/sops/
+sudo cp /path/to/sops/key.txt /mnt/persist/sops/key.txt 
+```
+
+
