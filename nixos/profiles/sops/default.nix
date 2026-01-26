@@ -2,7 +2,7 @@
 
 {
   sops = {
-    age.keyFile = "/var/lib/sops/key.txt";
+    age.keyFile = "/persist/sops/key.txt";
   };
 
   sops.secrets.ssh-key = {
