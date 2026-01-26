@@ -53,7 +53,7 @@
 
   # Create /home/brye/nixos -> /etc/nixos on boot/activation.
   systemd.tmpfiles.rules = [
-    "L+ /home/brye/nixos - - - - /etc/nixos"
+    "L+ /etc/nixos - - - - /home/brye/nixos"
     "d /home/brye/.ssh/ 0700 brye users -"
   ];
 
