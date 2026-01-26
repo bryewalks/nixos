@@ -33,6 +33,7 @@
     sops-nix,
     home-manager,
     disko,
+    impermanence,
     ...
   }:
 
