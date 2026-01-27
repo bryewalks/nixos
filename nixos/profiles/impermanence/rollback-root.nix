@@ -1,8 +1,12 @@
 { config, lib, pkgs, ... }:
 
 let
-  # Disko sets up a LUKS container named "cryptroot" that contains Btrfs.
-  btrfsDevice = "/dev/mapper/cryptroot";
+  # Derive the underlying Btrfs device from a persistent mount when possible.
+  # This avoids hard-coding the LUKS mapper name.
+  btrfsDevice =
+    config.fileSystems."/persist".device
+      or config.fileSystems."/nix".device
+      or "/dev/mapper/cryptroot";
   rootSubvol = "@";
   blankSubvol = "@root-blank";
   marker = "/persist/system/.root-blank-created";
@@ -17,8 +21,9 @@ in
   boot.initrd.systemd.services.rollback-root = {
     description = "Rollback Btrfs root subvolume";
     wantedBy = [ "initrd.target" ];
-    # Ensure the root device and the LUKS mapping exist first.
-    after = [ "initrd-root-device.target" "systemd-cryptsetup@cryptroot.service" ];
+    # Ensure the root device exists first (works across different mapper names).
+    wants = [ "initrd-root-device.target" ];
+    after = [ "initrd-root-device.target" ];
     before = [ "sysroot.mount" ];
     unitConfig.DefaultDependencies = "no";
 
