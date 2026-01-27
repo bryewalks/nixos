@@ -31,35 +31,32 @@ in
     after = [ "initrd-root-device.target" ];
     unitConfig.DefaultDependencies = "no";
 
-    path = [
-      pkgs.btrfs-progs
-      pkgs.coreutils
-      pkgs.util-linux
-      pkgs.findutils
-      pkgs.gawk
-    ];
-
     serviceConfig.Type = "oneshot";
 
     script = ''
       set -eu
 
       device="${config.fileSystems."/".device}"
+      mount_bin="${pkgs.util-linux}/bin/mount"
+      umount_bin="${pkgs.util-linux}/bin/umount"
+      btrfs_bin="${pkgs.btrfs-progs}/bin/btrfs"
+      awk_bin="${pkgs.gawk}/bin/awk"
+      sort_bin="${pkgs.coreutils}/bin/sort"
 
       mkdir -p /mnt
-      mount -o subvolid=5 "$device" /mnt
+      "$mount_bin" -o subvolid=5 "$device" /mnt
 
       # Delete nested subvolumes first, then the root subvolume itself.
       if [ -d /mnt/@ ]; then
-        btrfs subvolume list -o /mnt/@ | awk '{print $9}' | sort -r | while read -r sv; do
-          btrfs subvolume delete "/mnt/$sv"
+        "$btrfs_bin" subvolume list -o /mnt/@ | "$awk_bin" '{print $9}' | "$sort_bin" -r | while read -r sv; do
+          "$btrfs_bin" subvolume delete "/mnt/$sv"
         done
-        btrfs subvolume delete /mnt/@
+        "$btrfs_bin" subvolume delete /mnt/@
       fi
 
-      btrfs subvolume snapshot /mnt/@blank /mnt/@
+      "$btrfs_bin" subvolume snapshot /mnt/@blank /mnt/@
 
-      umount /mnt
+      "$umount_bin" /mnt
     '';
   };
 }
