@@ -69,6 +69,7 @@
 
         impermanence.nixosModules.impermanence
         ./nixos/profiles/impermanence/default.nix
+        ./nixos/profiles/impermanence/rollback-root.nix
 
         sops-nix.nixosModules.sops
         ./nixos/profiles/sops/default.nix

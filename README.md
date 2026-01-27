@@ -72,10 +72,12 @@ sudo nix --extra-experimental-features "nix-command flakes" run github:nix-commu
   disko-install --flake github:bryewalks/nixos#<hostname>
 ```
 
+sudo nix --extra-experimental-features "nix-command flakes" run 'github:nix-community/disko/latest#disko-install' -- --flake github:bryewalks/nixos\#<hostname> --disk main /dev/<disk>
+
 Add sops decryption key:
 ```sh
 sudo mkdir /mnt/persist/sops/
-sudo cp /path/to/sops/key.txt /mnt/persist/sops/key.txt 
+sudo cp /path/to/sops/keys.txt /mnt/persist/system/var/libs/sops/keys.txt 
 ```
 
 
