@@ -43,19 +43,11 @@
     htop
   ];
 
-  programs.git = {
-    enable = true;
-    config = {
-      user.name = "bryewalks";
-      user.email = "bryewalks@gmail.com";
-    };
-  };
+  programs.git.enable = true;
 
-  # Create /home/brye/nixos -> /etc/nixos on boot/activation.
-  systemd.tmpfiles.rules = [
-    "L+ /etc/nixos - - - - /home/brye/nixos"
-    "d /home/brye/.ssh/ 0700 brye users -"
-  ];
+  # systemd.tmpfiles.rules = [
+  #   "d /home/brye/.ssh/ 0700 brye users -"
+  # ];
 
   system.stateVersion = "25.11";
 }
