@@ -80,4 +80,9 @@ sudo mkdir /mnt/persist/sops/
 sudo cp /path/to/sops/keys.txt /mnt/persist/system/var/libs/sops/keys.txt 
 ```
 
+sudo mount -o subvolid=5 /dev/mapper/cryptroot /mnt
+sudo btrfs subvolume snapshot -r /mnt/@ /mnt/@blank
+
+
+
 
