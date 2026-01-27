@@ -17,7 +17,8 @@ in
   boot.initrd.systemd.services.rollback-root = {
     description = "Rollback Btrfs root subvolume";
     wantedBy = [ "initrd.target" ];
-    after = [ "cryptsetup.target" ];
+    # Ensure the root device and the LUKS mapping exist first.
+    after = [ "initrd-root-device.target" "systemd-cryptsetup@cryptroot.service" ];
     before = [ "sysroot.mount" ];
     unitConfig.DefaultDependencies = "no";
 
@@ -35,11 +36,14 @@ in
     script = ''
       set -eux
 
+      echo "rollback-root: starting" > /dev/kmsg || true
+
       mkdir -p /mnt
       mount -t btrfs -o subvolid=5 ${btrfsDevice} /mnt
 
       if [ ! -d /mnt/${blankSubvol} ]; then
         echo "Missing /mnt/${blankSubvol}; refusing to wipe root."
+        echo "rollback-root: missing ${blankSubvol}" > /dev/kmsg || true
         umount /mnt
         exit 1
       fi
@@ -56,6 +60,7 @@ in
       fi
 
       btrfs subvolume snapshot /mnt/${blankSubvol} /mnt/${rootSubvol}
+      echo "rollback-root: snapshot restored" > /dev/kmsg || true
       umount /mnt
     '';
   };
