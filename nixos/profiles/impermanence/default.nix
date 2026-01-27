@@ -4,6 +4,26 @@ let
   persistRoot = "/persist";
 in
 {
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    echo "Rollback running" > /mnt/rollback.log
+     mkdir -p /mnt
+     mount -t btrfs /dev/mapper/cryptroot /mnt
+
+     # Recursively delete all nested subvolumes inside /mnt/root
+     btrfs subvolume list -o /mnt/@ | cut -f9 -d' ' | while read subvolume; do
+       echo "Deleting /$subvolume subvolume..." >> /mnt/rollback.log
+       btrfs subvolume delete "/mnt/$subvolume"
+     done
+
+     echo "Deleting @ subvolume..." >> /mnt/rollback.log
+     btrfs subvolume delete /mnt/@
+
+     echo "Restoring @blank subvolume..." >> /mnt/rollback.log
+     btrfs subvolume snapshot /mnt/@blank /mnt/@
+
+     umount /mnt
+  '';
+
   environment.persistence."${persistRoot}/system" = {
     hideMounts = true;
     directories = [
@@ -19,31 +39,4 @@ in
   };
 
   fileSystems."${persistRoot}".neededForBoot = true;
-
-  # Roll back the Btrfs root subvolume (@) to a clean snapshot (@blank)
-  # on every boot. This runs in the initrd after devices are ready/unlocked.
-  boot.initrd.extraUtilsCommands = ''
-    copy_bin_and_libs ${pkgs.btrfs-progs}/bin/btrfs
-  '';
-
-  boot.initrd.postDeviceCommands = ''
-    set -eu
-
-    device="${config.fileSystems."/".device}"
-
-    mkdir -p /mnt
-    mount -o subvolid=5 "$device" /mnt
-
-    # Delete nested subvolumes first, then the root subvolume itself.
-    if [ -d /mnt/@ ]; then
-      btrfs subvolume list -o /mnt/@ | awk '{print $9}' | sort -r | while read -r sv; do
-        btrfs subvolume delete "/mnt/$sv"
-      done
-      btrfs subvolume delete /mnt/@
-    fi
-
-    btrfs subvolume snapshot /mnt/@blank /mnt/@
-
-    umount /mnt
-  '';
 }
