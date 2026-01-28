@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 {
+  # Programs
+  programs.zsh.enable = true;
+
   programs.git = {
     enable = true;
     settings.user.name = "bryewalks";
@@ -8,7 +11,6 @@
     settings.safe.directory = [ "/etc/nixos" ];
   };
 
-  programs.zsh.enable = true;
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
@@ -24,13 +26,19 @@
       };
     };
   };
+
+  # Services
   services.ssh-agent.enable = true;
   
   services.udiskie = {
     enable = true;
     automount = true;
+    program_options = {
+      file_manager = "dolphin";
+    };
   };
 
+  # Packages
   home.packages = with pkgs; [
     ripgrep
     fd

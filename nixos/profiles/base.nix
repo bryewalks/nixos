@@ -1,18 +1,22 @@
 { config, pkgs, ...}:
 
 {
+  # Nix settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
 
+  # Bootloader
   boot.loader.efi.canTouchEfiVariables = true;
-  
   boot.loader.systemd-boot.enable = true;
   boot.loader.grub.enable = false;
 
+  # Locale
   time.timeZone = "America/Chicago";
 
+  # Networking
   networking.networkmanager.enable = true;
 
+  # Users
   users.users.brye = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" "storage" ];
@@ -20,34 +24,34 @@
     initialPassword = "password"; # Replace after install with passwd command
   };
 
+  # Programs
   programs.zsh.enable = true;
+  programs.git.enable = true;
 
+  # Security
   security.sudo.wheelNeedsPassword = true;
-  
-  services.udisks2.enable = true;
   security.polkit.enable = true;
-  services.openssh.enable = true;
+  security.rtkit.enable = true;
 
+  # Services
+  services.udisks2.enable = true;
+  services.openssh.enable = true;
   services.pipewire = {
     enable = true;
     pulse.enable = true;
     alsa.enable = true;
     jack.enable = true;
   };
-  security.rtkit.enable = true;
 
+  # System packages
   environment.systemPackages = with pkgs; [
     git
     neovim
     kitty
     htop
+    kdePackages.dolphin
   ];
 
-  programs.git.enable = true;
-
-  # systemd.tmpfiles.rules = [
-  #   "d /home/brye/.ssh/ 0700 brye users -"
-  # ];
-
+  # NixOS release compatibility
   system.stateVersion = "25.11";
 }
