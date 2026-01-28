@@ -33,8 +33,10 @@
   services.udiskie = {
     enable = true;
     automount = true;
-    program_options = {
-      file_manager = "dolphin";
+    settings = {
+      program_options = {
+        file_manager = "dolphin";
+      };
     };
   };
 
