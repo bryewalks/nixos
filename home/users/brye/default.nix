@@ -6,7 +6,7 @@
   home.stateVersion = "25.11";
 
   imports = [
-    ../../profiles/cli.nix
-    ../../profiles/hyprland.nix
+    ../../profiles/cli
+    ../../profiles/hyprland
   ];
 }

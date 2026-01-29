@@ -43,20 +43,22 @@
     mkHost = hostName: nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        sops-nix.nixosModules.sops
-        ./nixos/profiles/sops/default.nix
-        ./nixos/profiles/base.nix
-        ./nixos/profiles/hyprland.nix
-
+	      ./nixos/hosts/${hostName}
 	      ./nixos/hosts/${hostName}/hardware.nix
-	      ./nixos/hosts/${hostName}/default.nix
+
+        sops-nix.nixosModules.sops
+        ./nixos/profiles/sops
+
+        ./nixos/profiles
+        ./nixos/profiles/hyprland
+
 
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.brye = 
-            import ./home/users/brye/default.nix;
+            import ./home/users/brye;
         }
       ];
     };
@@ -64,27 +66,26 @@
     mkHostWithDisko = hostName: nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
+	      ./nixos/hosts/${hostName}
+	      ./nixos/hosts/${hostName}/hardware.nix
         disko.nixosModules.disko
         ./nixos/hosts/${hostName}/disko.nix
 
         impermanence.nixosModules.impermanence
-        ./nixos/profiles/impermanence/default.nix
+        ./nixos/profiles/impermanence
 
         sops-nix.nixosModules.sops
-        ./nixos/profiles/sops/default.nix
+        ./nixos/profiles/sops
 
-        ./nixos/profiles/base.nix
-        ./nixos/profiles/hyprland.nix
-
-	      ./nixos/hosts/${hostName}/hardware.nix
-	      ./nixos/hosts/${hostName}/default.nix
+        ./nixos/profiles
+        ./nixos/profiles/hyprland
 
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.brye = 
-            import ./home/users/brye/default.nix;
+            import ./home/users/brye;
         }
       ];
     };
