@@ -22,6 +22,7 @@
     extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" "storage" ];
     shell = pkgs.zsh;
     initialPassword = "password"; # Replace after install with passwd command
+    hashedPasswordFile = config.sops.secrets.password.path;
   };
 
   # Programs
