@@ -1,15 +1,15 @@
 # Brye's NixOS
 
-Quick install notes for this flake. Uses disko and Home Manager.
+Quick install notes for this [NixOS](https://nixos.wiki/) flake. Using [disko](https://github.com/nix-community/disko), [sops-nix](https://github.com/Mic92/sops-nix) and [home-manager](https://github.com/nix-community/home-manager).
 
 
 ## Fresh install (NixOS ISO)
 
 Replace `<hostname>` with the host folder under [nixos/hosts](./nixos/hosts).
 
-## Reformat (hardware and disko config in repo)
+### Reformatting Existing Machine
 
-Format drive based on disko config and install with disko-install:
+Format drive and install NixOS using disko-install: 
 ```sh
 sudo nix --extra-experimental-features "nix-command flakes" \
   run "github:nix-community/disko/latest#disko-install" \
@@ -21,24 +21,15 @@ sudo nix --extra-experimental-features "nix-command flakes" \
 sudo reboot
 ```
 
-#### Post install
+Continue with the [Post install](#post-install) steps.
 
-Copy sops keys to persistent storage
-```sh
-sudo cp /path/to/sops/keys.txt /persist/system/var/lib/sops/keys.txt
-```
+### New Machine Setup
 
-Rebuild
-```sh
-sudo nixos-rebuild switch --flake github:bryewalks/nixos#<hostname>
-```
+#### Prerequisites
+- Create a disk config using [Disko](https://github.com/nix-community/disko) for new machine at nixos/hosts/\<hostname>\/disko.nix [example](./nixos/hosts/laptop/disko.nix). 
+- Optionally create a secrets.yaml file at nixos/hosts/\<hostname>\/secrets.yaml with github ssh key (sshKey) and user password (hashedPassword) [example](./nixos/hosts/laptop/secrets.yaml). 
+- Additional details on secrets management can be found [here](#secrets-management)
 
-Clone NixOS repo
-```sh
-git clone git@github.com:bryewalks/nixos
-```
-
-## Reformat (no hardware config in repo)
 
 Format and mount drive with disko:
 ```sh
@@ -73,3 +64,56 @@ sudo reboot
 ```
 
 Continue with the [Post install](#post-install) steps.
+
+### Post install
+
+Copy sops keys to persistent storage
+```sh
+sudo cp /path/to/sops/keys.txt /persist/system/var/lib/sops/keys.txt
+```
+
+Rebuild
+```sh
+sudo nixos-rebuild switch --flake github:bryewalks/nixos#<hostname>
+```
+
+Clone NixOS repo
+```sh
+git clone git@github.com:bryewalks/nixos
+```
+
+
+## Secrets Management
+
+This repo uses [sops-nix](https://github.com/Mic92/sops-nix) with [age](https://github.com/FiloSottile/age). Secrets live in per-host `secrets.yaml` files and are decrypted using an age key at build/activation time.
+
+Paths used by this repo:
+- Age key file: `/persist/system/var/lib/sops/keys.txt` (configured in `nixos/profiles/sops/default.nix`)
+- Per-host secrets file: `nixos/hosts/<hostname>/secrets.yaml` (set via `sops.defaultSopsFile` in each host)
+
+Secrets expected in `secrets.yaml`:
+- `sshKey`: private key contents for `/home/brye/.ssh/id_ed25519`
+- `hashedPassword`: hashed password string used by `users.users.brye.hashedPasswordFile`
+
+### Age key setup
+
+1) Generate a new age key (store where sops-nix expects it):
+```sh
+mkdir -p /persist/system/var/lib/sops
+age-keygen -o /persist/system/var/lib/sops/keys.txt
+```
+
+2) Print the public key (use this in `secrets.yaml` recipients if needed):
+```sh
+age-keygen -y /persist/system/var/lib/sops/keys.txt
+```
+
+3) Create or edit a secrets file with an explicit recipient:
+```sh
+sops --age <publicKey> nixos/hosts/<hostname>/secrets.yaml
+```
+
+### Generating a hashed password
+```sh
+openssl passwd -6
+```
