@@ -17,11 +17,12 @@
   networking.networkmanager.enable = true;
 
   # Users
+  users.mutableUsers = false;
   users.users.brye = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" "storage" ];
     shell = pkgs.zsh;
-    initialPassword = "password"; # Replace after install with passwd command
+    initialPassword = "password"; # Replace with passwd or sops 
   };
 
   # Programs

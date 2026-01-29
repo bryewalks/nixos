@@ -13,9 +13,10 @@
   };
 
   sops.secrets.hashedPassword = {
-    owner = "brye";
-    group = "users";
+    owner = "root";
+    group = "root";
     mode = "0400";
+    neededForUsers = true;
   };
 
   users.users.brye.hashedPasswordFile = config.sops.secrets.hashedPassword.path;
