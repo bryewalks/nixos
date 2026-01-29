@@ -63,7 +63,7 @@
       ];
     };
 
-    mkHostWithDisko = hostName: nixpkgs.lib.nixosSystem {
+    mkHostWithImpermanence = hostName: nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
 	      ./nixos/hosts/${hostName}
@@ -93,6 +93,6 @@
   {
     diskoConfigurations.laptop = import ./nixos/hosts/laptop/disko.nix;
     nixosConfigurations.vm = mkHost "vm";
-    nixosConfigurations.laptop = mkHostWithDisko "laptop";
+    nixosConfigurations.laptop = mkHostWithImpermanence "laptop";
   };
 }
