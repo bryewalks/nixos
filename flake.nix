@@ -25,6 +25,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -34,6 +39,7 @@
     home-manager,
     disko,
     impermanence,
+    nixvim,
     ...
   }:
 
@@ -57,6 +63,9 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.sharedModules = [
+            nixvim.homeManagerModules.nixvim
+          ];
           home-manager.users.brye = 
             import ./home/users/brye;
         }
@@ -84,6 +93,9 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.sharedModules = [
+            nixvim.homeManagerModules.nixvim
+          ];
           home-manager.users.brye = 
             import ./home/users/brye;
         }

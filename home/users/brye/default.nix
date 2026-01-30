@@ -8,5 +8,6 @@
   imports = [
     ../../profiles/cli
     ../../profiles/hyprland
+    ../../profiles/neovim
   ];
 }
