@@ -16,22 +16,22 @@
 
     base16Scheme = {
       schema = "withHashTag";
-      base00 = "#21222c";
-      base01 = "#ff5555";
-      base02 = "#50fa7b";
-      base03 = "#f1fa8c";
-      base04 = "#bd93f9";
-      base05 = "#ff79c6";
-      base06 = "#8be9fd";
-      base07 = "#f8f8f2";
-      base08 = "#6272a4";
-      base09 = "#ff6e6e";
-      base0A = "#69ff94";
-      base0B = "#ffffa5";
-      base0C = "#d6acff";
-      base0D = "#ff92df";
-      base0E = "#a4ffff";
-      base0F = "#ffffff";
+      base00 = "#282a36";
+      base01 = "#343746";
+      base02 = "#44475a";
+      base03 = "#6272a4";
+      base04 = "#9ea8c7";
+      base05 = "#f8f8f2";
+      base06 = "#f1f2f8";
+      base07 = "#ffffff";
+      base08 = "#ff5555";
+      base09 = "#ffb86c";
+      base0A = "#f1fa8c";
+      base0B = "#50fa7b";
+      base0C = "#8be9fd";
+      base0D = "#bd93f9";
+      base0E = "#ff79c6";
+      base0F = "#ff6e6e";
     };
 
     targets.kitty.enable = true;
