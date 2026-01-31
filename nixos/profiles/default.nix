@@ -6,9 +6,26 @@
   nix.settings.auto-optimise-store = true;
 
   # Bootloader
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.grub.enable = false;
+  boot = {
+    loader.efi.canTouchEfiVariables = true;
+    loader.systemd-boot.enable = true;
+    loader.grub.enable = false;
+    loader.timeout = 0; # Hold space to access NixOS Selection screen
+    initrd.verbose = false;
+    initrd.systemd.enable = true;
+    consoleLogLevel = 3;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "intremap=on"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
+
+    plymouth.enable = true;
+    plymouth.logo = "${pkgs.nixos-icons}/share/icons/hicolor/128x128/apps/nix-snowflake.png";
+  };
 
   # Locale
   time.timeZone = "America/Chicago";
