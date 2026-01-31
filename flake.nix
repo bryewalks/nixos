@@ -49,16 +49,15 @@
     mkHost = hostName: nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
+        sops-nix.nixosModules.sops
+
 	      ./nixos/hosts/${hostName}
 	      ./nixos/hosts/${hostName}/hardware.nix
 
-        sops-nix.nixosModules.sops
-        ./nixos/profiles/sops
-
         ./nixos/profiles
+        ./nixos/profiles/sops
         ./nixos/profiles/sddm
         ./nixos/profiles/hyprland
-
 
         home-manager.nixosModules.home-manager
         {
@@ -76,18 +75,17 @@
     mkHostWithImpermanence = hostName: nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
+        disko.nixosModules.disko
+        impermanence.nixosModules.impermanence
+        sops-nix.nixosModules.sops
+
 	      ./nixos/hosts/${hostName}
 	      ./nixos/hosts/${hostName}/hardware.nix
-        disko.nixosModules.disko
         ./nixos/hosts/${hostName}/disko.nix
 
-        impermanence.nixosModules.impermanence
-        ./nixos/profiles/impermanence
-
-        sops-nix.nixosModules.sops
-        ./nixos/profiles/sops
-
         ./nixos/profiles
+        ./nixos/profiles/impermanence
+        ./nixos/profiles/sops
         ./nixos/profiles/sddm
         ./nixos/profiles/hyprland
 
