@@ -4,10 +4,10 @@
   programs.nixvim = {
     plugins.alpha = {
       enable = true;
+      theme = "startify";
+
       settings = lib.nixvim.mkRaw ''
         (function()
-          local dashboard = require("alpha.themes.startify")
-
           dashboard.section.header.val = {
             [[                                                                       ]],
             [[                                                                       ]],
