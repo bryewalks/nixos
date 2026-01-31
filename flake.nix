@@ -56,6 +56,7 @@
         ./nixos/profiles/sops
 
         ./nixos/profiles
+        ./nixos/profiles/sddm
         ./nixos/profiles/hyprland
 
 
@@ -87,6 +88,7 @@
         ./nixos/profiles/sops
 
         ./nixos/profiles
+        ./nixos/profiles/sddm
         ./nixos/profiles/hyprland
 
         home-manager.nixosModules.home-manager

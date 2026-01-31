@@ -44,28 +44,13 @@
     jack.enable = true;
   };
 
-  services.displayManager.sddm = {
-    enable = true;
-    theme = "catppuccin-frappe-mauve";
-    wayland.enable = true;
-  };
-
   # System packages
   environment.systemPackages = with pkgs; [
     git
     neovim
     kitty
-    htop
+    btop
     kdePackages.dolphin
-    (catppuccin-sddm.override {
-	flavor = "frappe";
-	accent = "mauve";
-	font = "CaskaydiaCove Nerd Font Mono";
-	fontSize = "12";
-	loginBackground = false;
-	background = "backgrounds/wall.jpg";
-	userIcon = false;
-    })
   ];
 
   fonts.packages = with pkgs; [
