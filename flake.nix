@@ -30,16 +30,22 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix = {
+      url = "github:stylixsh/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
-    self,
-    nixpkgs,
-    sops-nix,
-    home-manager,
     disko,
+    home-manager,
     impermanence,
+    nixpkgs,
     nixvim,
+    self,
+    sops-nix,
+    stylix,
     ...
   }:
 
@@ -78,6 +84,7 @@
         disko.nixosModules.disko
         impermanence.nixosModules.impermanence
         sops-nix.nixosModules.sops
+        stylix.nixosModules.stylix
 
 	      ./nixos/hosts/${hostName}
 	      ./nixos/hosts/${hostName}/hardware.nix
