@@ -7,11 +7,12 @@ in
   environment.persistence."${persistRoot}/system" = {
     hideMounts = true;
     directories = [
-      "/var/log"
-      "/var/lib/nixos"
-      "/var/lib/systemd/coredump"
-      "/var/lib/sops"
       "/etc/NetworkManager/system-connections"
+      "/var/lib/nixos"
+      "/var/lib/sddm"
+      "/var/lib/sops"
+      "/var/lib/systemd/coredump"
+      "/var/log"
     ];
     files = [
       "/etc/machine-id"
