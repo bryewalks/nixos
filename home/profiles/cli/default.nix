@@ -2,14 +2,18 @@
 
 {
   # Programs
-  programs.zsh.enable = true;
   programs.zsh = {
     enable = true;
-    oh-my-zsh = {
-      enable = true;
-      theme = "powerlevel10k/powerlevel10k";
-      plugins = [ "git" "thefuck" "zsh-autosuggestions" "zsh-syntax-highlighting" ];
-    };
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    initContent = "source ~/.p10k.zsh";
+    plugins = [
+      {
+	name = "powerlevel10k";
+	src = pkgs.zsh-powerlevel10k;
+	file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+    ];
   };
 
   programs.git = {
