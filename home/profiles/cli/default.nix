@@ -3,6 +3,14 @@
 {
   # Programs
   programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh = {
+      enable = true;
+      theme = "powerlevel10k/powerlevel10k";
+      plugins = [ "git" "thefuck" "zsh-autosuggestions" "zsh-syntax-highlighting" ];
+    };
+  }
 
   programs.git = {
     enable = true;
