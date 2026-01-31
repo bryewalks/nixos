@@ -35,11 +35,17 @@
 
       base00 = "#21222c"; # color 0
       base08 = "#ff5555"; # color 1 / 21
+      base21 = "#ff5555"; # color 21
       base0B = "#50fa7b"; # color 2 / 10
+      base10 = "#69ff94"; # color 10
       base0A = "#f1fa8c"; # color 3 / 11
+      base11 = "#ffffa5"; # color 11
       base0D = "#bd93f9"; # color 4 / 12
+      base12 = "#d6acff"; # color 12
       base0E = "#ff79c6"; # color 5 / 13
+      base13 = "#ff92df"; # color 13
       base0C = "#8be9fd"; # color 6 / 14
+      base14 = "#a4ffff"; # color 14
       base05 = "#f8f8f2"; # color 7
       base03 = "#6272a4"; # color 8
       base07 = "#ffffff"; # color 15
