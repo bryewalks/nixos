@@ -53,6 +53,10 @@
     kdePackages.dolphin
   ];
 
+  fonts.packages = with pkgs; [
+    cascadia-code
+  ];
+
   # NixOS release compatibility
   system.stateVersion = "25.11";
 }
