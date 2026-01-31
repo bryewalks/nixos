@@ -43,12 +43,12 @@
       base05 = "#f8f8f2"; # color 7
       base03 = "#6272a4"; # color 8
       base07 = "#ffffff"; # color 15
-      base09 = "#ff6e6e"; # color 16
-      base0F = "#ffffff"; # color 17
-      base01 = "#ff5555"; # color 18
-      base02 = "#50fa7b"; # color 19
-      base04 = "#bd93f9"; # color 20
-      base06 = "#8be9fd"; # color 21
+      base09 = "#000000"; # color 16
+      base0F = "#000000"; # color 17
+      base01 = "#000000"; # color 18
+      base02 = "#000000"; # color 19
+      base04 = "#000000"; # color 20
+      base06 = "#000000"; # color 21
     };
 
     targets.kitty.enable = true;
