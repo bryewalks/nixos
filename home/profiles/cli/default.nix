@@ -5,6 +5,7 @@
   home.packages = with pkgs; [
     ripgrep
     fd
+    fastfetch
   ];
 
   # Programs

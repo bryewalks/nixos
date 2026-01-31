@@ -6,6 +6,7 @@
   home.stateVersion = "25.11";
 
   imports = [
+    ../../profiles/stylix
     ../../profiles/cli
     ../../profiles/kitty
     ../../profiles/hyprland

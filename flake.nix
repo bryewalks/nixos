@@ -32,7 +32,7 @@
     };
 
     stylix = {
-      url = "github:stylixsh/stylix";
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -84,7 +84,6 @@
         disko.nixosModules.disko
         impermanence.nixosModules.impermanence
         sops-nix.nixosModules.sops
-        stylix.nixosModules.stylix
 
 	      ./nixos/hosts/${hostName}
 	      ./nixos/hosts/${hostName}/hardware.nix
@@ -102,6 +101,7 @@
           home-manager.useUserPackages = true;
           home-manager.sharedModules = [
             nixvim.homeModules.nixvim
+	    stylix.homeModules.stylix
           ];
           home-manager.users.brye = 
             import ./home/users/brye;
