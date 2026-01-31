@@ -1,6 +1,12 @@
 { pkgs, ... }:
 
 {
+  # Packages
+  home.packages = with pkgs; [
+    ripgrep
+    fd
+  ];
+
   # Programs
   programs.zsh = {
     enable = true;
@@ -46,10 +52,4 @@
     enable = true;
     automount = true;
   };
-
-  # Packages
-  home.packages = with pkgs; [
-    ripgrep
-    fd
-  ];
 }

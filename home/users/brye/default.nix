@@ -7,6 +7,7 @@
 
   imports = [
     ../../profiles/cli
+    ../../profiles/kitty
     ../../profiles/hyprland
     ../../profiles/neovim
   ];
