@@ -30,7 +30,7 @@ in
 {
   stylix = {
     enable = true;
-    autoEnable = true;
+    autoEnable = false;
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.caskaydia-cove;
@@ -62,6 +62,7 @@ in
     };
 
     targets.kitty.enable = true;
+    targets.nixvim.enable = false;
   };
 }
 
