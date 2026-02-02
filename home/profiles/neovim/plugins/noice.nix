@@ -7,7 +7,7 @@
         enable = true;
         settings = { };
         routes = [{
-          filter = { event = "msg_showmode" };
+          filter = { event = "msg_showmode"; };
           view = "notify";
         }];
         presets = {
