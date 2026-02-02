@@ -6,6 +6,7 @@
     ./options.nix
     ./plugins/alpha.nix
     ./plugins/bufferline.nix
+    ./plugins/colorizer.nix
     ./plugins/comment.nix
     ./plugins/fugitive.nix
     ./plugins/git-conflict.nix
@@ -16,7 +17,11 @@
     ./plugins/leap.nix
     ./plugins/lualine.nix
     ./plugins/markdown-preview.nix
-    ./plugins/neotree.nix
+    ./plugins/marks.nix
+    ./plugins/neo-tree.nix
+    ./plugins/neoscroll.nix
+    ./plugins/noice.nix
+    ./plugins/none-ls.nix
     ./plugins/which-key.nix
   ];
   # TODO completions.lua / lsp-config.lua
