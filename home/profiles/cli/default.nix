@@ -6,6 +6,7 @@
     ripgrep
     fd
     fastfetch
+    firefox
   ];
 
   # Programs

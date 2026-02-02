@@ -5,7 +5,21 @@
     ./keymaps.nix
     ./options.nix
     ./plugins/alpha.nix
+    ./plugins/bufferline.nix
+    ./plugins/comment.nix
+    ./plugins/fugitive.nix
+    ./plugins/git-conflict.nix
+    ./plugins/gitsigns.nix
+    ./plugins/hardtime.nix
+    ./plugins/hop.nix
+    ./plugins/indent-blankline.nix
+    ./plugins/leap.nix
+    ./plugins/lualine.nix
+    ./plugins/markdown-preview.nix
+    ./plugins/neotree.nix
+    ./plugins/which-key.nix
   ];
+  # TODO completions.lua / lsp-config.lua
 
   programs.nixvim = {
     enable = true;
@@ -17,8 +31,6 @@
     globals.mapleader = " ";
 
     plugins = {
-      gitsigns.enable = true;
-      lualine.enable = true;
       telescope.enable = true;
       treesitter.enable = true;
     };
