@@ -4,9 +4,7 @@
   programs.nixvim = {
     plugins.leap = {
       enable = true;
-      settings = {
-        case_sensitive = true;
-      };
+      settings = { case_sensitive = true; };
     };
 
     keymaps = [

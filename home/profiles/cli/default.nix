@@ -2,12 +2,7 @@
 
 {
   # Packages
-  home.packages = with pkgs; [
-    ripgrep
-    fd
-    fastfetch
-    firefox
-  ];
+  home.packages = with pkgs; [ ripgrep fd fastfetch firefox ];
 
   # Programs
   programs.zsh = {
@@ -15,13 +10,11 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initContent = "source ~/.p10k.zsh";
-    plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-    ];
+    plugins = [{
+      name = "powerlevel10k";
+      src = pkgs.zsh-powerlevel10k;
+      file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    }];
   };
 
   programs.git = {
@@ -40,16 +33,14 @@
         user = "git";
         identityFile = "~/.ssh/id_ed25519";
         identitiesOnly = true;
-        extraOptions = {
-          AddKeysToAgent = "yes";
-        };
+        extraOptions = { AddKeysToAgent = "yes"; };
       };
     };
   };
 
   # Services
   services.ssh-agent.enable = true;
-  
+
   services.udiskie = {
     enable = true;
     automount = true;

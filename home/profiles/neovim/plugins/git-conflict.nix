@@ -1,21 +1,19 @@
 { ... }:
 
-let
-  dracula = import ../../themes/dracula.nix;
-in 
-{
+let dracula = import ../../themes/dracula.nix;
+in {
   programs.nixvim = {
     plugins.git-conflict = {
       enable = true;
       settings = {
         default_mappings = {
           ours = "co";
-	  theirs = "ct";
-	  none = "cx";
-	  both = "cb";
-	  next = "cn";
-	  prev = "cp";
-	};
+          theirs = "ct";
+          none = "cx";
+          both = "cb";
+          next = "cn";
+          prev = "cp";
+        };
       };
     };
 

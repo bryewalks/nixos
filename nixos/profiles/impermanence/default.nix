@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
-let
-  persistRoot = "/persist";
-in
-{
+let persistRoot = "/persist";
+in {
   environment.persistence."${persistRoot}/system" = {
     hideMounts = true;
     directories = [
@@ -14,9 +12,7 @@ in
       "/var/lib/systemd/coredump"
       "/var/log"
     ];
-    files = [
-      "/etc/machine-id"
-    ];
+    files = [ "/etc/machine-id" ];
   };
 
   fileSystems."${persistRoot}".neededForBoot = true;

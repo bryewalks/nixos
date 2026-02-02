@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
-let
-  dracula = import ../themes/dracula.nix;
-in 
-{
+let dracula = import ../themes/dracula.nix;
+in {
   stylix = {
     enable = true;
     autoEnable = false;
@@ -41,4 +39,3 @@ in
     targets.nixvim.enable = false;
   };
 }
-

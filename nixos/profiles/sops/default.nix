@@ -1,9 +1,7 @@
 { config, lib, ... }:
 
 {
-  sops = {
-    age.keyFile = "/persist/system/var/lib/sops/keys.txt";
-  };
+  sops = { age.keyFile = "/persist/system/var/lib/sops/keys.txt"; };
 
   sops.secrets.sshKey = {
     path = "/home/brye/.ssh/id_ed25519";
@@ -21,7 +19,6 @@
 
   users.users.brye.hashedPasswordFile = config.sops.secrets.hashedPassword.path;
 
-  systemd.tmpfiles.rules = [
-    "d /persist/system/var/lib/sops 0755 root root -"
-  ];
+  systemd.tmpfiles.rules =
+    [ "d /persist/system/var/lib/sops 0755 root root -" ];
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
   # Nix settings
@@ -24,7 +24,8 @@
     ];
 
     plymouth.enable = true;
-    plymouth.logo = "${pkgs.nixos-icons}/share/icons/hicolor/128x128/apps/nix-snowflake.png";
+    plymouth.logo =
+      "${pkgs.nixos-icons}/share/icons/hicolor/128x128/apps/nix-snowflake.png";
   };
 
   # Locale
@@ -37,9 +38,10 @@
   users.mutableUsers = false;
   users.users.brye = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" "storage" ];
+    extraGroups =
+      [ "wheel" "networkmanager" "video" "audio" "input" "storage" ];
     shell = pkgs.zsh;
-    initialPassword = "password"; # Replace with passwd or sops 
+    initialPassword = "password"; # Replace with passwd or sops
   };
 
   # Programs
@@ -70,9 +72,7 @@
     kdePackages.dolphin
   ];
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.caskaydia-cove
-  ];
+  fonts.packages = with pkgs; [ nerd-fonts.caskaydia-cove ];
 
   # NixOS release compatibility
   system.stateVersion = "25.11";
