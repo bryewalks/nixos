@@ -4,9 +4,10 @@
   programs.nixvim = {
     plugins.notify = {
       enable = true;
-      timeout = 1000;
-      topDown = false;
-      settings = { };
+      settings = {
+        timeout = 1000;
+        top_down = false;
+      };
     };
 
     extraConfigLua = ''

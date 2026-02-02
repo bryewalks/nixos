@@ -11,7 +11,11 @@
             enabled = true;
           };
         };
-        nes = { enabled = false; };
+        opts = {
+          nes = {
+            enabled = false;
+          };
+        };
       };
     };
 
@@ -32,7 +36,12 @@
         };
       }
       {
-        mode = [ "n" "t" "i" "x" ];
+        mode = [
+          "n"
+          "t"
+          "i"
+          "x"
+        ];
         key = "<c-.>";
         action.__raw = ''function() require("sidekick.cli").toggle() end'';
         options.desc = "Sidekick Toggle";
@@ -62,28 +71,31 @@
         options.desc = "Detach a CLI Session";
       }
       {
-        mode = [ "x" "n" ];
+        mode = [
+          "x"
+          "n"
+        ];
         key = "<leader>at";
-        action.__raw =
-          ''function() require("sidekick.cli").send({ msg = "{this}" }) end'';
+        action.__raw = ''function() require("sidekick.cli").send({ msg = "{this}" }) end'';
         options.desc = "Send This";
       }
       {
         mode = "n";
         key = "<leader>af";
-        action.__raw =
-          ''function() require("sidekick.cli").send({ msg = "{file}" }) end'';
+        action.__raw = ''function() require("sidekick.cli").send({ msg = "{file}" }) end'';
         options.desc = "Send File";
       }
       {
         mode = "x";
         key = "<leader>av";
-        action.__raw = ''
-          function() require("sidekick.cli").send({ msg = "{selection}" }) end'';
+        action.__raw = ''function() require("sidekick.cli").send({ msg = "{selection}" }) end'';
         options.desc = "Send Visual Selection";
       }
       {
-        mode = [ "n" "x" ];
+        mode = [
+          "n"
+          "x"
+        ];
         key = "<leader>ap";
         action.__raw = ''function() require("sidekick.cli").prompt() end'';
         options.desc = "Sidekick Select Prompt";
@@ -91,8 +103,7 @@
       {
         mode = "n";
         key = "<leader>ac";
-        action.__raw = ''
-          function() require("sidekick.cli").toggle({ name = "codex", focus = true }) end'';
+        action.__raw = ''function() require("sidekick.cli").toggle({ name = "codex", focus = true }) end'';
         options.desc = "Sidekick Toggle Codex";
       }
     ];

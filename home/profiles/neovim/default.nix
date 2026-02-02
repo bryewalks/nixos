@@ -23,7 +23,7 @@
     ./plugins/noice.nix
     ./plugins/none-ls.nix
     ./plugins/notify.nix
-    ./plugins/sidekick.nix
+    # ./plugins/sidekick.nix
     ./plugins/which-key.nix
   ];
   # TODO completions.lua / lsp-config.lua
