@@ -29,12 +29,10 @@
       mode = "n";
       key = "<leader>cf";
       action = "<Cmd>lua vim.lsp.buf.format()<CR>";
-      description = "Code Format";
+      options.desc = "Code Format";
     }];
 
     # Dependencies
-    extraPlugins = with pkgs.nixvimPlugins; [
-      none-ls-extras-nvim
-    ];
+    extraPlugins = with pkgs.nixvimPlugins; [ none-ls-extras-nvim ];
   };
 }
