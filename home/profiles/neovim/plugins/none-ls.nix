@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.nixvim = {
@@ -30,7 +30,7 @@
       key = "<leader>cf";
       action = "<Cmd>lua vim.lsp.buf.format()<CR>";
       description = "Code Format";
-    }]
+    }];
 
     # Dependencies
     extraPlugins = with pkgs.nixvimPlugins; [
