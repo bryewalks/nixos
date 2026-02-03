@@ -54,7 +54,7 @@
             ./nixos/profiles/sops
             ./nixos/profiles/sddm
             ./nixos/profiles/hyprland
-	    ./nixos/profiles/whitelist
+            ./nixos/profiles/whitelist
 
             home-manager.nixosModules.home-manager
             {
@@ -83,7 +83,7 @@
             ./nixos/profiles/sops
             ./nixos/profiles/sddm
             ./nixos/profiles/hyprland
-	    ./nixos/profiles/whitelist
+            ./nixos/profiles/whitelist
 
             home-manager.nixosModules.home-manager
             {
