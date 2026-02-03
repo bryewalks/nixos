@@ -41,16 +41,22 @@
   programs.nixvim = {
     enable = true;
     nixpkgs.useGlobalPackages = true;
+    colorschemes.dracula.enable = true;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
-    colorschemes.dracula.enable = true;
 
-    globals.mapleader = " ";
-
-    plugins = {
-      telescope.enable = true;
-      treesitter.enable = true;
+    globals = {
+      mapleader = " ";
+      maplocalleader = "\\";
     };
+
+    extraConfigLua = ''
+      vim.diagnostic.config({
+        virtual_text = true,
+        signs = true,
+        underline = true,
+      })
+    '';
   };
 }

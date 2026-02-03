@@ -20,21 +20,22 @@
     };
 
     keymaps = [
-      {
-        mode = "n";
-        key = "<tab>";
-        action.__raw = ''
-          function()
-            if not require("sidekick").nes_jump_or_apply() then
-              return "<Tab>"
-            end
-          end
-        '';
-        options = {
-          expr = true;
-          desc = "Goto/Apply Next Edit Suggestion";
-        };
-      }
+      # NES disabled
+      # {
+      #   mode = "n";
+      #   key = "<tab>";
+      #   action.__raw = ''
+      #     function()
+      #       if not require("sidekick").nes_jump_or_apply() then
+      #         return "<Tab>"
+      #       end
+      #     end
+      #   '';
+      #   options = {
+      #     expr = true;
+      #     desc = "Goto/Apply Next Edit Suggestion";
+      #   };
+      # }
       {
         mode = [
           "n"

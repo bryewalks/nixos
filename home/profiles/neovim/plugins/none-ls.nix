@@ -10,7 +10,10 @@
           formatting = {
             stylua.enable = true;
             rubocop.enable = true;
-            prettier.enable = true;
+            prettier = {
+              enable = true;
+              disableTsServerFormatter = true;
+            };
             black.enable = true;
             isort.enable = true;
             nixfmt.enable = true;

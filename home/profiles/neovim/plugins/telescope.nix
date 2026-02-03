@@ -31,9 +31,9 @@
     };
 
     extraPlugins = with pkgs.vimPlugins; [
-      plenary-nvim
       telescope-ui-select-nvim
-      telescope-vimwiki-nvim
+      # TODO build from gh?
+      # telescope-vimwiki-nvim
       telescope-undo-nvim
     ];
 
@@ -127,7 +127,7 @@
       })
 
       require("telescope").load_extension("ui-select")
-      require("telescope").load_extension("vimwiki")
+      -- require("telescope").load_extension("vimwiki")
       require("telescope").load_extension("undo")
     '';
   };

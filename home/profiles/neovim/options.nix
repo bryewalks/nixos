@@ -2,11 +2,9 @@
 
 {
   programs.nixvim = {
-    options = {
+    opts = {
       number = true;
       relativenumber = true;
-      mouse = "a";
-      undofile = true;
       termguicolors = true;
       signcolumn = "yes";
       expandtab = true;
@@ -20,18 +18,5 @@
         "r:hor50-Cursor/lCursor-blinkwait100-blinkon100-blinkoff100"
       ];
     };
-
-    globals = {
-      mapleader = " ";
-      maplocalleader = "\\";
-    };
-
-    extraConfigLua = ''
-      vim.diagnostic.config({
-        virtual_text = true,
-        signs = true,
-        underline = true,
-      })
-    '';
   };
 }

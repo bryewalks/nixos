@@ -11,18 +11,6 @@
         cssls.enable = true;
         html.enable = true;
       };
-
-      mason.enable = true;
-      mason-lspconfig = {
-        enable = true;
-        ensureInstalled = [
-          "lua_ls"
-          "ts_ls"
-          "eslint"
-          "cssls"
-          "html"
-        ];
-      };
     };
 
     keymaps = [

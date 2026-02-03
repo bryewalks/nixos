@@ -49,7 +49,12 @@
   programs.git.enable = true;
 
   # Security
-  security.sudo.wheelNeedsPassword = true;
+  security.sudo = {
+    wheelNeedsPassword = true;
+    extraConfig = ''
+      Defaults lecture = never
+    '';
+  };
   security.polkit.enable = true;
   security.rtkit.enable = true;
 
