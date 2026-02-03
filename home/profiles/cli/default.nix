@@ -2,7 +2,7 @@
 
 {
   # Packages
-  home.packages = with pkgs; [ ripgrep fd fastfetch firefox ];
+  home.packages = with pkgs; [ ripgrep fd fastfetch firefox codex ];
 
   # Programs
   programs.zsh = {
