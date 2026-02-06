@@ -38,7 +38,6 @@
     # Avoid using flatpaks unless necessary.
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix = {

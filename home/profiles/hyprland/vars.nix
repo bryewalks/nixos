@@ -9,6 +9,6 @@
     "$browser" = "chromium --new-window --ozone-platform=wayland";
     "$music" = "$terminal cmus";
     "$webapp" = "$browser --app";
-    "$movies" = "stremio";
+    "$movies" = "stremio || flatpak run com.stremio.Stremio";
   };
 }
