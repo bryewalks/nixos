@@ -11,6 +11,11 @@
       }
     ];
 
-    packages = [ "flathub:app/com.stremio.Stremio/x86_64/stable" ];
+    packages = [
+      {
+        appId = "com.stremio.Stremio";
+        origin = "flathub";
+      }
+    ];
   };
 }
