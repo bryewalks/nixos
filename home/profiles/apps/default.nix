@@ -10,7 +10,6 @@
     helvum
     loupe
     protonmail-desktop
-    stremio
     vlc
   ];
 }

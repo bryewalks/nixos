@@ -10,6 +10,7 @@
     ../../profiles/cli
     ../../profiles/apps
     ../../profiles/kitty
+    ../../profiles/stremio
     ../../profiles/hyprland
     ../../profiles/neovim
   ];

@@ -19,7 +19,5 @@
       "dropbox"
       "firefox-bin"
       "firefox-bin-unwrapped"
-      "stremio-server"
-      "stremio-shell"
     ];
 }

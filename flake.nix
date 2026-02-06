@@ -35,6 +35,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Avoid using flatpaks unless necessary.
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,6 +53,7 @@
       home-manager,
       impermanence,
       import-tree,
+      nix-flatpak,
       nixpkgs,
       nixvim,
       self,
@@ -76,6 +83,7 @@
                 hyprHostName = config.networking.hostName;
               };
               home-manager.sharedModules = [
+                nix-flatpak.homeManagerModules.nix-flatpak
                 nixvim.homeModules.nixvim
                 stylix.homeModules.stylix
               ];
