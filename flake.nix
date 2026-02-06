@@ -73,7 +73,7 @@
             impermanence.nixosModules.impermanence
             sops-nix.nixosModules.sops
             (import-tree ./nixos/hosts/${hostName})
-            (import-tree ./nixos/profiles)
+            (import-tree ./nixos/modules)
             home-manager.nixosModules.home-manager
             ({ config, ... }: {
               home-manager.useGlobalPkgs = true;

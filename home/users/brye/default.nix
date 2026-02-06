@@ -6,12 +6,12 @@
   home.stateVersion = "25.11";
 
   imports = [
-    ../../profiles/stylix
-    ../../profiles/cli
-    ../../profiles/apps
-    ../../profiles/kitty
-    ../../profiles/stremio
-    ../../profiles/hyprland
-    ../../profiles/neovim
+    ../../modules/apps
+    ../../modules/cli
+    ../../modules/hyprland
+    ../../modules/kitty
+    ../../modules/neovim
+    ../../modules/stremio
+    ../../modules/stylix
   ];
 }

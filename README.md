@@ -88,7 +88,7 @@ git clone git@github.com:bryewalks/nixos
 This repo uses [sops-nix](https://github.com/Mic92/sops-nix) with [age](https://github.com/FiloSottile/age). Secrets live in per-host `secrets.yaml` files and are decrypted using an age key at build/activation time.
 
 Paths used by this repo:
-- Age key file: `/persist/system/var/lib/sops/keys.txt` (configured in `nixos/profiles/sops/default.nix`)
+- Age key file: `/persist/system/var/lib/sops/keys.txt` (configured in `nixos/modules/sops/default.nix`)
 - Per-host secrets file: `nixos/hosts/<hostname>/secrets.yaml` (set via `sops.defaultSopsFile` in each host)
 
 Secrets expected in `secrets.yaml`:

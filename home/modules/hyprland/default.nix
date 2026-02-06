@@ -1,6 +1,6 @@
 { hyprHostName, lib, pkgs, ... }:
 let
-  profileModule = ./profiles + "/${hyprHostName}.nix";
+  hostModule = ./hosts + "/${hyprHostName}.nix";
 in
 {
   imports =
@@ -14,7 +14,7 @@ in
       ./plugins.nix
       ./rules.nix
     ]
-    ++ lib.optional (builtins.pathExists profileModule) profileModule;
+    ++ lib.optional (builtins.pathExists hostModule) hostModule;
 
   home.packages = with pkgs; [
     brightnessctl
