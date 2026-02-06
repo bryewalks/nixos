@@ -8,6 +8,7 @@
   imports = [
     ../../profiles/stylix
     ../../profiles/cli
+    ../../profiles/apps
     ../../profiles/kitty
     ../../profiles/hyprland
     ../../profiles/neovim

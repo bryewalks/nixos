@@ -2,7 +2,20 @@
 
 {
   # Packages
-  home.packages = with pkgs; [ ripgrep fd fastfetch firefox codex ];
+  home.packages = with pkgs; [
+    cava
+    cmatrix
+    cmus
+    codex
+    fastfetch
+    fd
+    lazydocker
+    lsd
+    ripgrep
+    stow
+    tmux
+    yazi
+  ];
 
   # Programs
   programs.zsh = {

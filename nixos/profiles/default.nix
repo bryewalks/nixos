@@ -39,7 +39,7 @@
   users.users.brye = {
     isNormalUser = true;
     extraGroups =
-      [ "wheel" "networkmanager" "video" "audio" "input" "storage" ];
+      [ "wheel" "networkmanager" "video" "audio" "input" "storage" "docker" ];
     shell = pkgs.zsh;
     initialPassword = "password"; # Replace with passwd or sops
   };
@@ -47,6 +47,7 @@
   # Programs
   programs.zsh.enable = true;
   programs.git.enable = true;
+  programs.steam.enable = true;
 
   # Security
   security.sudo = {
@@ -68,12 +69,15 @@
     jack.enable = true;
   };
 
+  virtualisation.docker.enable = true;
+
   # System packages
   environment.systemPackages = with pkgs; [
     git
     neovim
     kitty
     btop
+    docker-compose
     kdePackages.dolphin
   ];
 

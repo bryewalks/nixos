@@ -69,15 +69,18 @@
             (import-tree ./nixos/hosts/${hostName})
             (import-tree ./nixos/profiles)
             home-manager.nixosModules.home-manager
-            {
+            ({ config, ... }: {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                hyprHostName = config.networking.hostName;
+              };
               home-manager.sharedModules = [
                 nixvim.homeModules.nixvim
                 stylix.homeModules.stylix
               ];
               home-manager.users.brye = import ./home/users/brye;
-            }
+            })
           ];
         };
     in

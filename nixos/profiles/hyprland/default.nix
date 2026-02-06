@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.hyprland = {
@@ -13,15 +13,4 @@
       xdg-desktop-portal-gtk
     ];
   };
-
-  environment.systemPackages = with pkgs; [
-    waybar
-    rofi
-    mako
-    wl-clipboard
-    grim
-    slurp
-  ];
-
-  environment.sessionVariables = { WLR_NO_HARDWARE_CURSORS = "1"; };
 }

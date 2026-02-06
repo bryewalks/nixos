@@ -12,7 +12,7 @@
       bold_font = "auto";
       italic_font = "auto";
       confirm_os_window_close = 0;
-      curosr_trail = 1;
+      cursor_trail = 1;
     };
   };
 }

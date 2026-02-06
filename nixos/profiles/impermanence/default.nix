@@ -6,6 +6,8 @@ in {
     hideMounts = true;
     directories = [
       "/etc/NetworkManager/system-connections"
+      "/etc/ssh"
+      "/var/lib/docker"
       "/var/lib/nixos"
       "/var/lib/sddm"
       "/var/lib/sops"
