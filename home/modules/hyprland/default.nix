@@ -6,13 +6,14 @@ in
   imports =
     [
       ./vars.nix
-      ./autostart.nix
       ./environment.nix
       ./input.nix
       ./keybindings.nix
       ./style.nix
-      ./plugins.nix
       ./rules.nix
+      ./plugins/hyprpm.nix
+      ./plugins/waybar
+      ./autostart.nix
     ]
     ++ lib.optional (builtins.pathExists hostModule) hostModule;
 
@@ -29,7 +30,6 @@ in
     playerctl
     rofi
     swaynotificationcenter
-    waybar
     waypaper
     wireplumber
     wl-clipboard

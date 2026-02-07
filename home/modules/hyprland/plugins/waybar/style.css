@@ -1,0 +1,275 @@
+* {
+  border: none;
+  border-radius: 6px;
+  font-family: "CaskaydiaCove Nerd Font";
+  font-size: 16px;
+  min-height: 10px;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#window {
+  margin-top: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 6px;
+  transition: none;
+  color: transparent;
+  background: transparent;
+}
+
+#tags {
+  margin-top: 6px;
+  margin-left: 12px;
+  font-size: 4px;
+  margin-bottom: 0px;
+  border-radius: 6px;
+  color: var(--dracula-background);
+  transition: none;
+}
+
+#tags button {
+  transition: none;
+  /* old: #b5e8e0 */
+  color: var(--dracula-cyan);
+  background: transparent;
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+#tags button.occupied {
+  transition: none;
+  /* old: #f28fad */
+  color: var(--dracula-magenta);
+  background: transparent;
+  font-size: 4px;
+}
+
+#tags button.focused {
+  /* old: #abe9b3 */
+  color: var(--dracula-lightGreen);
+  border-top: 2px solid var(--dracula-lightGreen);
+  border-bottom: 2px solid var(--dracula-lightGreen);
+}
+
+#tags button:hover {
+  transition: none;
+  box-shadow: inherit;
+  text-shadow: inherit;
+  /* old: #fae3b0 */
+  color: var(--dracula-brightYellow);
+  /* old: #e8a2af */
+  border-color: var(--dracula-brightMagenta);
+  color: var(--dracula-brightMagenta);
+}
+
+#tags button.focused:hover {
+  /* old: #e8a2af */
+  color: var(--dracula-brightMagenta);
+}
+
+#network {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 6px;
+  transition: none;
+  color: var(--dracula-background);
+  background: var(--dracula-purple);
+}
+
+#pulseaudio {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 6px;
+  transition: none;
+  color: var(--dracula-background);
+  background: var(--dracula-yellow);
+}
+
+#battery {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 6px;
+  transition: none;
+  color: var(--dracula-background);
+  /* old: #b5e8e0 */
+  background: var(--dracula-cyan);
+}
+
+#battery.charging,
+#battery.plugged {
+  color: var(--dracula-background);
+  /* old: #b5e8e0 */
+  background-color: var(--dracula-cyan);
+}
+
+#battery.critical:not(.charging) {
+  /* old: #b5e8e0 */
+  background-color: var(--dracula-cyan);
+  color: var(--dracula-background);
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  to {
+    /* old: #bf616a */
+    background-color: var(--dracula-red);
+    /* old: #b5e8e0 */
+    color: var(--dracula-cyan);
+  }
+}
+
+#backlight {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 6px;
+  transition: none;
+  color: var(--dracula-background);
+  /* old: #f8bd96 */
+  background: var(--dracula-orange);
+}
+
+#clock {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 6px;
+  transition: none;
+  color: var(--dracula-background);
+  background: var(--dracula-green);
+}
+
+#memory {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  border-radius: 6px;
+  transition: none;
+  color: var(--dracula-background);
+  background: var(--dracula-magenta);
+}
+
+#cpu {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  border-radius: 6px;
+  transition: none;
+  color: var(--dracula-background);
+  background: var(--dracula-cyan);
+}
+
+#tray {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  border-radius: 6px;
+  transition: none;
+  /* old: #b5e8e0 */
+  color: var(--dracula-cyan);
+  background: var(--dracula-background);
+}
+
+#custom-launcher {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 16px;
+  border-radius: 6px;
+  transition: none;
+  color: var(--dracula-cyan);
+  background: var(--dracula-background);
+}
+
+#custom-power {
+  margin-top: 6px;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding-left: 10px;
+  padding-right: 16px;
+  margin-bottom: 0px;
+  border-radius: 6px;
+  transition: none;
+  color: var(--dracula-background);
+  /* old: #f28fad */
+  background: var(--dracula-magenta);
+}
+
+#custom-wallpaper {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 16px;
+  margin-bottom: 0px;
+  border-radius: 6px;
+  transition: none;
+  color: var(--dracula-background);
+  background: var(--dracula-purple);
+}
+
+#custom-snapshot {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 16px;
+  margin-bottom: 0px;
+  border-radius: 6px;
+  transition: none;
+  color: var(--dracula-background);
+  background: var(--dracula-currentLine);
+}
+
+#custom-updates {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 6px;
+  transition: none;
+  color: var(--dracula-background);
+  background: var(--dracula-orange);
+}
+
+#custom-media {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 6px;
+  transition: none;
+  color: var(--dracula-background);
+  /* old: #f2cdcd */
+  background: var(--dracula-lightPurple);
+}
