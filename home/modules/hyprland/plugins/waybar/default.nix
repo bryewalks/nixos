@@ -35,7 +35,7 @@ in
         ];
 
         "custom/launcher" = {
-          format = "";
+          format = "";
           on-click = "rofi -show drun";
           on-click-right = "killall rofi";
         };
