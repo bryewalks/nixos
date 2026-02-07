@@ -273,3 +273,34 @@ window#waybar.hidden {
   /* old: #f2cdcd */
   background: var(--dracula-lightPurple);
 }
+
+#custom-weather {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 6px;
+  transition: none;
+  /* old: #282a36 */
+  color: var(--dracula-background);
+  /* old: #6272a4 */
+  background: var(--dracula-currentLine);
+}
+
+#workspaces button {
+  /* old: #96cdfb */
+  color: var(--dracula-brightCyan);
+}
+
+#workspaces button.urgent {
+  /* old: #f28fad */
+  color: var(--dracula-magenta);
+}
+
+#cava {
+  /* old: #8be9fd */
+  color: var(--dracula-cyan);
+  font-family: "bargraph";
+  margin-bottom: -10px;
+}

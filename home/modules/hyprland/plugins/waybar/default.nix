@@ -5,6 +5,8 @@ let
   colorNames = builtins.attrNames dracula;
   cssVars = map (name: "var(--dracula-${name})") colorNames;
   colorValues = map (name: dracula.${name}) colorNames;
+  scriptsDir = toString ../../scripts;
+  scriptPath = name: "${scriptsDir}/${name}";
 in
 {
   programs.waybar = {
@@ -59,7 +61,7 @@ in
             default = " ";
           };
           escape = true;
-          exec = "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null";
+          exec = "${scriptPath "mediaplayer.py"} 2> /dev/null";
           on-click = "playerctl play-pause";
         };
         "custom/snapshot" = {
@@ -111,7 +113,7 @@ in
             "▇"
             "█"
           ];
-          on-click-middle = "$HOME/.config/hypr/scripts/winwrap.sh";
+          on-click-middle = scriptPath "winwrap.sh";
         };
         "custom/updates" = {
           format = "{} Update(s)";
@@ -123,7 +125,7 @@ in
         "custom/wallpaper" = {
           format = "";
           on-click = "waypaper";
-          on-click-middle = "$HOME/.config/system-scripts/hyprpicker-notify.sh";
+          on-click-middle = scriptPath "hyprpicker-notify.sh";
           on-click-right = "waypaper --random";
         };
         backlight = {
@@ -179,7 +181,7 @@ in
           format = "{}";
           tooltip = true;
           interval = 900;
-          exec = "~/.config/hypr/scripts/weather.py";
+          exec = scriptPath "weather.py";
           return-type = "json";
         };
         "custom/power" = {
