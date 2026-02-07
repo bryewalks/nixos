@@ -9,7 +9,6 @@
     firefox
     helvum
     loupe
-    protonmail-desktop
     vlc
   ];
 }

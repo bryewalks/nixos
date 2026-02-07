@@ -18,10 +18,10 @@
       "~/.config/hypr/scripts/startup.sh"
     ];
 
-    windowrulev2 = [
-      "workspace 1 silent,class:^(steam_app_.*|lutris|HytaleClient|bottles|itch|minigalaxy|gamescope|playnite.*|chiaki|moonlight|.*[Ww]ine.*|com.moonlight_stream.Moonlight|com.hypixel.HytaleLauncher)$"
-      "workspace 2 silent,class:^(discord|com.discordapp.Discord|vesktop|dev.vencord.Vesktop)$"
-      "workspace 4 silent,class:^(steam|com.valvesoftware.Steam|itch|io.itch.itch|heroic|com.heroicgameslauncher.hgl|r2modman)$"
+    windowrule = [
+      "workspace 1 silent,match:class:^(steam_app_.*|lutris|HytaleClient|bottles|itch|minigalaxy|gamescope|playnite.*|chiaki|moonlight|.*[Ww]ine.*|com.moonlight_stream.Moonlight|com.hypixel.HytaleLauncher)$"
+      "workspace 2 silent,match:class:^(discord|com.discordapp.Discord|vesktop|dev.vencord.Vesktop)$"
+      "workspace 4 silent,match:class:^(steam|com.valvesoftware.Steam|itch|io.itch.itch|heroic|com.heroicgameslauncher.hgl|r2modman)$"
     ];
   };
 }

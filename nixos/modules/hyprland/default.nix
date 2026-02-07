@@ -1,16 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, hyprlandInput, ... }:
+let
+  hyprPkgs = hyprlandInput.packages.${pkgs.system};
+in
 
 {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+    package = hyprPkgs.hyprland;
+    portalPackage = hyprPkgs.xdg-desktop-portal-hyprland;
   };
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gtk
+    extraPortals = [
+      hyprPkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
     ];
   };
 }

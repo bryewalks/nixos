@@ -1,6 +1,12 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, hyprlandInput ? null, ... }:
 let
-  hp = pkgs.hyprlandPlugins or { };
+  hyprPkgs =
+    if hyprlandInput == null then { } else hyprlandInput.packages.${pkgs.system} or { };
+  hp =
+    if builtins.hasAttr "hyprlandPlugins" hyprPkgs then
+      hyprPkgs.hyprlandPlugins
+    else
+      pkgs.hyprlandPlugins or { };
   easymotionCandidates = [ "easymotion" "hypr-easymotion" "hyprEasymotion" ];
   availableEasymotion =
     builtins.filter (name: builtins.hasAttr name hp) easymotionCandidates;
