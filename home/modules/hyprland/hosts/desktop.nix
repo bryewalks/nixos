@@ -18,10 +18,33 @@
       "~/.config/hypr/scripts/startup.sh"
     ];
 
-    windowrule = [
-      "workspace 1 silent,match:class:^(steam_app_.*|lutris|HytaleClient|bottles|itch|minigalaxy|gamescope|playnite.*|chiaki|moonlight|.*[Ww]ine.*|com.moonlight_stream.Moonlight|com.hypixel.HytaleLauncher)$"
-      "workspace 2 silent,match:class:^(discord|com.discordapp.Discord|vesktop|dev.vencord.Vesktop)$"
-      "workspace 4 silent,match:class:^(steam|com.valvesoftware.Steam|itch|io.itch.itch|heroic|com.heroicgameslauncher.hgl|r2modman)$"
-    ];
+    # TODO: Use nix syntax once 0.53 is in nixpkgs
+    # windowrule = [
+    #   "workspace 1 silent,match:class:^(steam_app_.*|lutris|HytaleClient|bottles|itch|minigalaxy|gamescope|playnite.*|chiaki|moonlight|.*[Ww]ine.*|com.moonlight_stream.Moonlight|com.hypixel.HytaleLauncher)$"
+    #   "workspace 2 silent,match:class:^(discord|com.discordapp.Discord|vesktop|dev.vencord.Vesktop)$"
+    #   "workspace 4 silent,match:class:^(steam|com.valvesoftware.Steam|itch|io.itch.itch|heroic|com.heroicgameslauncher.hgl|r2modman)$"
+    # ];
   };
+
+  wayland.windowManager.hyprland.extraConfig = ''
+    windowrule {
+        name = games-workspace
+        workspace = 1 silent
+        match:class = ^(steam_app_.*|lutris|HytaleClient|bottles|itch|minigalaxy|gamescope|playnite.*|chiaki|moonlight|.*[Ww]ine.*|com.moonlight_stream.Moonlight|com.hypixel.HytaleLauncher)$
+    }
+
+    # Discord Workspace 2
+    windowrule {
+        name = discord-workspace
+        workspace = 2 silent
+        match:class = ^(discord|com.discordapp.Discord|vesktop|dev.vencord.Vesktop)$
+    }
+
+    # Launchers Workspace 4
+    windowrule {
+        name = launchers-workspace
+        workspace = 4 silent
+        match:class = ^(steam|com.valvesoftware.Steam|itch|io.itch.itch|heroic|com.heroicgameslauncher.hgl|r2modman)$
+    }
+  '';
 }
