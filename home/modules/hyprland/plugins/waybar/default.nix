@@ -1,7 +1,10 @@
 { ... }:
 let
   dracula = import ../../../themes/dracula.nix;
-  cssTheme = import ../../../themes/css.nix { };
+  baseCss = builtins.readFile ./style.css;
+  colorNames = builtins.attrNames dracula;
+  cssVars = map (name: "var(--dracula-${name})") colorNames;
+  colorValues = map (name: dracula.${name}) colorNames;
 in
 {
   programs.waybar = {
@@ -188,10 +191,6 @@ in
       }
     ];
 
-    style = cssTheme.themedCss {
-      palette = dracula;
-      prefix = "dracula";
-      css = builtins.readFile ./style.css;
-    };
+    style = builtins.replaceStrings cssVars colorValues baseCss;
   };
 }
