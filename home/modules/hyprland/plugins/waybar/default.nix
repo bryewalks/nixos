@@ -5,6 +5,20 @@ let
   colorNames = builtins.attrNames dracula;
   cssVars = map (name: "var(--dracula-${name})") colorNames;
   colorValues = map (name: dracula.${name}) colorNames;
+  weatherColors = {
+    white = dracula.white;
+    foreground = dracula.foreground;
+    background = dracula.background;
+    red = dracula.red;
+    orange = dracula.orange;
+    yellow = dracula.yellow;
+    green = dracula.green;
+    blue = dracula.purple;
+    cyan = dracula.cyan;
+    purple = dracula.magenta;
+    bright_black = dracula.currentLine;
+  };
+  weatherColorsJson = builtins.toJSON weatherColors;
   scriptsDir = toString ../../scripts;
   scriptPath = name: "${scriptsDir}/${name}";
 in
@@ -181,7 +195,7 @@ in
           format = "{}";
           tooltip = true;
           interval = 900;
-          exec = scriptPath "weather.py";
+          exec = "WEATHER_COLORS_JSON='${weatherColorsJson}' ${scriptPath "weather.py"}";
           return-type = "json";
         };
         "custom/power" = {

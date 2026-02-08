@@ -1,16 +1,18 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, inputs, ... }:
 let
   hp = pkgs.hyprlandPlugins or { };
-  easymotionCandidates = [ "easymotion" "hypr-easymotion" "hyprEasymotion" ];
-  availableEasymotion =
-    builtins.filter (name: builtins.hasAttr name hp) easymotionCandidates;
+  dracula = import ../../themes/dracula.nix;
+  themeUtils = import ../../themes/utils.nix { inherit lib; };
+  easymotionFromInput =
+    lib.attrByPath [ "hyprland-easymotion" "packages" pkgs.system "default" ]
+    null inputs;
 in {
   wayland.windowManager.hyprland.plugins =
     lib.optionals (builtins.hasAttr "hyprfocus" hp) [ hp.hyprfocus ]
     ++ lib.optionals (builtins.hasAttr "hyprwinwrap" hp) [ hp.hyprwinwrap ]
     ++ lib.optionals (builtins.hasAttr "hypr-dynamic-cursors" hp)
-    [ hp."hypr-dynamic-cursors" ] ++ lib.optionals (availableEasymotion != [ ])
-    [ hp.${builtins.head availableEasymotion} ];
+    [ hp."hypr-dynamic-cursors" ]
+    ++ lib.optionals (easymotionFromInput != null) [ easymotionFromInput ];
 
   wayland.windowManager.hyprland.settings = {
     "plugin:hyprwinwrap" = { class = "kitty-bg"; };
@@ -58,11 +60,11 @@ in {
 
     "plugin:easymotion" = {
       textsize = 54;
-      textcolor = "rgba(bd93f9ff)";
-      bgcolor = "rgba(44475aff)";
+      textcolor = themeUtils.toRgba { hex = dracula.purple; };
+      bgcolor = themeUtils.toRgba { hex = dracula.selection; };
       textpadding = "10 10 10 10";
       bordersize = 2;
-      bordercolor = "rgba(f8f8f2ff)";
+      bordercolor = themeUtils.toRgba { hex = dracula.foreground; };
       rounding = 1;
     };
   };

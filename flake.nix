@@ -26,6 +26,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
+
+    hyprland-easymotion = {
+      url = "github:zakk4223/hyprland-easymotion";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     import-tree = {
       url = "github:vic/import-tree";
     };
@@ -48,9 +57,11 @@
   };
 
   outputs =
-    {
+    inputs@{
       disko,
       home-manager,
+      hyprland,
+      hyprland-easymotion,
       impermanence,
       import-tree,
       nix-flatpak,
@@ -77,11 +88,12 @@
             (import-tree ./nixos/modules)
             home-manager.nixosModules.home-manager
             ({ config, ... }: {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                hyprHostName = config.networking.hostName;
-              };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              hyprHostName = config.networking.hostName;
+              inherit inputs;
+            };
               home-manager.sharedModules = [
                 nix-flatpak.homeManagerModules.nix-flatpak
                 nixvim.homeModules.nixvim

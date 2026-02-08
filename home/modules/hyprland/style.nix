@@ -1,12 +1,15 @@
-{ ... }:
-{
+{ lib, ... }:
+let
+  dracula = import ../themes/dracula.nix;
+  themeUtils = import ../themes/utils.nix { inherit lib; };
+in {
   wayland.windowManager.hyprland.settings = {
     general = {
       gaps_in = 5;
       gaps_out = 20;
       border_size = 2;
-      "col.active_border" = "rgba(8be9fdee) rgba(50fa7bee) 45deg";
-      "col.inactive_border" = "rgba(595959aa)";
+      "col.active_border" = "${themeUtils.toRgba { hex = dracula.cyan; opacity = "ee"; }} ${themeUtils.toRgba { hex = dracula.green; opacity = "ee"; }} 45deg";
+      "col.inactive_border" = themeUtils.toRgba { hex = dracula.selection; opacity = "aa"; };
       resize_on_border = false;
       allow_tearing = true;
       layout = "dwindle";
@@ -26,7 +29,7 @@
         enabled = true;
         range = 4;
         render_power = 3;
-        color = "rgba(1a1a1aee)";
+        color = themeUtils.toRgba { hex = dracula.background; opacity = "ee"; };
       };
       blur = {
         enabled = true;

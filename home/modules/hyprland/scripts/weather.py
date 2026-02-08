@@ -2,6 +2,7 @@
 import requests
 import json
 import sys
+import os
 from datetime import datetime
 import calendar
 import pathlib
@@ -111,14 +112,39 @@ def calculate_fire_danger(temp, humidity, wind_kph):
     return ("Catastrophic", "purple")
 
 def load_colors():
-    defaults = {"white": "#f8f8f2", "red": "#ff5555", "yellow": "#f1fa8c", 
-                "green": "#50fa7b", "blue": "#bd93f9", "cyan": "#8be9fd", 
-                "purple": "#ff79c6", "bright_black": "#6272a4"}
+    defaults = {
+        "white": "#f8f8f2",
+        "foreground": "#f8f8f2",
+        "background": "#282a36",
+        "red": "#ff5555",
+        "orange": "#ffb86c",
+        "yellow": "#f1fa8c",
+        "green": "#50fa7b",
+        "blue": "#bd93f9",
+        "cyan": "#8be9fd",
+        "purple": "#ff79c6",
+        "bright_black": "#6272a4",
+    }
+    override = os.getenv("WEATHER_COLORS_JSON")
+    if not override:
+        return defaults
+    try:
+        data = json.loads(override)
+        if isinstance(data, dict):
+            defaults.update({k: v for k, v in data.items() if isinstance(v, str)})
+    except Exception:
+        pass
     return defaults
 
 COLORS = load_colors()
-COLOR_MAP = {"green": COLORS["green"], "yellow": COLORS["yellow"], "orange": "#ffb86c", 
-             "red": COLORS["red"], "blue": COLORS["blue"], "purple": COLORS["purple"]}
+COLOR_MAP = {
+    "green": COLORS["green"],
+    "yellow": COLORS["yellow"],
+    "orange": COLORS["orange"],
+    "red": COLORS["red"],
+    "blue": COLORS["blue"],
+    "purple": COLORS["purple"],
+}
 
 def c_to_f(temp_c):
     return (temp_c * 9 / 5) + 32
@@ -252,7 +278,7 @@ def main():
             d_icon,d_text = WEATHER_MAP.get(d_code,(" ","Unknown"))
             rain_color = COLORS['blue'] if r_prob > 0 else COLORS['bright_black']
             day_num = dt.strftime("%d")
-            calendar_tab = f"<span background='{COLORS['white']}' foreground='#1e1e2e'>{day_num}</span>"
+            calendar_tab = f"<span background='{COLORS['white']}' foreground='{COLORS['background']}'>{day_num}</span>"
             day_name_str = f"{calendar.day_name[dt.weekday()]:<9}"
             day_label = f"{calendar_tab} {day_name_str}"
             t_min_s = f"<span foreground='{temp_to_color(d_min_f)}'>{d_min_f:>2.0f}</span>"
