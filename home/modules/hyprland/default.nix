@@ -1,6 +1,7 @@
 { hyprHostName, lib, pkgs, ... }:
 let
-  hostModule = ./hosts + "/${hyprHostName}.nix";
+  hostDir = ./hosts + "/${hyprHostName}";
+  hostModule = hostDir + "/default.nix";
 in
 {
   imports =
@@ -13,6 +14,7 @@ in
       ./rules.nix
       ./plugins/hyprpm.nix
       ./plugins/waybar
+      ./plugins/waypaper
       ./autostart.nix
     ]
     ++ lib.optional (builtins.pathExists hostModule) hostModule;

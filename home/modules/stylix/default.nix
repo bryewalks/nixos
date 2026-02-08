@@ -36,6 +36,12 @@ in {
     };
 
     targets.kitty.enable = true;
+    targets.qt.enable = true;
+    targets.gtk.enable = true;
+    targets.kde.enable = true;
+    targets.firefox.enable = true;
+    targets.tmux.enable = true;
+    targets.yazi.enable = true;
     targets.nixvim.enable = false;
   };
 }

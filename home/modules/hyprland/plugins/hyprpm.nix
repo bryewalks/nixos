@@ -9,14 +9,11 @@ let
 in {
   wayland.windowManager.hyprland.plugins =
     lib.optionals (builtins.hasAttr "hyprfocus" hp) [ hp.hyprfocus ]
-    ++ lib.optionals (builtins.hasAttr "hyprwinwrap" hp) [ hp.hyprwinwrap ]
     ++ lib.optionals (builtins.hasAttr "hypr-dynamic-cursors" hp)
     [ hp."hypr-dynamic-cursors" ]
     ++ lib.optionals (easymotionFromInput != null) [ easymotionFromInput ];
 
   wayland.windowManager.hyprland.settings = {
-    "plugin:hyprwinwrap" = { class = "kitty-bg"; };
-
     "plugin:hyprfocus" = {
       mode = "slide";
       slide_height = 5;
