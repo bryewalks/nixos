@@ -13,6 +13,7 @@ in
       ./style.nix
       ./rules.nix
       ./plugins/hyprpm.nix
+      ./plugins/hyprcursor
       ./plugins/hypridle
       ./plugins/hyprlock
       ./plugins/wlogout
@@ -24,10 +25,6 @@ in
 
   home.packages = with pkgs; [
     brightnessctl
-    hyprcursor
-    hypridle
-    hyprlock
-    hyprpaper
     hyprpicker
     hyprpolkitagent
     hyprshot
@@ -35,10 +32,8 @@ in
     playerctl
     rofi
     swaynotificationcenter
-    waypaper
     wireplumber
     wl-clipboard
-    wlogout
     (python3.withPackages (ps: [ ps.requests ]))
   ];
 

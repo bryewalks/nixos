@@ -1,10 +1,15 @@
-{ config, hyprHostName, lib, ... }:
+{ config, hyprHostName, lib, pkgs, ... }:
 let
   hostDir = ../../hosts + "/${hyprHostName}";
   hostHyprpaper = hostDir + "/hyprpaper.nix";
   dracula = import ../../../themes/dracula.nix;
 in
 {
+  home.packages = [
+    pkgs.hyprpaper
+    pkgs.waypaper
+  ];
+
   imports = lib.optional (builtins.pathExists hostHyprpaper) hostHyprpaper;
 
   xdg.dataFile."wallpapers" = {

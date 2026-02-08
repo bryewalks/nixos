@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 let
   cssUtils = import ../../../themes/css.nix { };
   draculaTheme = cssUtils.mkDraculaTheme { cssPath = ./style.css; };
@@ -7,6 +7,8 @@ let
   draculaPalette = draculaTheme.palette;
 in
 {
+  home.packages = [ pkgs.wlogout ];
+
   xdg.configFile."wlogout/layout".text = ''
     {
         "label": "lock",
