@@ -1,16 +1,7 @@
 { ... }:
 {
   wayland.windowManager.hyprland = {
-    # TODO: Use nix syntax once 0.53 is in nixpkgs
-    # settings = {
-    #   windowrule = [
-    #     "suppress_event maximize,match:class:.*"
-    #     "no_focus,match:class:^$,match:title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-    #     "workspace special:email silent,match:class:^(chrome-gmail.com__-Default)$"
-    #     "workspace special:gpt silent,match:class:^(chrome-chatgpt.com__-Default)$"
-    #   ];
-    # };
-
+    # TODO: Use nix syntax once home-manager supports 0.53 syntax
     extraConfig = ''
       windowrule {
           # Ignore maximize requests from all apps. You'll probably like this.
@@ -37,6 +28,12 @@
       windowrule {
           name = gmail-workspace
           match:class = ^(chrome-gmail.com__-Default)$
+          workspace = special:email silent
+      }
+
+      windowrule {
+          name = proton-workspace
+          match:class = ^(chrome-mail.proton.me__-Default)$
           workspace = special:email silent
       }
 

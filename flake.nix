@@ -45,10 +45,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -60,7 +56,6 @@
       nix-flatpak,
       nixpkgs,
       nixvim,
-      hyprland,
       self,
       sops-nix,
       stylix,
@@ -74,9 +69,6 @@
         hostName:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            hyprlandInput = hyprland;
-          };
           modules = [
             disko.nixosModules.disko
             impermanence.nixosModules.impermanence
@@ -89,7 +81,6 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = {
                 hyprHostName = config.networking.hostName;
-                hyprlandInput = hyprland;
               };
               home-manager.sharedModules = [
                 nix-flatpak.homeManagerModules.nix-flatpak

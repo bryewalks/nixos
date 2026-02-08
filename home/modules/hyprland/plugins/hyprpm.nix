@@ -1,12 +1,6 @@
-{ lib, pkgs, hyprlandInput ? null, ... }:
+{ lib, pkgs, ... }:
 let
-  hyprPkgs =
-    if hyprlandInput == null then { } else hyprlandInput.packages.${pkgs.system} or { };
-  hp =
-    if builtins.hasAttr "hyprlandPlugins" hyprPkgs then
-      hyprPkgs.hyprlandPlugins
-    else
-      pkgs.hyprlandPlugins or { };
+  hp = pkgs.hyprlandPlugins or { };
   easymotionCandidates = [ "easymotion" "hypr-easymotion" "hyprEasymotion" ];
   availableEasymotion =
     builtins.filter (name: builtins.hasAttr name hp) easymotionCandidates;
@@ -14,8 +8,8 @@ in {
   wayland.windowManager.hyprland.plugins =
     lib.optionals (builtins.hasAttr "hyprfocus" hp) [ hp.hyprfocus ]
     ++ lib.optionals (builtins.hasAttr "hyprwinwrap" hp) [ hp.hyprwinwrap ]
-    ++ lib.optionals (builtins.hasAttr "dynamic-cursors" hp)
-    [ hp."dynamic-cursors" ] ++ lib.optionals (availableEasymotion != [ ])
+    ++ lib.optionals (builtins.hasAttr "hypr-dynamic-cursors" hp)
+    [ hp."hypr-dynamic-cursors" ] ++ lib.optionals (availableEasymotion != [ ])
     [ hp.${builtins.head availableEasymotion} ];
 
   wayland.windowManager.hyprland.settings = {
