@@ -63,6 +63,7 @@
     kitty
     btop
     docker-compose
+    lshw
     kdePackages.dolphin
   ];
 

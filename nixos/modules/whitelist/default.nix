@@ -9,6 +9,11 @@
       "copilot-language-server"
       "github-copilot-cli"
 
+      # Nvidia
+      "nvidia-x11"
+      "nvidia-settings"
+      "nvidia-persistenced"
+
       # Other
       "discord"
       "dropbox"
