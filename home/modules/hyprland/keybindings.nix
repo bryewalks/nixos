@@ -31,7 +31,7 @@
       "$mainMod, SPACE, exec, $menu"
       "$SUPER_SHIFT, SPACE, exec, ~/.config/system-scripts/webapp-rofi.sh"
       "$mainMod, RETURN, exec, $terminal"
-      "$mainMod, X, exec, ~/.config/system-scripts/wlogout-toggle.sh"
+      "$mainMod, X, exec, ~/.config/hypr/scripts/wlogout-toggle.sh"
       "$mainMod, Z, fullscreen, 0"
 
       # Webapp shortcuts

@@ -13,6 +13,9 @@ in
       ./style.nix
       ./rules.nix
       ./plugins/hyprpm.nix
+      ./plugins/hypridle
+      ./plugins/hyprlock
+      ./plugins/wlogout
       ./plugins/waybar
       ./plugins/waypaper
       ./autostart.nix

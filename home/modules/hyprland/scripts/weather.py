@@ -131,7 +131,17 @@ def load_colors():
     try:
         data = json.loads(override)
         if isinstance(data, dict):
-            defaults.update({k: v for k, v in data.items() if isinstance(v, str)})
+            # First apply any direct overrides for expected keys.
+            defaults.update({k: v for k, v in data.items() if k in defaults and isinstance(v, str)})
+
+            # If this looks like a Dracula palette, map its names to our expected keys.
+            if any(k in data for k in ("currentLine", "magenta", "purple")):
+                if isinstance(data.get("currentLine"), str):
+                    defaults["bright_black"] = data["currentLine"]
+                if isinstance(data.get("purple"), str) and "blue" not in data:
+                    defaults["blue"] = data["purple"]
+                if isinstance(data.get("magenta"), str):
+                    defaults["purple"] = data["magenta"]
     except Exception:
         pass
     return defaults

@@ -1,0 +1,77 @@
+* {
+  background-image: none;
+  transition: 20ms;
+  box-shadow: none;
+}
+
+window {
+  background-color: var(--wlogout-bg-alpha);
+}
+
+button {
+  color: var(--dracula-selection);
+  font-size: 36px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30%;
+  background-color: var(--dracula-background);
+  border-style: solid;
+  border: 10px solid var(--dracula-background);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 40px;
+  padding-right: 60px;
+}
+
+button:focus {
+  color: var(--dracula-selection);
+  border: 10px solid var(--dracula-selection);
+}
+
+button:active,
+button:hover {
+  color: var(--dracula-selection);
+  border: 10px solid var(--dracula-purple);
+  background-color: var(--dracula-background);
+}
+
+/*
+-----------------------------------------------------
+Buttons
+-----------------------------------------------------
+*/
+
+#lock {
+  margin: 10px;
+  border-radius: 50px;
+  background-image: image(url("icons/lock.png"));
+}
+
+#hibernate {
+  margin: 10px;
+  border-radius: 50px;
+  background-image: image(url("icons/hibernate.png"));
+}
+
+#suspend {
+  margin: 10px;
+  border-radius: 50px;
+  background-image: image(url("icons/suspend.png"));
+}
+
+#logout {
+  margin: 10px;
+  border-radius: 50px;
+  background-image: image(url("icons/logout.png"));
+}
+
+#shutdown {
+  margin: 10px;
+  border-radius: 50px;
+  background-image: image(url("icons/shutdown.png"));
+}
+
+#reboot {
+  margin: 10px;
+  border-radius: 50px;
+  background-image: image(url("icons/reboot.png"));
+}
