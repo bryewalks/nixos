@@ -20,9 +20,17 @@ let
       to = map (name: "var(--${prefix}-${name})") names;
     in
     builtins.replaceStrings from to css;
+
+  resolvePaletteVars = { palette, css, prefix ? "theme" }:
+    let
+      names = varNames palette;
+      from = map (name: "var(--${prefix}-${name})") names;
+      to = map (name: palette.${name}) names;
+    in
+    builtins.replaceStrings from to css;
 in
-{
-  inherit mkVarBlock replacePaletteLiterals;
+rec {
+  inherit mkVarBlock replacePaletteLiterals resolvePaletteVars;
 
   themedCss =
     {
@@ -34,4 +42,16 @@ in
     mkVarBlock { inherit palette prefix selector; }
     + "\n"
     + replacePaletteLiterals { inherit palette css prefix; };
+
+  mkDraculaTheme =
+    { cssPath, prefix ? "dracula", selector ? ":root" }:
+    let
+      palette = import ./dracula.nix;
+      css = builtins.readFile cssPath;
+    in
+    {
+      inherit palette;
+      json = builtins.toJSON palette;
+      css = resolvePaletteVars { inherit palette css prefix; };
+    };
 }

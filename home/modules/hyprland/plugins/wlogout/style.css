@@ -5,7 +5,7 @@
 }
 
 window {
-  background-color: var(--wlogout-bg-alpha);
+  background-color: var(--dracula-backgroundAlpha);
 }
 
 button {

@@ -1,11 +1,10 @@
 { ... }:
 let
-  dracula = import ../../../themes/dracula.nix;
-  baseCss = builtins.readFile ./style.css;
-  colorNames = builtins.attrNames dracula;
-  cssVars = map (name: "var(--dracula-${name})") colorNames;
-  colorValues = map (name: dracula.${name}) colorNames;
-  draculaJson = builtins.toJSON dracula;
+  cssUtils = import ../../../themes/css.nix { };
+  draculaTheme = cssUtils.mkDraculaTheme { cssPath = ./style.css; };
+  draculaCss = draculaTheme.css;
+  draculaJson = draculaTheme.json;
+  draculaPalette = draculaTheme.palette;
   scriptsDir = toString ../../scripts;
   scriptPath = name: "${scriptsDir}/${name}";
 in
@@ -166,10 +165,10 @@ in
             mode = "month";
             on-scroll = 1;
             format = {
-              months = "<span color='${dracula.purple}'><b>{}</b></span>";
-              days = "<span color='${dracula.foreground}'><b>{}</b></span>";
-              weekdays = "<span color='${dracula.cyan}'><b>{}</b></span>";
-              today = "<span color='${dracula.magenta}'><b>{}</b></span>";
+              months = "<span color='${draculaPalette.purple}'><b>{}</b></span>";
+              days = "<span color='${draculaPalette.foreground}'><b>{}</b></span>";
+              weekdays = "<span color='${draculaPalette.cyan}'><b>{}</b></span>";
+              today = "<span color='${draculaPalette.magenta}'><b>{}</b></span>";
             };
           };
           actions = {
@@ -194,6 +193,6 @@ in
       }
     ];
 
-    style = builtins.replaceStrings cssVars colorValues baseCss;
+    style = draculaCss;
   };
 }

@@ -24,4 +24,5 @@
   brightWhite = "#ffffff";
   lightPurple = "#e9dbfd";
   lightGreen = "#9afcb3";
+  backgroundAlpha = "rgba(40, 42, 54, 0.8)";
 }

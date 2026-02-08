@@ -1,15 +1,10 @@
-{ lib, ... }:
+{ ... }:
 let
-  dracula = import ../../../themes/dracula.nix;
-  themeUtils = import ../../../themes/utils.nix { inherit lib; };
-  baseCss = builtins.readFile ./style.css;
-  colorNames = builtins.attrNames dracula;
-  cssVars = map (name: "var(--dracula-${name})") colorNames;
-  colorValues = map (name: dracula.${name}) colorNames;
-  bgAlpha = themeUtils.toCssRgba { hex = dracula.background; opacity = "cc"; };
-  wlogoutVars = cssVars ++ [ "var(--wlogout-bg-alpha)" ];
-  wlogoutValues = colorValues ++ [ bgAlpha ];
-  style = builtins.replaceStrings wlogoutVars wlogoutValues baseCss;
+  cssUtils = import ../../../themes/css.nix { };
+  draculaTheme = cssUtils.mkDraculaTheme { cssPath = ./style.css; };
+  draculaCss = draculaTheme.css;
+  draculaJson = draculaTheme.json;
+  draculaPalette = draculaTheme.palette;
 in
 {
   xdg.configFile."wlogout/layout".text = ''
@@ -68,7 +63,7 @@ in
     }
   '';
 
-  xdg.configFile."wlogout/style.css".text = style;
+  xdg.configFile."wlogout/style.css".text = draculaCss;
 
   xdg.configFile."wlogout/icons" = {
     source = ../../../../assets/icons;
