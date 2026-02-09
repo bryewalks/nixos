@@ -4,8 +4,6 @@ let
   draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
   draculaAlpha = draculaTheme.hexAlpha;
   draculaPalette = draculaTheme.palette;
-  withAlpha = draculaTheme.withAlpha;
-
   fontName = config.stylix.fonts.monospace.name;
 in
 {
@@ -91,7 +89,7 @@ in
         border-radius:               10px;
         border-color:                @border-colour;
         cursor:                      "default";
-        background-image:            linear-gradient(45deg, ${withAlpha draculaPalette.cyan "ee"}, ${withAlpha draculaPalette.green "ee"});
+        background-image:            linear-gradient(45deg, ${draculaPalette.cyan}ee, ${draculaPalette.green}ee);
         padding:                     2px;
         /* Backgroud Colors */
         background-color:            @background-colour;
