@@ -1,7 +1,7 @@
 { lib, ... }:
 let
-  cssUtils = import ../themes/css.nix { inherit lib; };
-  draculaTheme = cssUtils.mkDraculaTheme { };
+  themeBuilder = import ../themes/theme-builder.nix { inherit lib; };
+  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
   palette = draculaTheme.palette;
   withRgbaAlpha = draculaTheme.withRgbaAlpha;
 in {

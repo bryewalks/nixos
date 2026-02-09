@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
-  cssUtils = import ../../../themes/css.nix { inherit lib; };
-  draculaTheme = cssUtils.mkDraculaTheme { };
+  themeBuilder = import ../../../themes/theme-builder.nix { inherit lib; };
+  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
   font = config.stylix.fonts.monospace.name;
 in
 {

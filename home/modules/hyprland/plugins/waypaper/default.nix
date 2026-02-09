@@ -2,8 +2,8 @@
 let
   hostDir = ../../hosts + "/${hyprHostName}";
   hostHyprpaper = hostDir + "/hyprpaper.nix";
-  cssUtils = import ../../../themes/css.nix { };
-  draculaTheme = cssUtils.mkDraculaTheme { };
+  themeBuilder = import ../../../themes/theme-builder.nix { };
+  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
 in
 {
   home.packages = [

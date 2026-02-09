@@ -1,8 +1,8 @@
 { lib, pkgs, inputs, ... }:
 let
   hp = pkgs.hyprlandPlugins or { };
-  cssUtils = import ../../themes/css.nix { inherit lib; };
-  draculaTheme = cssUtils.mkDraculaTheme { };
+  themeBuilder = import ../../themes/theme-builder.nix { inherit lib; };
+  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
   draculaRgba = draculaTheme.rgba;
   easymotionFromInput =
     lib.attrByPath [ "hyprland-easymotion" "packages" pkgs.system "default" ]

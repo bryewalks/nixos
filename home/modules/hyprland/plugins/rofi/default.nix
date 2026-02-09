@@ -1,23 +1,10 @@
 { config, pkgs, ... }:
 let
-  cssUtils = import ../../../themes/css.nix { };
-  draculaTheme = cssUtils.mkDraculaTheme { };
+  themeBuilder = import ../../../themes/theme-builder.nix { };
+  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
   draculaAlpha = draculaTheme.hexAlpha;
   withAlpha = draculaTheme.withAlpha;
   draculaPalette = draculaTheme.palette;
-
-  palette = {
-    background = draculaAlpha.background;
-    backgroundAlt = draculaAlpha.selection;
-    foreground = draculaAlpha.foreground;
-    selected = draculaAlpha.purple;
-    active = draculaAlpha.green;
-    urgent = draculaAlpha.red;
-    cyan = draculaAlpha.cyan;
-    green = draculaAlpha.green;
-    cyanEe = withAlpha draculaPalette.cyan "ee";
-    greenEe = withAlpha draculaPalette.green "ee";
-  };
 
   fontName = config.stylix.fonts.monospace.name;
 in
@@ -50,12 +37,15 @@ in
 
     * {
         font: "''${fontName} 12";
-        background:     ${palette.background};
-        background-alt: ${palette.backgroundAlt};
-        foreground:     ${palette.foreground};
-        selected:       ${palette.selected};
-        active:         ${palette.active};
-        urgent:         ${palette.urgent};
+        background:     ${draculaAlpha.background};
+        background-alt: ${draculaAlpha.selection};
+        foreground:     ${draculaAlpha.foreground};
+        accent:         ${draculaAlpha.cyan};
+        accent-start:   ${withAlpha draculaPalette.cyan "ee"};
+        accent-end:     ${withAlpha draculaPalette.green "ee"};
+        selected:       ${draculaAlpha.purple};
+        active:         ${draculaAlpha.green};
+        urgent:         ${draculaAlpha.red};
     }
 
     * {
@@ -103,7 +93,7 @@ in
         border-radius:               10px;
         border-color:                @border-colour;
         cursor:                      "default";
-        background-image:            linear-gradient(45deg, ${palette.cyanEe}, ${palette.greenEe});
+        background-image:            linear-gradient(45deg, var(accent-start), var(accent-end));
         padding:                     2px;
         /* Backgroud Colors */
         background-color:            @background-colour;
@@ -117,7 +107,7 @@ in
         padding:                     20px;
         border:                      0px solid;
         border-radius:               10px;
-        border-color:                ${palette.cyan};
+        border-color:                var(accent);
         background-color:            @background-colour;
         children:                    [ "inputbar", "mode-switcher", "message", "listview" ];
     }

@@ -1,8 +1,8 @@
 { pkgs, ... }:
 let
-  cssUtils = import ../../../themes/css.nix { };
-  draculaTheme = cssUtils.mkDraculaTheme { cssPath = ./style.css; };
-  draculaCss = draculaTheme.css;
+  themeBuilder = import ../../../themes/theme-builder.nix { };
+  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; cssPath = ./style.css; };
+  draculaCss = draculaTheme.resolvedCss;
   draculaJson = draculaTheme.json;
 in
 {

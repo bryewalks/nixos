@@ -1,8 +1,8 @@
 { ... }:
 let
-  cssUtils = import ../../../themes/css.nix { };
-  draculaTheme = cssUtils.mkDraculaTheme { cssPath = ./style.css; };
-  draculaCss = draculaTheme.css;
+  themeBuilder = import ../../../themes/theme-builder.nix { };
+  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; cssPath = ./style.css; };
+  draculaCss = draculaTheme.resolvedCss;
   draculaPalette = draculaTheme.palette;
   draculaJson = draculaTheme.json;
   scriptsDir = toString ../../scripts;
