@@ -4,7 +4,6 @@ let
   draculaTheme = cssUtils.mkDraculaTheme { cssPath = ./style.css; };
   draculaCss = draculaTheme.css;
   draculaJson = draculaTheme.json;
-  draculaPalette = draculaTheme.palette;
 in
 {
   home.packages = [ pkgs.wlogout ];

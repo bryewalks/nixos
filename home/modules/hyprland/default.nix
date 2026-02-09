@@ -16,6 +16,7 @@ in
       ./plugins/hyprcursor
       ./plugins/hypridle
       ./plugins/hyprlock
+      ./plugins/rofi
       ./plugins/wlogout
       ./plugins/waybar
       ./plugins/waypaper
@@ -30,7 +31,6 @@ in
     hyprshot
     networkmanagerapplet
     playerctl
-    rofi
     swaynotificationcenter
     wireplumber
     wl-clipboard
@@ -43,6 +43,7 @@ in
     "hypr/scripts" = {
       source = ./scripts;
       recursive = true;
+      executable = true;
     };
   };
 }

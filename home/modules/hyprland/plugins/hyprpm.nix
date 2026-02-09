@@ -1,8 +1,9 @@
 { lib, pkgs, inputs, ... }:
 let
   hp = pkgs.hyprlandPlugins or { };
-  dracula = import ../../themes/dracula.nix;
-  themeUtils = import ../../themes/utils.nix { inherit lib; };
+  cssUtils = import ../../themes/css.nix { inherit lib; };
+  draculaTheme = cssUtils.mkDraculaTheme { };
+  draculaRgba = draculaTheme.rgba;
   easymotionFromInput =
     lib.attrByPath [ "hyprland-easymotion" "packages" pkgs.system "default" ]
     null inputs;
@@ -57,11 +58,11 @@ in {
 
     "plugin:easymotion" = {
       textsize = 54;
-      textcolor = themeUtils.toRgba { hex = dracula.purple; };
-      bgcolor = themeUtils.toRgba { hex = dracula.selection; };
+      textcolor = draculaRgba.purple;
+      bgcolor = draculaRgba.selection;
       textpadding = "10 10 10 10";
       bordersize = 2;
-      bordercolor = themeUtils.toRgba { hex = dracula.foreground; };
+      bordercolor = draculaRgba.foreground;
       rounding = 1;
     };
   };

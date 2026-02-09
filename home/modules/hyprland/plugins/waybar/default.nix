@@ -3,8 +3,8 @@ let
   cssUtils = import ../../../themes/css.nix { };
   draculaTheme = cssUtils.mkDraculaTheme { cssPath = ./style.css; };
   draculaCss = draculaTheme.css;
-  draculaJson = draculaTheme.json;
   draculaPalette = draculaTheme.palette;
+  draculaJson = draculaTheme.json;
   scriptsDir = toString ../../scripts;
   scriptPath = name: "${scriptsDir}/${name}";
 in

@@ -1,4 +1,4 @@
-{ }:
+{ lib ? null }:
 let
   varNames = palette: builtins.attrNames palette;
 
@@ -44,14 +44,32 @@ rec {
     + replacePaletteLiterals { inherit palette css prefix; };
 
   mkDraculaTheme =
-    { cssPath, prefix ? "dracula", selector ? ":root" }:
+    { cssPath ? null, prefix ? "dracula", selector ? ":root" }:
     let
       palette = import ./dracula.nix;
-      css = builtins.readFile cssPath;
+      css = if cssPath == null then "" else builtins.readFile cssPath;
+      stripHash = hex: builtins.replaceStrings [ "#" ] [ "" ] hex;
+      withAlpha = hex: opacity: "#${stripHash hex}${opacity}";
+      themeUtils = if lib == null then null else import ./utils.nix { inherit lib; };
+      withRgbaAlpha =
+        if themeUtils == null then
+          null
+        else
+          (hex: opacity: themeUtils.toRgba { inherit hex opacity; });
+      rgba =
+        if themeUtils == null then
+          null
+        else
+          builtins.mapAttrs (_: hex: themeUtils.toRgba { inherit hex; }) palette;
     in
     {
       inherit palette;
       json = builtins.toJSON palette;
       css = resolvePaletteVars { inherit palette css prefix; };
+      hexAlpha = builtins.mapAttrs (_: hex: withAlpha hex "ff") palette;
+      hexAlphaNoHash = builtins.mapAttrs (_: hex: stripHash hex) (builtins.mapAttrs (_: hex: withAlpha hex "ff") palette);
+      inherit rgba;
+      inherit withAlpha;
+      inherit withRgbaAlpha;
     };
 }

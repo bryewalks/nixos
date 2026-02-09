@@ -29,7 +29,7 @@
       "$mainMod, Q, exec, pkill waybar || true; waybar"
       "$mainMod, W, exec, bitwarden"
       "$mainMod, SPACE, exec, $menu"
-      "$SUPER_SHIFT, SPACE, exec, ~/.config/system-scripts/webapp-rofi.sh"
+      "$SUPER_SHIFT, SPACE, exec, ~/.config/hypr/scripts/webapp-rofi.sh"
       "$mainMod, RETURN, exec, $terminal"
       "$mainMod, X, exec, ~/.config/hypr/scripts/wlogout-toggle.sh"
       "$mainMod, Z, fullscreen, 0"

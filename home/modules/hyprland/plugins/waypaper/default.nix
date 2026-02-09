@@ -2,7 +2,8 @@
 let
   hostDir = ../../hosts + "/${hyprHostName}";
   hostHyprpaper = hostDir + "/hyprpaper.nix";
-  dracula = import ../../../themes/dracula.nix;
+  cssUtils = import ../../../themes/css.nix { };
+  draculaTheme = cssUtils.mkDraculaTheme { };
 in
 {
   home.packages = [
@@ -27,7 +28,7 @@ in
     backend = hyprpaper
     fill = fill
     sort = name
-    color = ${dracula.white}
+    color = ${draculaTheme.palette.white}
     subfolders = False
     all_subfolders = False
     show_hidden = False
