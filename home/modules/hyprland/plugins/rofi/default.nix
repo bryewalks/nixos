@@ -3,8 +3,8 @@ let
   themeBuilder = import ../../../themes/theme-builder.nix { };
   draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
   draculaAlpha = draculaTheme.hexAlpha;
-  withAlpha = draculaTheme.withAlpha;
   draculaPalette = draculaTheme.palette;
+  withAlpha = draculaTheme.withAlpha;
 
   fontName = config.stylix.fonts.monospace.name;
 in
@@ -41,8 +41,6 @@ in
         background-alt: ${draculaAlpha.selection};
         foreground:     ${draculaAlpha.foreground};
         accent:         ${draculaAlpha.cyan};
-        accent-start:   ${withAlpha draculaPalette.cyan "ee"};
-        accent-end:     ${withAlpha draculaPalette.green "ee"};
         selected:       ${draculaAlpha.purple};
         active:         ${draculaAlpha.green};
         urgent:         ${draculaAlpha.red};
@@ -93,7 +91,7 @@ in
         border-radius:               10px;
         border-color:                @border-colour;
         cursor:                      "default";
-        background-image:            linear-gradient(45deg, var(accent-start), var(accent-end));
+        background-image:            linear-gradient(45deg, ${withAlpha draculaPalette.cyan "ee"}, ${withAlpha draculaPalette.green "ee"});
         padding:                     2px;
         /* Backgroud Colors */
         background-color:            @background-colour;
