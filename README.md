@@ -117,3 +117,15 @@ sops --age <publicKey> nixos/hosts/<hostname>/secrets.yaml
 ```sh
 openssl passwd -6
 ```
+
+### Extra commands
+
+Check flake for errors (no build):
+```sh
+sudo nix --extra-experimental-features "nix-command flakes" flake check --no-build
+```
+
+Check specific host:
+```sh
+sudo nix --extra-experimental-features "nix-command flakes" eval .#nixosConfigurations.<host>.config.system.build.toplevel.drvPath
+```
