@@ -4,14 +4,20 @@
   programs.tmux = {
     enable = true;
     mouse = true;
-    plugins = [
-      pkgs.tmuxPlugins.sensible
-      pkgs.tmuxPlugins.dracula
-      pkgs.tmuxPlugins."vim-tmux-navigator"
+    plugins = with pkgs.tmuxPlugins; [
+      vim-tmux-navigator
+      sensible
+      {
+        plugin = dracula;
+        extraConfig = ''
+          set -g @dracula-show-empty-plugins false
+          set -g @dracula-weather-hide-errors true
+        '';
+      }
     ];
     extraConfig = ''
       unbind r
-      bind r source-file ~/.tmux.conf
+      bind r source-file ~/.config/tmux/tmux.conf
 
       bind-key h select-pane -L
       bind-key j select-pane -D
