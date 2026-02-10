@@ -1,6 +1,6 @@
 # Brye's NixOS
 
-Quick install notes for this [NixOS](https://nixos.wiki/) flake. Using [disko](https://github.com/nix-community/disko), [impermanence](https://github.com/nix-community/impermanence), [sops-nix](https://github.com/Mic92/sops-nix) and [home-manager](https://github.com/nix-community/home-manager).
+Quick install notes for this [NixOS](https://nixos.org/) flake. Using [disko](https://github.com/nix-community/disko), [impermanence](https://github.com/nix-community/impermanence), [sops-nix](https://github.com/Mic92/sops-nix) and [home-manager](https://github.com/nix-community/home-manager).
 
 ![Fastfetch](fastfetch.png)
 
