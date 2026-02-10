@@ -21,6 +21,22 @@ sudo nix --extra-experimental-features "nix-command flakes" \
 sudo reboot
 ```
 
+** You may need to format drive with disko first then nixos-install depending on RAM:
+```sh
+sudo nix --extra-experimental-features "nix-command flakes" \
+  run github:nix-community/disko \
+  -- --mode destroy,format,mount \
+  --flake github:bryewalks/nixos#<hostname>
+```
+
+```sh
+sudo nixos-install --flake github:bryewalks/nixos#<hostname>
+```
+
+```sh
+sudo reboot
+```
+
 Continue with the [Post install](#post-install) steps.
 
 ### New Machine Setup
