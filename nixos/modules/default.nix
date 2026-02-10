@@ -61,10 +61,8 @@
     git
     neovim
     kitty
-    btop
     docker-compose
     lshw
-    kdePackages.dolphin
   ];
 
   fonts.packages = with pkgs; [ nerd-fonts.caskaydia-cove ];

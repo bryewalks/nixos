@@ -2,7 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    cava
     cmatrix
     cmus
     codex
@@ -21,6 +20,8 @@
   };
 
   imports = [
+    ./btop.nix
+    ./cava.nix
     ./zsh.nix
     ./tmux.nix
     ./git.nix

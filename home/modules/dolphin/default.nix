@@ -1,0 +1,23 @@
+{ pkgs, ... }:
+
+{
+  home.packages = [
+    pkgs.kdePackages.dolphin
+  ];
+
+  xdg.configFile."dolphinrc".text = ''
+    [General]
+    Version=202
+    ViewPropsTimestamp=2024,12,7,20,57,31.003
+
+    [KFileDialog Settings]
+    Places Icons Auto-resize=false
+    Places Icons Static Size=22
+
+    [MainWindow]
+    MenuBar=Disabled
+
+    [PreviewSettings]
+    Plugins=jpegthumbnail,exrthumbnail,fontthumbnail,windowsexethumbnail,imagethumbnail,ffmpegthumbs,blenderthumbnail,mobithumbnail,gsthumbnail,cursorthumbnail,audiothumbnail,djvuthumbnail,svgthumbnail,windowsimagethumbnail,appimagethumbnail,rawthumbnail,comicbookthumbnail,directorythumbnail,opendocumentthumbnail,ebookthumbnail,kraorathumbnail,avif,ffmpegthumbnailer,gdk-pixbuf-thumbnailer,gsf-office,jxl
+  '';
+}
