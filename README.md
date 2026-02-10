@@ -2,6 +2,7 @@
 
 Quick install notes for this [NixOS](https://nixos.wiki/) flake. Using [disko](https://github.com/nix-community/disko), [sops-nix](https://github.com/Mic92/sops-nix) and [home-manager](https://github.com/nix-community/home-manager).
 
+![Fastfetch](fastfetch.png)
 
 ## Fresh install (NixOS ISO)
 
