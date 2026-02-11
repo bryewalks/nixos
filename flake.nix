@@ -88,12 +88,12 @@
             (import-tree ./nixos/modules)
             home-manager.nixosModules.home-manager
             ({ config, ... }: {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              hyprHostName = config.networking.hostName;
-              inherit inputs;
-            };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                hyprHostName = config.networking.hostName;
+                inherit inputs;
+              };
               home-manager.sharedModules = [
                 nix-flatpak.homeManagerModules.nix-flatpak
                 nixvim.homeModules.nixvim

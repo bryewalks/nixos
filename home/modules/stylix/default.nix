@@ -40,6 +40,7 @@ in {
     targets.gtk.enable = true;
     targets.kde.enable = true;
     targets.firefox.enable = true;
+    targets.firefox.profileNames = [ "default" ];
     targets.tmux.enable = true;
     targets.yazi.enable = true;
     targets.nixvim.enable = false;

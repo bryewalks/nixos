@@ -5,7 +5,8 @@ let
   draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
   draculaRgba = draculaTheme.rgba;
   easymotionFromInput =
-    lib.attrByPath [ "hyprland-easymotion" "packages" pkgs.system "default" ]
+    lib.attrByPath
+      [ "hyprland-easymotion" "packages" pkgs.stdenv.hostPlatform.system "default" ]
     null inputs;
 in {
   wayland.windowManager.hyprland.plugins =

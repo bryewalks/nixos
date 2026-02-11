@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.zsh = {
     enable = true;
+    dotDir = "${config.xdg.configHome}/zsh";
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initContent = ''
@@ -11,7 +12,7 @@
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
 
-      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+      [[ ! -f "${config.xdg.configHome}/zsh/.p10k.zsh" ]] || source "${config.xdg.configHome}/zsh/.p10k.zsh"
 
       export PATH="$HOME/.tmuxifier/bin:$PATH"
       if command -v tmuxifier >/dev/null 2>&1; then
@@ -29,5 +30,5 @@
     };
   };
 
-  home.file.".p10k.zsh".source = ./.p10k.zsh;
+  home.file."${config.xdg.configHome}/zsh/.p10k.zsh".source = ./.p10k.zsh;
 }
