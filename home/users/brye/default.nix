@@ -20,12 +20,14 @@
 
   imports = [
     ../../modules/apps
+    ../../modules/browsers
     ../../modules/cli
-    ../../modules/dolphin
+    ../../modules/explorers/dolphin.nix
     ../../modules/hyprland
-    ../../modules/kitty
+    ../../modules/terminals/kitty.nix
+    ../../modules/media
+    ../../modules/media/stremio.nix
     ../../modules/neovim
-    ../../modules/stremio
     ../../modules/stylix
   ];
 }
