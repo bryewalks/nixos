@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   fileSystems."/" = {
     device = "none";
@@ -29,4 +31,15 @@
       size = 16 * 1024;
     }
   ];
+
+  systemd.tmpfiles.rules = [
+    "d /persist/swap 0755 root root -"
+  ];
+
+  system.activationScripts.persistSwapBtrfs = ''
+    if [ -d /persist/swap ]; then
+      ${pkgs.e2fsprogs}/bin/chattr +C /persist/swap || true
+      ${pkgs.btrfs-progs}/bin/btrfs property set /persist/swap compression none || true
+    fi
+  '';
 }

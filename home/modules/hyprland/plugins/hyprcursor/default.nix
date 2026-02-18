@@ -1,5 +1,6 @@
 { lib, pkgs, ... }:
 let
+  xcursorDracula = import ../../../../../nixos/pkgs/dracula-cursors.nix { inherit pkgs; };
   hyprcursorDracula = pkgs.stdenvNoCC.mkDerivation {
     pname = "hyprcursor-dracula-kde";
     version = "git";
@@ -16,21 +17,6 @@ let
     installPhase = ''
       mkdir -p $out/share/icons
       cp -r theme_Dracula $out/share/icons/hyprcursor_Dracula
-    '';
-  };
-
-  xcursorDracula = pkgs.stdenvNoCC.mkDerivation {
-    pname = "dracula-cursors";
-    version = "git";
-    src = pkgs.fetchFromGitHub {
-      owner = "dracula";
-      repo = "gtk";
-      rev = "1282a6806d568b736fddf783263fc96ccd34a8ce";
-      hash = "sha256-6fYbe3CVfCw/CZaFX5Mc1DPb4+uiQLIZlirx+2/jUzw=";
-    };
-    installPhase = ''
-      mkdir -p $out/share/icons
-      cp -r kde/cursors/Dracula-cursors $out/share/icons/Dracula-cursors
     '';
   };
 in
