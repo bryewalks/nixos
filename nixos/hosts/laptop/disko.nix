@@ -5,7 +5,7 @@
     disk.main = {
       type = "disk";
 
-      device = "/dev/nvme0n1";
+      device = "/dev/disk/by-id/nvme-eui.0025385891b17dc9";
 
       content = {
         type = "gpt";
