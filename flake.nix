@@ -107,5 +107,7 @@
     {
       diskoConfigurations.laptop = import ./nixos/hosts/laptop/disko.nix;
       nixosConfigurations.laptop = mkHostWithImpermanence "laptop";
+      diskoConfigurations.desktop = import ./nixos/hosts/desktop/disko.nix;
+      nixosConfigurations.desktop = mkHostWithImpermanence "desktop";
     };
 }

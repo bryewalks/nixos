@@ -146,3 +146,8 @@ Check specific host:
 ```sh
 sudo nix --extra-experimental-features "nix-command flakes" eval .#nixosConfigurations.<host>.config.system.build.toplevel.drvPath
 ```
+
+Generate hardware config on existing none nixos machine (requires nix):
+```sh
+sudo nix --extra-experimental-features "nix-command flakes" shell nixpkgs#nixos-install-tools -c nixos-generate-config --show-hardware-config > hardware.nix
+```
