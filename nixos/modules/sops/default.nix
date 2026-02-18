@@ -20,5 +20,8 @@
   users.users.brye.hashedPasswordFile = config.sops.secrets.hashedPassword.path;
 
   systemd.tmpfiles.rules =
-    [ "d /persist/system/var/lib/sops 0755 root root -" ];
+    [
+      "d /home/brye/.ssh 0700 brye users -"
+      "d /persist/system/var/lib/sops 0755 root root -"
+    ];
 }
