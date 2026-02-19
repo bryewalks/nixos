@@ -33,6 +33,12 @@
   programs.zsh.enable = true;
   programs.git.enable = true;
   programs.steam.enable = true;
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 7d --keep 5";
+    flake = "/home/brye/nixos";
+  };
 
   environment.etc."chromium/policies/managed/managed_policies.json".text =
     builtins.toJSON {
@@ -67,6 +73,7 @@
   environment.systemPackages = with pkgs; [
     git
     neovim
+    nh
     kitty
     docker-compose
     lshw
