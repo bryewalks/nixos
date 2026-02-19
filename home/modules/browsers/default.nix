@@ -50,6 +50,7 @@
       ];
       PasswordManagerEnabled = false;
       CredentialsEnableService = false;
+      PasswordLeakDetectionEnabled = false;
     };
 
   programs.firefox = {

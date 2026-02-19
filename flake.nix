@@ -44,6 +44,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-cachyos-kernel = {
+      url = "github:xddxdd/nix-cachyos-kernel/release";
+    };
+
     # Avoid using flatpaks unless necessary.
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
@@ -53,7 +57,6 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs =
@@ -81,6 +84,11 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            ({ ... }: {
+              nixpkgs.overlays = [
+                inputs.nix-cachyos-kernel.overlays.pinned
+              ];
+            })
             disko.nixosModules.disko
             impermanence.nixosModules.impermanence
             sops-nix.nixosModules.sops
