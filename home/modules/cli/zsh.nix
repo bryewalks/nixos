@@ -27,6 +27,7 @@
     shellAliases = {
       ls = "lsd";
       tmuxfr = "tmuxifier";
+      nixedit = "${config.home.sessionVariables.EDITOR} ${config.home.homeDirectory}/nixos";
     };
   };
 
