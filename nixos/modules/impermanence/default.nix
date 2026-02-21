@@ -17,6 +17,7 @@ in {
       "/var/lib/sops"
       "/var/lib/systemd/coredump"
       "/var/log"
+      "/var/tmp"
     ];
     files = [ "/etc/machine-id" ];
   };
