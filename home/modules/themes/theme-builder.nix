@@ -50,6 +50,7 @@ rec {
           inherit theme;
         };
         inherit hexAlpha;
+        hexNoHash = builtins.mapAttrs (_: hex: stripHash hex) palette;
         hexAlphaNoHash = builtins.mapAttrs (_: hex: stripHash hex) hexAlpha;
         inherit withAlpha;
       };

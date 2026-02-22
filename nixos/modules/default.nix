@@ -32,13 +32,17 @@
   # Programs
   programs.zsh.enable = true;
   programs.git.enable = true;
-  programs.steam.enable = true;
   programs.nh = {
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 7d --keep 5";
     flake = "/home/brye/nixos";
   };
+
+  # Gaming
+  programs.steam.enable = true;
+  programs.gamemode.enable = true;
+  programs.gamescope.enable = true;
 
   environment.etc."chromium/policies/managed/managed_policies.json".text =
     builtins.toJSON {

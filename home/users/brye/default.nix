@@ -13,6 +13,7 @@ in
       ../../modules/apps
       ../../modules/browsers
       ../../modules/cli
+      ../../modules/gaming
       ../../modules/directories
       ../../modules/explorers/dolphin.nix
       ../../modules/hyprland
