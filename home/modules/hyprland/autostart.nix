@@ -8,7 +8,6 @@
       "systemctl --user start hyprpolkitagent"
       "dropbox-cli start"
       "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-      "kbuildsycoca6"
       "[workspace special:email silent] $webapp=\"https://mail.proton.me\""
       "[workspace special:email silent] $webapp=\"https://gmail.com\""
       "[workspace special:gpt silent] $webapp=\"https://chatgpt.com\""

@@ -32,11 +32,17 @@
   # Programs
   programs.zsh.enable = true;
   programs.git.enable = true;
+
+  # Nix helpers
   programs.nh = {
     enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 7d --keep 5";
     flake = "/home/brye/nixos";
+    # Auto garbage collect
+    clean = {
+      enable = true;
+      dates = "daily";
+      extraArgs = "--keep-since 3d --keep 5";
+    };
   };
 
   # Gaming
