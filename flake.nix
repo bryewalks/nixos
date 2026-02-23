@@ -27,7 +27,8 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      # Pinning to specific commit until hypreasymotion is fixed. reeval when 0.53.4 releases.
+      url = "github:hyprwm/Hyprland?rev=a1e62dcb12f5547ccb786b34a46ae60ca78ec5e7";
     };
 
     hyprland-easymotion = {
