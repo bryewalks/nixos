@@ -29,7 +29,7 @@ in
 
     {
         "label": "suspend",
-        "action": "systemctl suspend && hyprlock",
+        "action": "systemctl suspend",
         "text": "S",
         "keybind": "s",
         "width": 1,
@@ -47,7 +47,7 @@ in
 
     {
         "label": "hibernate",
-        "action": "systemctl hibernate && hyprlock",
+        "action": "systemctl hibernate",
         "text": "H",
         "keybind": "h",
         "width": 1,

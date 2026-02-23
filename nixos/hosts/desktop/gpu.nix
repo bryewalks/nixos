@@ -39,15 +39,4 @@
         });
       };
   };
-  boot.kernelParams = [
-    "nvidia-drm.modeset=1"
-    "nvidia-drm.fbdev=0"
-    "nvidia.NVreg_EnableGpuFirmware=0"
-    "mem_sleep_default=deep"
-  ];
-
-  boot.extraModprobeConfig = ''
-    options nvidia NVreg_PreserveVideoMemoryAllocations=1
-    options nvidia NVreg_TemporaryFilePath=/var/tmp
-  '';
 }

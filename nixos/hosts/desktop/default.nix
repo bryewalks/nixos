@@ -3,6 +3,11 @@
 {
   networking.hostName = "desktop";
 
+  swapfile = {
+    enable = true;
+    sizeGiB = 36;
+  };
+
   disabledModules = [ ../../modules/plymouth/default.nix ];
 
   # Needed for stremio
