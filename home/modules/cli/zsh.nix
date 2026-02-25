@@ -28,6 +28,7 @@
       ls = "lsd";
       tmuxfr = "tmuxifier";
       nixedit = "${config.home.sessionVariables.EDITOR} ${config.home.homeDirectory}/nixos";
+      hgrep = "fc -l 0 | grep -i";
     };
   };
 
