@@ -104,8 +104,8 @@
       {
         mode = "n";
         key = "<leader>ac";
-        action.__raw = ''function() require("sidekick.cli").toggle({ name = "codex", focus = true }) end'';
-        options.desc = "Sidekick Toggle Codex";
+        action.__raw = ''function() require("sidekick.cli").toggle({ name = "claude", focus = true }) end'';
+        options.desc = "Sidekick Toggle Claude";
       }
     ];
   };

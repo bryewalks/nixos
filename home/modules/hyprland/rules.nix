@@ -38,9 +38,9 @@
       }
 
       windowrule {
-          name = gpt-workspace
-          match:class = ^(chrome-chatgpt.com__-Default)$
-          workspace = special:gpt silent
+          name = aichat-workspace
+          match:class = ^(chrome-claude.ai__-Default)$
+          workspace = special:aichat silent
       }
     '';
   };

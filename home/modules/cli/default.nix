@@ -4,7 +4,7 @@
   home.packages = with pkgs; [
     cmatrix
     cmus
-    codex
+    claude-code
     fastfetch
     fd
     lazydocker

@@ -18,7 +18,7 @@
       "$mainMod, D, exec, discord"
       "$mainMod, F, exec, ~/.config/hypr/scripts/easymotion.sh"
       "$SUPER_SHIFT, F, exec, $fileManager"
-      "$SUPER_SHIFT, G, exec, $terminal codex"
+      "$SUPER_SHIFT, G, exec, $terminal claude"
       "$mainMod, I, exec, $terminal btop"
       "$mainMod, N, exec, $terminal nvim"
       "$mainMod, P, exec, hyprshot -m output"
@@ -43,7 +43,7 @@
       "$mainMod, E, togglespecialworkspace, email"
       "$mainMod, T, togglespecialworkspace, terminal"
       "$mainMod, B, togglespecialworkspace, browser"
-      "$mainMod, G, togglespecialworkspace, gpt"
+      "$mainMod, G, togglespecialworkspace, aichat"
       "$mainMod, O, togglespecialworkspace, magic"
       "$SUPER_SHIFT, O, movetoworkspace, special:magic"
 
