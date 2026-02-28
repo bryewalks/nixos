@@ -30,11 +30,11 @@
       url = "github:hyprwm/Hyprland";
     };
 
-    # Disable easymotion. Will create PR to fix usage in 0.54
-    # hyprland-easymotion = {
-    #   url = "github:zakk4223/hyprland-easymotion";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
+    # Update to remote url once 0.54 PR merged.
+    hyprland-easymotion = {
+      url = "github:bryewalks/hyprland-easymotion";
+      inputs.hyprland.follows = "hyprland";
+    };
 
     import-tree = {
       url = "github:vic/import-tree";
@@ -65,7 +65,7 @@
       disko,
       home-manager,
       hyprland,
-      # hyprland-easymotion,
+      hyprland-easymotion,
       impermanence,
       import-tree,
       nix-flatpak,

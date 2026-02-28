@@ -10,7 +10,7 @@
 
       # Hyprland shortcuts
       "$mainMod, C, killactive,"
-      "$mainMod, S, togglesplit,"
+      "$mainMod, S, layoutmsg, togglesplit"
       "$mainMod, V, togglefloating,"
 
       # Application shortcuts
