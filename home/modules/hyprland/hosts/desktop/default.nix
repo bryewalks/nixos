@@ -8,7 +8,7 @@
 
     workspace = [
       "name:1, monitor:DP-2, default:true"
-      "name:3, monitor:DP-2, default:true"
+      "name:3, monitor:DP-2, default:true, layout:scrolling"
       "name:2, monitor:DP-1, default:true"
       "name:4, monitor:DP-1, default:true"
     ];

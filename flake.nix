@@ -27,14 +27,14 @@
     };
 
     hyprland = {
-      # Pinning to specific commit until hypreasymotion is fixed. reeval when 0.53.4 releases.
-      url = "github:hyprwm/Hyprland?rev=a1e62dcb12f5547ccb786b34a46ae60ca78ec5e7";
+      url = "github:hyprwm/Hyprland";
     };
 
-    hyprland-easymotion = {
-      url = "github:zakk4223/hyprland-easymotion";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # Disable easymotion. Will create PR to fix usage in 0.54
+    # hyprland-easymotion = {
+    #   url = "github:zakk4223/hyprland-easymotion";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     import-tree = {
       url = "github:vic/import-tree";
@@ -65,7 +65,7 @@
       disko,
       home-manager,
       hyprland,
-      hyprland-easymotion,
+      # hyprland-easymotion,
       impermanence,
       import-tree,
       nix-flatpak,
@@ -91,6 +91,7 @@
               ];
             })
             disko.nixosModules.disko
+            hyprland.nixosModules.default
             impermanence.nixosModules.impermanence
             sops-nix.nixosModules.sops
             (import-tree ./nixos/hosts/${hostName})
@@ -104,6 +105,7 @@
                 inherit inputs;
               };
               home-manager.sharedModules = [
+                hyprland.homeManagerModules.default
                 nix-flatpak.homeManagerModules.nix-flatpak
                 nixvim.homeModules.nixvim
                 stylix.homeModules.stylix
