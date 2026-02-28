@@ -27,7 +27,7 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/v0.54.0";
     };
 
     # Update to remote url once 0.54 PR merged.
