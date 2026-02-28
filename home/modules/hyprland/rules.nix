@@ -3,6 +3,8 @@
   wayland.windowManager.hyprland = {
     # TODO: Use nix syntax once home-manager supports 0.53 syntax
     extraConfig = ''
+      workspace = special:browser, layout:scrolling
+
       windowrule {
           # Ignore maximize requests from all apps. You'll probably like this.
           name = suppress-maximize-events
