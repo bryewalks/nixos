@@ -30,9 +30,18 @@
       url = "github:hyprwm/Hyprland/v0.54.0";
     };
 
-    # Update to remote url once 0.54 PR merged.
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     hyprland-easymotion = {
       url = "github:bryewalks/hyprland-easymotion";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hypr-dynamic-cursors = {
+      url = "github:VirtCode/hypr-dynamic-cursors";
       inputs.hyprland.follows = "hyprland";
     };
 
@@ -66,6 +75,7 @@
       home-manager,
       hyprland,
       hyprland-easymotion,
+      hyprland-plugins,
       impermanence,
       import-tree,
       nix-flatpak,

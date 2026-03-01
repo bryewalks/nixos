@@ -1,6 +1,5 @@
 { lib, pkgs, inputs, ... }:
 let
-  hp = pkgs.hyprlandPlugins or { };
   themeBuilder = import ../../themes/theme-builder.nix { inherit lib; };
   draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
   draculaRgba = draculaTheme.rgba;
@@ -8,14 +7,21 @@ let
     lib.attrByPath
       [ "hyprland-easymotion" "packages" pkgs.stdenv.hostPlatform.system "default" ]
     null inputs;
+  hyprfocusFromInput =
+    lib.attrByPath
+      [ "hyprland-plugins" "packages" pkgs.stdenv.hostPlatform.system "hyprfocus" ]
+    null inputs;
+  dynamicCursorsFromInput =
+    lib.attrByPath
+      [ "hypr-dynamic-cursors" "packages" pkgs.stdenv.hostPlatform.system "default" ]
+    null inputs;
 in {
-  wayland.windowManager.hyprland.plugins =
-    lib.optionals (builtins.hasAttr "hyprfocus" hp) [ hp.hyprfocus ]
-    ++ lib.optionals (builtins.hasAttr "hypr-dynamic-cursors" hp)
-    [ hp."hypr-dynamic-cursors" ]
-    ++ lib.optionals (easymotionFromInput != null) [ easymotionFromInput ];
-
   wayland.windowManager.hyprland.settings = {
+    plugin =
+      lib.optionals (easymotionFromInput != null) [ "${easymotionFromInput}/lib/libhyprland-easymotion.so" ]
+      ++ lib.optionals (hyprfocusFromInput != null) [ "${hyprfocusFromInput}/lib/libhyprfocus.so" ]
+      ++ lib.optionals (dynamicCursorsFromInput != null) [ "${dynamicCursorsFromInput}/lib/libhypr-dynamic-cursors.so" ];
+
     "plugin:hyprfocus" = {
       mode = "slide";
       slide_height = 5;
