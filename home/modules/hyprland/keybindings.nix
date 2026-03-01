@@ -15,6 +15,7 @@
 
       # Application shortcuts
       "$mainMod, A, exec, $audio"
+      "$SUPER_SHIFT, B, exec, $browser"
       "$mainMod, D, exec, discord"
       "$mainMod, F, exec, ~/.config/hypr/scripts/easymotion.sh"
       "$SUPER_SHIFT, F, exec, $fileManager"
@@ -27,17 +28,13 @@
       "$mainMod, M, exec, $music"
       "$SUPER_SHIFT, M, exec, $movies"
       "$mainMod, Q, exec, pkill waybar || true; waybar"
+      "$mainMod, R, exec, steam"
       "$mainMod, W, exec, bitwarden"
       "$mainMod, SPACE, exec, $menu"
       "$SUPER_SHIFT, SPACE, exec, ~/.config/hypr/scripts/webapp-rofi.sh"
       "$mainMod, RETURN, exec, $terminal"
       "$mainMod, X, exec, ~/.config/hypr/scripts/wlogout-toggle.sh"
       "$mainMod, Z, fullscreen, 0"
-
-      # Webapp shortcuts
-      "$mainMod, Y, exec, $webapp=\"https://youtube.com\""
-      "$mainMod, R, exec, $webapp=\"https://reddit.com\""
-      "$SUPER_SHIFT, R, exec, $webapp=\"https://lemmy.ml\""
 
       # Special workspaces
       "$mainMod, E, togglespecialworkspace, email"

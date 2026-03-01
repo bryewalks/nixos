@@ -26,23 +26,12 @@
           no_focus = true
       }
 
-      # Work arounds for ensuring webapps open in the correct workspaces. Look into switching to firefox for webapps later.
+      # Remove to keep zen-beta confined to special:browser workspace
       windowrule {
-          name = gmail-workspace
-          match:class = ^(chrome-gmail.com__-Default)$
-          workspace = special:email silent
-      }
+          name = zen-beta-current-workspace
+          match:class = ^zen-beta$
 
-      windowrule {
-          name = proton-workspace
-          match:class = ^(chrome-mail.proton.me__-Default)$
-          workspace = special:email silent
-      }
-
-      windowrule {
-          name = aichat-workspace
-          match:class = ^(chrome-claude.ai__-Default)$
-          workspace = special:aichat silent
+          workspace = current
       }
     '';
   };

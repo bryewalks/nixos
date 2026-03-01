@@ -7,11 +7,11 @@
       "nm-applet --indicator"
       "systemctl --user start hyprpolkitagent"
       "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-      "[workspace special:email silent] $webapp=\"https://mail.proton.me\" --user-data-dir=$HOME/.local/share/chromium-webapp/proton"
-      "[workspace special:email silent] $webapp=\"https://gmail.com\" --user-data-dir=$HOME/.local/share/chromium-webapp/gmail"
-      "[workspace special:aichat silent] $webapp=\"https://claude.ai\" --user-data-dir=$HOME/.local/share/chromium-webapp/claude"
+      "[workspace special:email silent] zen-beta --no-remote --new-window -P WebApp-proton --class WebApp-proton https://mail.proton.me"
+      "[workspace special:email silent] zen-beta --no-remote --new-window -P WebApp-gmail --class WebApp-gmail https://gmail.com"
+      "[workspace special:aichat silent] zen-beta --no-remote --new-window -P WebApp-claude --class WebApp-claude https://claude.ai"
       "[workspace special:terminal silent] $terminal tmux"
-      "[workspace special:browser silent] firefox"
+      "[workspace special:browser silent] zen-beta"
     ];
   };
 }

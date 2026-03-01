@@ -55,13 +55,6 @@
   programs.gamemode.enable = true;
   programs.gamescope.enable = true;
 
-  environment.etc."chromium/policies/managed/managed_policies.json".text =
-    builtins.toJSON {
-      PasswordManagerEnabled = false;
-      CredentialsEnableService = false;
-      PasswordLeakDetectionEnabled = false;
-    };
-
   # Security
   security.sudo = {
     wheelNeedsPassword = true;

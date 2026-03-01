@@ -6,9 +6,9 @@
     "$fileManager" = "dolphin";
     "$menu" = "rofi -show drun";
     "$audio" = "helvum";
-    "$browser" = "chromium --new-window --ozone-platform=wayland";
+    "$browser" = "zen-beta --new-window";
     "$music" = "$terminal cmus";
-    "$webapp" = "$browser --app";
+    "$webapp" = "$browser -P WebApp --class WebApp";
     "$movies" = "stremio || flatpak run com.stremio.Stremio";
   };
 }

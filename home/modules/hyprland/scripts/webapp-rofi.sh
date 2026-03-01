@@ -59,6 +59,6 @@ while true; do
   } | tac | awk 'NF && !seen[$0]++' | tac > "${HIST_FILE}.tmp"
   mv "${HIST_FILE}.tmp" "$HIST_FILE"
 
-  chromium --new-window --ozone-platform=wayland --app="$url"
+  zen-beta --no-remote --new-window -P WebApp --class WebApp $url
   exit 0
 done
