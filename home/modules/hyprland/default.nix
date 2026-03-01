@@ -29,9 +29,12 @@ in
     hyprpicker
     hyprpolkitagent
     hyprshot
+    jq
     networkmanagerapplet
     playerctl
+    slurp
     swaynotificationcenter
+    wf-recorder
     wireplumber
     wl-clipboard
     (python3.withPackages (ps: [ ps.requests ]))

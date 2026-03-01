@@ -20,6 +20,7 @@ in
           "memory"
           "custom/media"
           "custom/snapshot"
+          "custom/record"
           "tray"
         ];
         modules-center = [ "hyprland/workspaces" ];
@@ -66,9 +67,17 @@ in
         };
         "custom/snapshot" = {
           format = "";
-          on-click = "hyprshot -m output";
-          on-click-middle = "hyprshot -m window";
-          on-click-right = "hyprshot -m region";
+          on-click = scriptPath "screenshot-monitor.sh";
+          on-click-middle = scriptPath "screenshot-window.sh";
+          on-click-right = scriptPath "screenshot-region.sh";
+        };
+        "custom/record" = {
+          interval = 0;
+          signal = 8;
+          exec = "pgrep -x wf-recorder > /dev/null && echo '●'";
+          on-click = scriptPath "record-monitor.sh";
+          on-click-middle = scriptPath "record-window.sh";
+          on-click-right = scriptPath "record-region.sh";
         };
         tray = {
           icon-size = 18;
