@@ -67,6 +67,14 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
   };
 
   outputs =
@@ -84,6 +92,7 @@
       self,
       sops-nix,
       stylix,
+      zen-browser,
       ...
     }:
 
@@ -119,6 +128,7 @@
                 nix-flatpak.homeManagerModules.nix-flatpak
                 nixvim.homeModules.nixvim
                 stylix.homeModules.stylix
+                zen-browser.homeModules.beta
               ];
               home-manager.users.brye = import ./home/users/brye;
             })

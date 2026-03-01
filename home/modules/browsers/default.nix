@@ -1,6 +1,33 @@
 { config, pkgs, ... }:
 
 {
+  programs.zen-browser = {
+    enable = true;
+
+    policies = {
+      Homepage = {
+        StartPage = "homepage";
+        URL = "https://vimium.github.io";
+      };
+      ExtensionSettings = {
+        "*".installation_mode = "allowed";
+        "uBlock0@raymondhill.net" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+        };
+        "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
+        };
+        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
+        };
+      };
+      PasswordManagerEnabled = false;
+    };
+  };
+
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
