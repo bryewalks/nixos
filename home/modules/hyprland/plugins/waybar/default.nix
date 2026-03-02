@@ -38,6 +38,7 @@ in
         "custom/launcher" = {
           format = "";
           on-click = "rofi -show drun";
+          tooltip = false;
           on-click-right = "killall rofi";
         };
         cpu = {
@@ -67,6 +68,8 @@ in
         };
         "custom/snapshot" = {
           format = "";
+          tooltip = true;
+          tooltip-format = "Monitor · Left   · SUPER + P\nWindow  · Middle · SUPER + CTRL + P\nRegion  · Right  · SUPER + SHIFT + P";
           on-click = scriptPath "screenshot-monitor.sh";
           on-click-middle = scriptPath "screenshot-window.sh";
           on-click-right = scriptPath "screenshot-region.sh";
@@ -124,14 +127,15 @@ in
           ];
           on-click-middle = scriptPath "winwrap.sh";
         };
-        "custom/updates" = {
-          format = "{} Update(s)";
-          exec = "checkupdates | wc -l";
-          exec-if = "[[ $(checkupdates | wc -l) != 0 ]]";
-          interval = 15;
-          on-click = "kitty sudo pacman -Syu && notify-send ' 󰀦 System has been updated! '";
-        };
+        # "custom/updates" = {
+        #   format = "{} Update(s)";
+        #   exec = "checkupdates | wc -l";
+        #   exec-if = "[[ $(checkupdates | wc -l) != 0 ]]";
+        #   interval = 15;
+        #   on-click = "kitty sudo pacman -Syu && notify-send ' 󰀦 System has been updated! '";
+        # };
         "custom/wallpaper" = {
+          tooltip = false;
           format = "";
           on-click = "waypaper";
           on-click-middle = scriptPath "hyprpicker-notify.sh";
@@ -196,6 +200,7 @@ in
         "custom/power" = {
           format = "";
           on-click = "wlogout";
+          tooltip = false;
           on-click-middle = "shutdown -r now";
           on-click-right = "shutdown -P now";
         };
