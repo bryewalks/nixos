@@ -26,7 +26,6 @@ in
         modules-center = [ "hyprland/workspaces" ];
         modules-right = [
           "cava"
-          "custom/updates"
           "custom/wallpaper"
           "pulseaudio"
           "battery"
@@ -127,13 +126,6 @@ in
           ];
           on-click-middle = scriptPath "winwrap.sh";
         };
-        # "custom/updates" = {
-        #   format = "{} Update(s)";
-        #   exec = "checkupdates | wc -l";
-        #   exec-if = "[[ $(checkupdates | wc -l) != 0 ]]";
-        #   interval = 15;
-        #   on-click = "kitty sudo pacman -Syu && notify-send ' 󰀦 System has been updated! '";
-        # };
         "custom/wallpaper" = {
           tooltip = false;
           format = "";
