@@ -33,6 +33,13 @@
 
           workspace = current
       }
+
+      windowrule {
+          name = thunar-current-workspace
+          match:class = ^thunar$
+
+          workspace = current
+      }
     '';
   };
 }

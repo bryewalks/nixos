@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
-let dracula = import ../themes/dracula.nix;
+let
+  dracula = import ../themes/dracula.nix;
+  dracula-papirus = import ../../../nixos/pkgs/dracula-papirus.nix { inherit pkgs; lib = pkgs.lib; color = "dracula-purple"; };
 in {
   stylix = {
     enable = true;
@@ -33,6 +35,13 @@ in {
       base0D = dracula.purple;
       base0E = dracula.magenta;
       base0F = dracula.brightRed;
+    };
+
+    icons = {
+      enable = true;
+      package = dracula-papirus;
+      dark = "Papirus-Dark";
+      light = "Papirus";
     };
 
     targets.kitty.enable = true;

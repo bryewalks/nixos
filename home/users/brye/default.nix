@@ -16,7 +16,7 @@ in
       ../../modules/dropbox
       ../../modules/gaming
       ../../modules/directories
-      ../../modules/explorers/dolphin.nix
+      ../../modules/explorers/thunar.nix
       ../../modules/hyprland
       ../../modules/terminals/kitty.nix
       ../../modules/media

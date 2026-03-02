@@ -3,7 +3,7 @@
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
     "$terminal" = "kitty";
-    "$fileManager" = "dolphin";
+    "$fileManager" = "thunar";
     "$menu" = "rofi -show drun";
     "$audio" = "helvum";
     "$browser" = "zen-beta --new-window";

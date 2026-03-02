@@ -67,6 +67,7 @@
 
   # Services
   services.udisks2.enable = true;
+  services.gvfs.enable = true;
   services.openssh.enable = true;
   services.pipewire = {
     enable = true;
