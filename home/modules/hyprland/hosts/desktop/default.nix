@@ -10,7 +10,7 @@
       "name:1, monitor:DP-2, default:true"
       "name:3, monitor:DP-2, default:true, layout:scrolling"
       "name:2, monitor:DP-1, default:true"
-      "name:4, monitor:DP-1, default:true"
+      "name:4, monitor:DP-1, default:true, layout:scrolling"
     ];
 
     "exec-once" = [
@@ -24,7 +24,13 @@
     windowrule {
         name = games-workspace
         workspace = 1 silent
-        match:class = ^(steam_app_.*|lutris|HytaleClient|bottles|itch|minigalaxy|gamescope|playnite.*|chiaki|moonlight|.*[Ww]ine.*|com.moonlight_stream.Moonlight|com.hypixel.HytaleLauncher)$
+        match:class = ^(steam_app_.*|cs2|lutris|HytaleClient|bottles|itch|minigalaxy|gamescope|playnite.*|chiaki|moonlight|.*[Ww]ine.*|com.moonlight_stream.Moonlight|com.hypixel.HytaleLauncher)$
+    }
+
+    windowrule {
+        name = games-workspace-proton
+        workspace = 1 silent
+        match:xdg_tag = ^(proton-game)$
     }
 
     # Discord Workspace 2
@@ -32,13 +38,6 @@
         name = discord-workspace
         workspace = 2 silent
         match:class = ^(discord|com.discordapp.Discord|vesktop|dev.vencord.Vesktop)$
-    }
-
-    # Launchers Workspace 4
-    windowrule {
-        name = launchers-workspace
-        workspace = 4 silent
-        match:class = ^(steam|com.valvesoftware.Steam|itch|io.itch.itch|heroic|com.heroicgameslauncher.hgl|r2modman)$
     }
   '';
 }

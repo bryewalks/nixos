@@ -40,6 +40,13 @@
 
           workspace = current
       }
+
+      # Game Launchers Workspace
+      windowrule {
+          name = launchers-workspace
+          workspace = special:steam silent
+          match:class = ^(steam|com.valvesoftware.Steam|itch|io.itch.itch|heroic|com.heroicgameslauncher.hgl|r2modman)$
+      }
     '';
   };
 }

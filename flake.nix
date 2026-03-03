@@ -68,6 +68,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    steam-config-nix = {
+      url = "github:different-name/steam-config-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs = {
@@ -92,6 +97,7 @@
       self,
       sops-nix,
       stylix,
+      steam-config-nix,
       zen-browser,
       ...
     }:
@@ -113,6 +119,7 @@
             hyprland.nixosModules.default
             impermanence.nixosModules.impermanence
             sops-nix.nixosModules.sops
+            steam-config-nix.nixosModules.default
             (import-tree ./nixos/hosts/${hostName})
             (import-tree ./nixos/modules)
             home-manager.nixosModules.home-manager
