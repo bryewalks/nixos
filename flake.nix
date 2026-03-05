@@ -127,7 +127,6 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = {
-                hyprHostName = config.networking.hostName;
                 inherit inputs;
               };
               home-manager.sharedModules = [

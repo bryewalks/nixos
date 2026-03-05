@@ -1,6 +1,6 @@
-{ hyprHostName, lib, pkgs, ... }:
+{ osConfig, lib, pkgs, ... }:
 let
-  hostDir = ./hosts + "/${hyprHostName}";
+  hostDir = ./hosts + "/${osConfig.networking.hostName}";
   hostModule = hostDir + "/default.nix";
 in
 {

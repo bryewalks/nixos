@@ -1,6 +1,6 @@
-{ config, hyprHostName, lib, pkgs, ... }:
+{ config, osConfig, lib, pkgs, ... }:
 let
-  hostDir = ../../hosts + "/${hyprHostName}";
+  hostDir = ../../hosts + "/${osConfig.networking.hostName}";
   hostHyprpaper = hostDir + "/hyprpaper.nix";
   themeBuilder = import ../../../themes/theme-builder.nix { };
   draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
