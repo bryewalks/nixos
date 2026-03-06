@@ -1,4 +1,4 @@
-{ osConfig, lib, pkgs, ... }:
+{ inputs, osConfig, lib, pkgs, ... }:
 let
   hostDir = ./hosts + "/${osConfig.networking.hostName}";
   hostModule = hostDir + "/default.nix";
@@ -12,14 +12,7 @@ in
       ./keybindings.nix
       ./style.nix
       ./rules.nix
-      ./plugins/hyprpm.nix
-      ./plugins/hyprcursor
-      ./plugins/hypridle
-      ./plugins/hyprlock
-      ./plugins/rofi
-      ./plugins/wlogout
-      ./plugins/waybar
-      ./plugins/waypaper
+      (inputs.import-tree ./plugins)
       ./autostart.nix
     ]
     ++ lib.optional (builtins.pathExists hostModule) hostModule;
