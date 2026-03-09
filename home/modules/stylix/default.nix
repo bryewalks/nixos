@@ -7,6 +7,7 @@ in {
   stylix = {
     enable = true;
     autoEnable = false;
+    polarity = "dark";
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.caskaydia-cove;

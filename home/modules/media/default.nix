@@ -3,7 +3,6 @@
 {
   home.packages = with pkgs; [
     flatpak
-    helvum
     loupe
     vlc
   ];
@@ -48,4 +47,9 @@
       "image/x-xpixmap" = [ "org.gnome.Loupe.desktop" ];
     };
   };
+
+  imports = [
+    ./qpwgraph.nix
+    ./stremio.nix
+  ];
 }

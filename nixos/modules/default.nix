@@ -32,6 +32,10 @@
   # Programs
   programs.zsh.enable = true;
   programs.git.enable = true;
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.valent;
+  };
 
   # Nix helpers
   programs.nh = {
@@ -71,6 +75,7 @@
   # System packages
   environment.systemPackages = with pkgs; [
     git
+    glib # needed for valent
     neovim
     nh
     kitty

@@ -30,22 +30,26 @@
       windowrule {
           name = zen-beta-current-workspace
           match:class = ^zen-beta$
-
           workspace = current
       }
 
       windowrule {
           name = thunar-current-workspace
           match:class = ^thunar$
-
           workspace = current
       }
 
       # Game Launchers Workspace
       windowrule {
           name = launchers-workspace
-          workspace = special:steam silent
           match:class = ^(steam|com.valvesoftware.Steam|itch|io.itch.itch|heroic|com.heroicgameslauncher.hgl|r2modman)$
+          workspace = special:steam silent
+      }
+
+      windowrule {
+         name = valent-workspace
+         match:class = ^valent$
+         workspace = special:texts silent
       }
     '';
   };

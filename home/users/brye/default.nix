@@ -20,7 +20,6 @@ in
       ../../modules/hyprland
       ../../modules/terminals/kitty.nix
       ../../modules/media
-      ../../modules/media/stremio.nix
       ../../modules/neovim
       ../../modules/stylix
     ]

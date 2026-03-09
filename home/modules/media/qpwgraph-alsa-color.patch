@@ -1,0 +1,18 @@
+--- a/src/qpwgraph_alsamidi.cpp
++++ b/src/qpwgraph_alsamidi.cpp
+@@ -392,12 +392,13 @@
+ // Special port-type colors defaults (virtual).
+ void qpwgraph_alsamidi::resetPortTypeColors (void)
+ {
+ 	qpwgraph_canvas *canvas = qpwgraph_sect::canvas();
+ 	if (canvas) {
+-		canvas->setPortTypeColor(
+-			qpwgraph_alsamidi::midiPortType(),
+-			QColor(Qt::darkMagenta).darker(120));
++		const uint port_type = qpwgraph_alsamidi::midiPortType();
++		if (!canvas->portTypeColor(port_type).isValid())
++			canvas->setPortTypeColor(port_type,
++				QColor(Qt::darkMagenta).darker(120));
+ 	}
+ }
+

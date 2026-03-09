@@ -5,7 +5,7 @@
     "$terminal" = "kitty";
     "$fileManager" = "thunar";
     "$menu" = "rofi -show drun";
-    "$audio" = "helvum";
+    "$audio" = "qpwgraph";
     "$browser" = "zen-beta --new-window";
     "$music" = "$terminal cmus";
     "$webapp" = "$browser -P WebApp --class WebApp";
