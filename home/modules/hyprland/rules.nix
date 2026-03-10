@@ -51,6 +51,25 @@
          match:class = ^valent$
          workspace = special:texts silent
       }
+
+      # TODO: set windowrule to split valent phone/messages on its workspace
+      # windowrule {
+      #    name = valent-phone
+      #    match:class = ^valent$
+      #    match:title = ^Valent$
+      #    float = true
+      #    size = 10% 100%
+      #    move = 0% 0%
+      # }
+      #
+      # windowrule {
+      #    name = valent-texts
+      #    match:class = ^valent$
+      #    match:title = ^Messages$
+      #    float = true
+      #    size = 90% 100%
+      #    move = 10% 0%
+      # }
     '';
   };
 }
