@@ -1,4 +1,10 @@
-{ ... }:
+{ lib, ... }:
+let
+  gameTitles = [
+    "Slay the Spire 2"
+  ];
+  gameTitleRegex = "^(${lib.concatStringsSep "|" gameTitles})$";
+in
 {
   wayland.windowManager.hyprland.settings = {
     monitor = [
@@ -28,7 +34,13 @@
     }
 
     windowrule {
-        name = games-workspace-proton
+        name = games-workspace-title
+        workspace = 1 silent
+        match:class = ${gameTitleRegex}
+    }
+
+    windowrule {
+        name = games-workspace-tag
         workspace = 1 silent
         match:xdg_tag = ^(proton-game)$
     }
