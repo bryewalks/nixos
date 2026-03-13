@@ -42,6 +42,7 @@
       "$mainMod, E, togglespecialworkspace, email"
       "$mainMod, G, togglespecialworkspace, steam"
       "$mainMod, G, exec, pgrep steam || hyprctl dispatch exec steam"
+      "$SUPER_SHIFT, G, exec, pgrep steam || hyprctl dispatch exec steam"
       "$mainMod, T, togglespecialworkspace, texts"
       "$SUPER_SHIFT, T, togglespecialworkspace, terminal"
       "$mainMod, B, togglespecialworkspace, browser"
