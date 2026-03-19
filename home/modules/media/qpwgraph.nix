@@ -2,17 +2,9 @@
 
 let
   dracula = import ../themes/dracula.nix;
-  # Opened an issue with ALSA port color not persisting.
-  # https://github.com/rncbc/qpwgraph/issues/84
-  # In the meantime we can use the below patch.
-  qpwgraph = pkgs.qpwgraph.overrideAttrs (oldAttrs: {
-    patches = (oldAttrs.patches or []) ++ [
-      ./qpwgraph-alsa-color.patch
-    ];
-  });
 in
 {
-  home.packages = [
+  home.packages = with pkgs; [
     qpwgraph
   ];
 
