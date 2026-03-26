@@ -12,6 +12,7 @@
     videos = "$HOME/Videos";
     publicShare = null;
     templates = null;
+    setSessionVariables = false;
   };
 
   home.activation.createUserDirectories =

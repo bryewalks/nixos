@@ -54,4 +54,6 @@ in {
     targets.nixvim.enable = false;
     targets.zen-browser.enable = true;
   };
+
+  gtk.gtk4.theme = null;
 }
