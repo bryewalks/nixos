@@ -7,16 +7,6 @@
   };
 
   services.xserver = {
-    videoDrivers = [ "nvidia" ];
-  };
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
-    open = true;
-    nvidiaPersistenced = true;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    videoDrivers = [ "amdgpu" ];
   };
 }

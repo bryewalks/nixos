@@ -13,6 +13,7 @@
             prettier = {
               enable = true;
               disableTsServerFormatter = true;
+              package = pkgs.prettier;
             };
             black.enable = true;
             isort.enable = true;

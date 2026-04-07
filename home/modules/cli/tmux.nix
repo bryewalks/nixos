@@ -30,6 +30,11 @@
       set-option -g status-position bottom
       set -g allow-passthrough on
       set -g visual-activity off
+  
+      # TODO: Explore these options. Vi mode / copy and paste
+      # setw -g mode-keys vi
+      # bind -T copy-mode-vi v send-keys -X begin-selection
+      # bind -T copy-mode-vi y send-keys -X copy-selection-and-cancel
     '';
   };
 }
