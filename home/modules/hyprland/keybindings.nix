@@ -20,8 +20,7 @@
       "$mainMod, F, exec, ~/.config/hypr/scripts/easymotion.sh"
       "$SUPER_SHIFT, F, exec, $fileManager"
       "$mainMod, I, exec, $terminal btop"
-      "$mainMod, M, exec, $music"
-      "$SUPER_SHIFT, M, exec, $movies"
+      "$SUPER_SHIFT, M, exec, $music"
       "$mainMod, N, exec, $terminal nvim"
       "$mainMod, P, exec, ~/.config/hypr/scripts/screenshot-monitor.sh"
       "$SUPER_SHIFT, P, exec, ~/.config/hypr/scripts/screenshot-region.sh"
@@ -39,16 +38,18 @@
       "$mainMod, RETURN, exec, $terminal"
 
       # Special workspaces
+      "$mainMod, B, togglespecialworkspace, browser"
       "$mainMod, E, togglespecialworkspace, email"
-      "$mainMod, G, togglespecialworkspace, steam"
       "$mainMod, G, exec, pgrep steam || hyprctl dispatch exec steam"
       "$SUPER_SHIFT, G, exec, pgrep steam || hyprctl dispatch exec steam"
-      "$mainMod, T, togglespecialworkspace, texts"
-      "$SUPER_SHIFT, T, togglespecialworkspace, terminal"
-      "$mainMod, B, togglespecialworkspace, browser"
-      "$mainMod, Y, togglespecialworkspace, aichat"
+      "$mainMod, G, togglespecialworkspace, steam"
+      "$mainMod, M, exec, $movies"
+      "$mainMod, M, togglespecialworkspace, movies"
       "$mainMod, O, togglespecialworkspace, magic"
       "$SUPER_SHIFT, O, movetoworkspace, special:magic"
+      "$mainMod, T, togglespecialworkspace, texts"
+      "$SUPER_SHIFT, T, togglespecialworkspace, terminal"
+      "$mainMod, Y, togglespecialworkspace, aichat"
 
       # Switch workspaces with mainMod + [0-9]
       "$mainMod, 1, workspace, 1"

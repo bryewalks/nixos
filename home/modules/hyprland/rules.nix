@@ -52,6 +52,12 @@
          workspace = special:texts silent
       }
 
+      windowrule {
+          name = movies-workspace
+          match:class = ^com\.stremio\.stremio$
+          workspace = special:movies silent
+      }
+
       # TODO: set windowrule to split valent phone/messages on its workspace
       # windowrule {
       #    name = valent-phone
