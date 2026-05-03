@@ -21,5 +21,6 @@
       "firefox-bin-unwrapped"
       "steam"
       "steam-unwrapped"
+      "git-conflict.nvim"
     ];
 }
