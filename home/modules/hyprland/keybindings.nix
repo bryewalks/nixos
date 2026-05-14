@@ -40,6 +40,8 @@
       # Special workspaces
       "$mainMod, B, togglespecialworkspace, browser"
       "$mainMod, E, togglespecialworkspace, email"
+      "$SUPER_SHIFT, E, exec, $gmail"
+      "$SUPER_SHIFT, E, exec, $proton"
       "$mainMod, G, exec, pgrep steam || hyprctl dispatch exec steam"
       "$SUPER_SHIFT, G, exec, pgrep steam || hyprctl dispatch exec steam"
       "$mainMod, G, togglespecialworkspace, steam"
@@ -50,6 +52,7 @@
       "$mainMod, T, togglespecialworkspace, texts"
       "$SUPER_SHIFT, T, togglespecialworkspace, terminal"
       "$mainMod, Y, togglespecialworkspace, aichat"
+      "$SUPER_SHIFT, Y, exec, $claude"
 
       # Switch workspaces with mainMod + [0-9]
       "$mainMod, 1, workspace, 1"
