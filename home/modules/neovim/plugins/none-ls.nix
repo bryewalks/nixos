@@ -5,7 +5,6 @@
     plugins = {
       none-ls = {
         enable = true;
-        settings = { };
         sources = {
           formatting = {
             stylua.enable = true;
@@ -22,7 +21,6 @@
 
           diagnostics = {
             rubocop.enable = true;
-            eslint_d.enable = true;
           };
         };
       };

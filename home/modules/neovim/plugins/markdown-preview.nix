@@ -2,11 +2,7 @@
 
 {
   programs.nixvim = {
-    plugins.markdown-preview = {
-      enable = true;
-      settings = { };
-      globals = { mkdp_filetypes = [ "markdown" ]; };
-    };
+    plugins.markdown-preview.enable = true;
 
     keymaps = [{
       mode = "n";

@@ -2,9 +2,8 @@
 
 {
   programs.nixvim = {
-    plugins.indent-blackline = {
+    plugins.indent-blankline = {
       enable = true;
-      settings = { };
     };
   };
 }

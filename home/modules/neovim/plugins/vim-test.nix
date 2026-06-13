@@ -4,11 +4,9 @@
   programs.nixvim = {
     plugins.vim-test =  {
       enable = true;
-      settings = { };
     };
     plugins.vimux = {
       enable = true;
-      settings = { };
     };
 
     keymaps = [

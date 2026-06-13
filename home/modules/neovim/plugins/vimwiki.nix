@@ -4,7 +4,6 @@
   programs.nixvim = {
     plugins.vimwiki = {
       enable = true;
-      settings = { };
     };
 
     keymaps = [

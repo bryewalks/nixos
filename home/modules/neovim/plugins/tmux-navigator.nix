@@ -4,7 +4,6 @@
   programs.nixvim = {
     plugins.tmux-navigator = {
       enable = true;
-      settings = { };
     };
 
     keymaps = [
