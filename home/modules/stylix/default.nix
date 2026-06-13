@@ -55,5 +55,5 @@ in {
     targets.zen-browser.enable = true;
   };
 
-  gtk.gtk4.theme = null;
+  # gtk.gtk4.theme = null;
 }

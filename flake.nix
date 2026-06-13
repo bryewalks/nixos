@@ -28,27 +28,27 @@
 
     # INFO: Hyprland is pinned to avoid plugins breaking on upstream updates. Forks are kept at the last known working state for the pinned version. When upgrading Hyprland, verify all plugins build/work before syncing forks.
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.54.0";
+      url = "github:hyprwm/Hyprland/v0.55.3";
     };
 
-    hyprland-plugins = {
-      # url = "github:hyprwm/hyprland-plugins";
-      url = "github:bryewalks/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprland-easymotion = {
-      # url = "github:zakk4223/hyprland-easymotion";
-      url = "github:bryewalks/hyprland-easymotion";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hypr-dynamic-cursors = {
-      # url = "github:VirtCode/hypr-dynamic-cursors";
-      url = "github:bryewalks/hypr-dynamic-cursors";
-      inputs.hyprland.follows = "hyprland";
-    };
-
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   # url = "github:bryewalks/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
+    #
+    # hyprland-easymotion = {
+    #   url = "github:zakk4223/hyprland-easymotion";
+    #   # url = "github:bryewalks/hyprlnd-easymotion";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
+    #
+    # hypr-dynamic-cursors = {
+    #   # url = "github:VirtCode/hypr-dynamic-cursors";
+    #   url = "github:bryewalks/hypr-dynamic-cursors";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
+    #
     import-tree = {
       url = "github:vic/import-tree";
     };
@@ -91,8 +91,8 @@
       disko,
       home-manager,
       hyprland,
-      hyprland-easymotion,
-      hyprland-plugins,
+      # hyprland-easymotion,
+      # hyprland-plugins,
       impermanence,
       import-tree,
       nix-flatpak,

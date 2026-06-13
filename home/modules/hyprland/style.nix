@@ -71,7 +71,6 @@ in {
     };
 
     dwindle = {
-      pseudotile = true;
       preserve_split = true;
     };
 
@@ -83,6 +82,5 @@ in {
       disable_hyprland_logo = true;
       initial_workspace_tracking = 2;
     };
-
   };
 }
