@@ -1,6 +1,8 @@
 { ... }:
 {
   wayland.windowManager.hyprland.settings = {
-    monitor = [ ",preferred,1920x1080@144,1" ];
+    monitor = [
+      { output = ""; mode = "1920x1080@144"; position = "auto"; scale = 1; }
+    ];
   };
 }

@@ -1,19 +1,30 @@
-{ ... }:
-{
-  wayland.windowManager.hyprland.settings = {
-    "exec-once" = [
-      "waybar & swaync & hypridle & hyprpaper"
-      "waypaper --restore"
-      "nm-applet --indicator"
-      "valent --gapplication-service"
-      "systemctl --user start hyprpolkitagent"
-      "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-      "[workspace special:email silent] $proton" 
-      "[workspace special:email silent] $gmail"
-      "[workspace special:aichat silent] $claude"
-      "[workspace special:terminal silent] $terminal tmux"
-      "[workspace special:browser silent] zen-beta"
-      "[workspace special:texts silent] gapplication action ca.andyholmes.Valent messages-window"
+{ lib, ... }:
+let
+  mkLua = lib.generators.mkLuaInline;
+  startupHook = body: {
+    _args = [
+      "hyprland.start"
+      (mkLua ''
+        function()
+        ${body}
+        end
+      '')
     ];
   };
+in {
+  wayland.windowManager.hyprland.settings.on = [
+    (startupHook ''
+      hl.exec_cmd("waybar & swaync & hypridle & hyprpaper")
+      hl.exec_cmd("waypaper --restore")
+      hl.exec_cmd("nm-applet --indicator")
+      hl.exec_cmd("valent --gapplication-service")
+      hl.exec_cmd("systemctl --user start hyprpolkitagent")
+      hl.exec_cmd("[workspace special:email silent] "    .. proton)
+      hl.exec_cmd("[workspace special:email silent] "    .. gmail)
+      hl.exec_cmd("[workspace special:aichat silent] "   .. claude)
+      hl.exec_cmd("[workspace special:terminal silent] " .. terminal .. " tmux")
+      hl.exec_cmd("[workspace special:browser silent] zen-beta")
+      hl.exec_cmd("[workspace special:texts silent] gapplication action ca.andyholmes.Valent messages-window")
+    '')
+  ];
 }

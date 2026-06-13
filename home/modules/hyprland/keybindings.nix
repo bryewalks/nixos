@@ -1,124 +1,123 @@
-{ ... }:
-{
-  wayland.windowManager.hyprland.settings = {
-    bind = [
-      # Move focus with mainMod + HJKL
-      "$mainMod, H, movefocus, l"
-      "$mainMod, J, movefocus, d"
-      "$mainMod, K, movefocus, u"
-      "$mainMod, L, movefocus, r"
+{ lib, ... }:
+let
+  mkLua    = lib.generators.mkLuaInline;
+  mod      = suffix: mkLua ''mainMod .. " + ${suffix}"'';
+  modShift = suffix: mkLua ''mainMod .. " + SHIFT + ${suffix}"'';
+  modCtrl  = suffix: mkLua ''mainMod .. " + CTRL + ${suffix}"'';
+  bind = key: dsp: { _args = [key (mkLua dsp)]; };
+  bindOpts = key: dsp: opts: { _args = [key (mkLua dsp) opts]; };
+in {
+  wayland.windowManager.hyprland.settings.bind =
+    [
+      # Focus with vim keys
+      (bind (mod "H") ''hl.dsp.focus({ direction = "left" })'')
+      (bind (mod "J") ''hl.dsp.focus({ direction = "down" })'')
+      (bind (mod "K") ''hl.dsp.focus({ direction = "up" })'')
+      (bind (mod "L") ''hl.dsp.focus({ direction = "right" })'')
 
-      # Hyprland shortcuts
-      "$mainMod, C, killactive,"
-      "$mainMod, S, layoutmsg, togglesplit"
-      "$mainMod, V, togglefloating,"
+      # Window management
+      (bind (mod "C") "hl.dsp.window.close()")
+      (bind (mod "S") ''hl.dsp.layout("togglesplit")'')
+      (bind (mod "V") ''hl.dsp.window.float({ action = "toggle" })'')
 
       # Application shortcuts
-      "$mainMod, A, exec, $audio"
-      "$SUPER_SHIFT, B, exec, $browser"
-      "$mainMod, D, exec, discord"
-      "$mainMod, F, exec, ~/.config/hypr/scripts/easymotion.sh"
-      "$SUPER_SHIFT, F, exec, $fileManager"
-      "$mainMod, I, exec, $terminal btop"
-      "$SUPER_SHIFT, M, exec, $music"
-      "$mainMod, N, exec, $terminal nvim"
-      "$mainMod, P, exec, ~/.config/hypr/scripts/screenshot-monitor.sh"
-      "$SUPER_SHIFT, P, exec, ~/.config/hypr/scripts/screenshot-region.sh"
-      "$SUPER_CTRL, P, exec, ~/.config/hypr/scripts/screenshot-window.sh"
-      "$mainMod, Q, exec, pkill waybar || true; waybar"
-      "$mainMod, R, exec, ~/.config/hypr/scripts/record-monitor.sh"
-      "$SUPER_SHIFT, R, exec, ~/.config/hypr/scripts/record-region.sh"
-      "$SUPER_CTRL, R, exec, ~/.config/hypr/scripts/record-window.sh"
-      "$mainMod, W, exec, bitwarden"
-      "$mainMod, X, exec, ~/.config/hypr/scripts/wlogout-toggle.sh"
-      "$SUPER_SHIFT, Y, exec, $terminal claude"
-      "$mainMod, Z, fullscreen, 0"
-      "$mainMod, SPACE, exec, $menu"
-      "$SUPER_SHIFT, SPACE, exec, ~/.config/hypr/scripts/webapp-rofi.sh"
-      "$mainMod, RETURN, exec, $terminal"
+      (bind (mod "A")             "hl.dsp.exec_cmd(audio)")
+      (bind (modShift "B")        "hl.dsp.exec_cmd(browser)")
+      (bind (mod "D")             ''hl.dsp.exec_cmd("discord")'')
+      (bind (mod "F")             ''hl.dsp.exec_cmd("~/.config/hypr/scripts/easymotion.sh")'')
+      (bind (modShift "F")        "hl.dsp.exec_cmd(fileManager)")
+      (bind (mod "I")             ''hl.dsp.exec_cmd(terminal .. " btop")'')
+      (bind (modShift "M")        "hl.dsp.exec_cmd(music)")
+      (bind (mod "N")             ''hl.dsp.exec_cmd(terminal .. " nvim")'')
+      (bind (mod "P")             ''hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot-monitor.sh")'')
+      (bind (modShift "P")        ''hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot-region.sh")'')
+      (bind (modCtrl "P")         ''hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot-window.sh")'')
+      (bind (mod "Q")             ''hl.dsp.exec_cmd("pkill waybar || true; waybar")'')
+      (bind (mod "R")             ''hl.dsp.exec_cmd("~/.config/hypr/scripts/record-monitor.sh")'')
+      (bind (modShift "R")        ''hl.dsp.exec_cmd("~/.config/hypr/scripts/record-region.sh")'')
+      (bind (modCtrl "R")         ''hl.dsp.exec_cmd("~/.config/hypr/scripts/record-window.sh")'')
+      (bind (mod "W")             ''hl.dsp.exec_cmd("bitwarden")'')
+      (bind (mod "X")             ''hl.dsp.exec_cmd("~/.config/hypr/scripts/wlogout-toggle.sh")'')
+      (bind (modShift "Y")        ''hl.dsp.exec_cmd(terminal .. " claude")'')
+      (bind (mod "Z")             "hl.dsp.window.fullscreen(0)")
+      (bind (mod "SPACE")         "hl.dsp.exec_cmd(menu)")
+      (bind (modShift "SPACE")    ''hl.dsp.exec_cmd("~/.config/hypr/scripts/webapp-rofi.sh")'')
+      (bind (mod "RETURN")        "hl.dsp.exec_cmd(terminal)")
 
       # Special workspaces
-      "$mainMod, B, togglespecialworkspace, browser"
-      "$mainMod, E, togglespecialworkspace, email"
-      "$SUPER_SHIFT, E, exec, $gmail"
-      "$SUPER_SHIFT, E, exec, $proton"
-      "$mainMod, G, exec, pgrep steam || hyprctl dispatch exec steam"
-      "$SUPER_SHIFT, G, exec, pgrep steam || hyprctl dispatch exec steam"
-      "$mainMod, G, togglespecialworkspace, steam"
-      "$mainMod, M, exec, $movies"
-      "$mainMod, M, togglespecialworkspace, movies"
-      "$mainMod, O, togglespecialworkspace, magic"
-      "$SUPER_SHIFT, O, movetoworkspace, special:magic"
-      "$mainMod, T, togglespecialworkspace, texts"
-      "$SUPER_SHIFT, T, togglespecialworkspace, terminal"
-      "$mainMod, Y, togglespecialworkspace, aichat"
-      "$SUPER_SHIFT, Y, exec, $claude"
+      (bind (mod "B")           ''hl.dsp.workspace.toggle_special("browser")'')
+      (bind (mod "E")           ''hl.dsp.workspace.toggle_special("email")'')
+      (bind (modShift "E")      "hl.dsp.exec_cmd(gmail)")
+      (bind (modShift "E")      "hl.dsp.exec_cmd(proton)")
+      (bind (mod "G")           ''hl.dsp.workspace.toggle_special("steam")'')
+      (bind (mod "G")           ''hl.dsp.exec_cmd("hyprctl clients | grep -q 'class: steam' || steam")'')
+      (bind (modShift "G")      ''hl.dsp.exec_cmd("steam")'')
+      (bind (mod "M")           "hl.dsp.exec_cmd(movies)")
+      (bind (mod "M")           ''hl.dsp.workspace.toggle_special("movies")'')
+      (bind (mod "O")           ''hl.dsp.workspace.toggle_special("magic")'')
+      (bind (modShift "O")      ''hl.dsp.window.move({ workspace = "special:magic" })'')
+      (bind (mod "T")           ''hl.dsp.workspace.toggle_special("texts")'')
+      (bind (modShift "T")      ''hl.dsp.workspace.toggle_special("terminal")'')
+      (bind (mod "Y")           ''hl.dsp.workspace.toggle_special("aichat")'')
+      (bind (modShift "Y")      "hl.dsp.exec_cmd(claude)")
 
-      # Switch workspaces with mainMod + [0-9]
-      "$mainMod, 1, workspace, 1"
-      "$mainMod, 2, workspace, 2"
-      "$mainMod, 3, workspace, 3"
-      "$mainMod, 4, workspace, 4"
-      "$mainMod, 5, workspace, 5"
-      "$mainMod, 6, workspace, 6"
-      "$mainMod, 7, workspace, 7"
-      "$mainMod, 8, workspace, 8"
-      "$mainMod, 9, workspace, 9"
-      "$mainMod, 0, workspace, 10"
+      # Workspace 0 → 10
+      (bind (mod "0")           "hl.dsp.focus({ workspace = 10 })")
+      (bind (modShift "0")      "hl.dsp.window.move({ workspace = 10 })")
 
-      # Move active window to workspace with mainMod + SHIFT + [0-9]
-      "$mainMod SHIFT, 1, movetoworkspace, 1"
-      "$mainMod SHIFT, 2, movetoworkspace, 2"
-      "$mainMod SHIFT, 3, movetoworkspace, 3"
-      "$mainMod SHIFT, 4, movetoworkspace, 4"
-      "$mainMod SHIFT, 5, movetoworkspace, 5"
-      "$mainMod SHIFT, 6, movetoworkspace, 6"
-      "$mainMod SHIFT, 7, movetoworkspace, 7"
-      "$mainMod SHIFT, 8, movetoworkspace, 8"
-      "$mainMod SHIFT, 9, movetoworkspace, 9"
-      "$mainMod SHIFT, 0, movetoworkspace, 10"
+      # Scroll through workspaces
+      (bind (mod "mouse_down")  ''hl.dsp.focus({ workspace = "e+1" })'')
+      (bind (mod "mouse_up")    ''hl.dsp.focus({ workspace = "e-1" })'')
 
-      # Scroll through existing workspaces with mainMod + scroll
-      "$mainMod, mouse_down, workspace, e+1"
-      "$mainMod, mouse_up, workspace, e-1"
+      # Move windows with keyboard
+      (bind (modShift "H") ''hl.dsp.window.move({ direction = "left" })'')
+      (bind (modShift "L") ''hl.dsp.window.move({ direction = "right" })'')
+      (bind (modShift "K") ''hl.dsp.window.move({ direction = "up" })'')
+      (bind (modShift "J") ''hl.dsp.window.move({ direction = "down" })'')
 
-      # Move/resize windows with keyboard
-      "$SUPER_SHIFT, H, movewindow, l"
-      "$SUPER_SHIFT, L, movewindow, r"
-      "$SUPER_SHIFT, K, movewindow, u"
-      "$SUPER_SHIFT, J, movewindow, d"
-      "$SUPER_SHIFT, left, resizeactive, -30 0"
-      "$SUPER_SHIFT, right, resizeactive, 30 0"
-      "$SUPER_SHIFT, up, resizeactive, 0 -30"
-      "$SUPER_SHIFT, down, resizeactive, 0 30"
+      # Resize windows with keyboard
+      (bindOpts (modShift "left")  ''hl.dsp.window.resize({ x = -30, y = 0,   relative = true })'' { repeating = true; })
+      (bindOpts (modShift "right") ''hl.dsp.window.resize({ x = 30,  y = 0,   relative = true })'' { repeating = true; })
+      (bindOpts (modShift "up")    ''hl.dsp.window.resize({ x = 0,   y = -30, relative = true })'' { repeating = true; })
+      (bindOpts (modShift "down")  ''hl.dsp.window.resize({ x = 0,   y = 30,  relative = true })'' { repeating = true; })
+
+      # Mouse move/resize
+      (bindOpts (mod "mouse:272") "hl.dsp.window.drag()"   { mouse = true; })
+      (bindOpts (mod "mouse:273") "hl.dsp.window.resize()" { mouse = true; })
+
+      # Multimedia keys
+      (bindOpts "XF86AudioRaiseVolume"  ''hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")''   { locked = true; repeating = true; })
+      (bindOpts "XF86AudioLowerVolume"  ''hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")''   { locked = true; repeating = true; })
+      (bindOpts "XF86AudioMute"         ''hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")''  { locked = true; repeating = true; })
+      (bindOpts "XF86AudioMicMute"      ''hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")'' { locked = true; repeating = true; })
+      (bindOpts "XF86MonBrightnessUp"   ''hl.dsp.exec_cmd("brightnessctl s 10%+")''                        { locked = true; repeating = true; })
+      (bindOpts "XF86MonBrightnessDown" ''hl.dsp.exec_cmd("brightnessctl s 10%-")''                        { locked = true; repeating = true; })
+
+      # Media transport
+      (bindOpts "XF86AudioNext"  ''hl.dsp.exec_cmd("playerctl next")''        { locked = true; })
+      (bindOpts "XF86AudioPause" ''hl.dsp.exec_cmd("playerctl play-pause")''  { locked = true; })
+      (bindOpts "XF86AudioPlay"  ''hl.dsp.exec_cmd("playerctl play-pause")''  { locked = true; })
+      (bindOpts "XF86AudioPrev"  ''hl.dsp.exec_cmd("playerctl previous")''    { locked = true; })
 
       # Discord/Vesktop push to talk
-      ", mouse:276, pass, class:^(discord)$"
-      ", mouse:276, sendshortcut, , f9, class:^(vesktop)$"
-    ];
-
-    # Move/resize windows with mainMod + mouse drag
-    bindm = [
-      "$mainMod, mouse:272, movewindow"
-      "$mainMod, mouse:273, resizewindow"
-    ];
-
-    # Multimedia keys for volume and brightness
-    bindel = [
-      ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-      ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-      ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      ",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
-      ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
-    ];
-
-    # Media transport keys (playerctl)
-    bindl = [
-      ", XF86AudioNext, exec, playerctl next"
-      ", XF86AudioPause, exec, playerctl play-pause"
-      ", XF86AudioPlay, exec, playerctl play-pause"
-      ", XF86AudioPrev, exec, playerctl previous"
-    ];
-  };
+      # pass() instantly releases using work around in the meantime.
+      # https://github.com/hyprwm/Hyprland/discussions/14417
+      # (bind "mouse:276" ''hl.dsp.pass({ window = "class:^(discord)$" })'')
+      # (bind "mouse:276" ''hl.dsp.pass({ window = "class:^(vesktop)$" })'')
+      (bind "mouse:276"
+        ''hl.dsp.send_key_state({ mods = "", key = "f9", state = "down", window = "class:^(discord)$" })'')
+      (bindOpts "mouse:276"
+        ''hl.dsp.send_key_state({ mods = "", key = "f9", state = "up", window = "class:^(discord)$" })''
+        { release = true; })
+      (bind "mouse:276"
+        ''hl.dsp.send_key_state({ mods = "", key = "f9", state = "down", window = "class:^(vesktop)$" })'')
+      (bindOpts "mouse:276"
+        ''hl.dsp.send_key_state({ mods = "", key = "f9", state = "up", window = "class:^(vesktop)$" })''
+        { release = true; })
+    ]
+    # Workspaces 1–9
+    ++ lib.concatMap (i: [
+      (bind (mod      (toString i)) ''hl.dsp.focus({ workspace = ${toString i} })'')
+      (bind (modShift (toString i)) ''hl.dsp.window.move({ workspace = ${toString i} })'')
+    ]) (lib.range 1 9);
 }

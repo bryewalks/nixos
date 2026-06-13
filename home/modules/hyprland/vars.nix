@@ -1,17 +1,17 @@
-{ ... }:
+{ lib, ... }:
 {
   wayland.windowManager.hyprland.settings = {
-    "$mainMod" = "SUPER";
-    "$terminal" = "kitty";
-    "$fileManager" = "thunar";
-    "$menu" = "rofi -show drun";
-    "$audio" = "qpwgraph";
-    "$browser" = "zen-beta --new-window";
-    "$music" = "$terminal cmus";
-    "$webapp" = "$browser -P WebApp --class WebApp";
-    "$movies" = "stremio || flatpak run com.stremio.Stremio";
-    "$gmail" = "zen-beta --no-remote --new-window -P WebApp-gmail --class WebApp-gmail https://gmail.com";
-    "$proton" = "zen-beta --no-remote --new-window -P WebApp-proton --class WebApp-proton https://mail.proton.me";
-    "$claude" = "zen-beta --no-remote --new-window -P WebApp-claude --class WebApp-claude https://claude.ai";
+    mainMod     = { _var = "SUPER"; };
+    terminal    = { _var = "kitty"; };
+    fileManager = { _var = "thunar"; };
+    menu        = { _var = "rofi -show drun"; };
+    audio       = { _var = "qpwgraph"; };
+    browser     = { _var = "zen-beta --new-window"; };
+    music       = { _var = "kitty cmus"; };
+    webapp      = { _var = lib.generators.mkLuaInline ''browser .. " -P WebApp --class WebApp"''; };
+    movies      = { _var = "stremio || flatpak run com.stremio.Stremio"; };
+    gmail       = { _var = "zen-beta --no-remote --new-window -P WebApp-gmail --class WebApp-gmail https://gmail.com"; };
+    proton      = { _var = "zen-beta --no-remote --new-window -P WebApp-proton --class WebApp-proton https://mail.proton.me"; };
+    claude      = { _var = "zen-beta --no-remote --new-window -P WebApp-claude --class WebApp-claude https://claude.ai"; };
   };
 }

@@ -1,5 +1,6 @@
 { lib, ... }:
 let
+  mkLua = lib.generators.mkLuaInline;
   gameTitles = [
     "Slay the Spire 2"
   ];
@@ -8,48 +9,52 @@ in
 {
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "DP-1, 2560x1440@180, 0x0, 1"
-      "DP-2, 2560x1440@180, 2560x0, 1"
+      { output = "DP-1"; mode = "2560x1440@180"; position = "0x0";    scale = 1; }
+      { output = "DP-2"; mode = "2560x1440@180"; position = "2560x0"; scale = 1; }
     ];
 
-    workspace = [
-      "name:1, monitor:DP-1, default:true"
-      "name:3, monitor:DP-1, default:true, layout:scrolling"
-      "name:2, monitor:DP-2, default:true"
-      "name:4, monitor:DP-2, default:true, layout:scrolling"
+    workspace_rule = [
+      { workspace = "1"; monitor = "DP-1"; default = true; }
+      { workspace = "3"; monitor = "DP-1"; default = true; layout = "scrolling"; }
+      { workspace = "2"; monitor = "DP-2"; default = true; }
+      { workspace = "4"; monitor = "DP-2"; default = true; layout = "scrolling"; }
     ];
 
-    "exec-once" = [
-      "hyprcursor"
-      "~/.config/hypr/scripts/startup.sh"
+    window_rule = [
+      {
+        name = "games-workspace";
+        match.class = "^(steam_app_.*|cs2|lutris|HytaleClient|bottles|itch|minigalaxy|gamescope|playnite.*|chiaki|moonlight|.*[Ww]ine.*|com.moonlight_stream.Moonlight|com.hypixel.HytaleLauncher)$";
+        workspace = "1 silent";
+      }
+      {
+        name = "games-workspace-title";
+        match.class = gameTitleRegex;
+        workspace = "1 silent";
+      }
+      {
+        name = "games-workspace-tag";
+        match.xdg_tag = "^(proton-game)$";
+        workspace = "1 silent";
+      }
+      {
+        name = "discord-workspace";
+        match.class = "^(discord|com.discordapp.Discord|vesktop|dev.vencord.Vesktop)$";
+        workspace = "2 silent";
+      }
     ];
   };
 
-  # TODO: Use nix syntax once home-manager supports 0.53 syntax
-  wayland.windowManager.hyprland.extraConfig = ''
-    windowrule {
-        name = games-workspace
-        workspace = 1 silent
-        match:class = ^(steam_app_.*|cs2|lutris|HytaleClient|bottles|itch|minigalaxy|gamescope|playnite.*|chiaki|moonlight|.*[Ww]ine.*|com.moonlight_stream.Moonlight|com.hypixel.HytaleLauncher)$
+  wayland.windowManager.hyprland.settings.on = [
+    {
+      _args = [
+        "hyprland.start"
+        (mkLua ''
+          function()
+            hl.exec_cmd("hyprcursor")
+            hl.exec_cmd("~/.config/hypr/scripts/startup.sh")
+          end
+        '')
+      ];
     }
-
-    windowrule {
-        name = games-workspace-title
-        workspace = 1 silent
-        match:class = ${gameTitleRegex}
-    }
-
-    windowrule {
-        name = games-workspace-tag
-        workspace = 1 silent
-        match:xdg_tag = ^(proton-game)$
-    }
-
-    # Discord Workspace 2
-    windowrule {
-        name = discord-workspace
-        workspace = 2 silent
-        match:class = ^(discord|com.discordapp.Discord|vesktop|dev.vencord.Vesktop)$
-    }
-  '';
+  ];
 }
