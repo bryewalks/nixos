@@ -31,13 +31,14 @@
       url = "github:hyprwm/Hyprland/v0.55.3";
     };
 
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   # url = "github:bryewalks/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-    #
+    hyprland-plugins = {
+      # url = "github:hyprwm/hyprland-plugins";
+      url = "github:bryewalks/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     hyprland-easymotion = {
+      # url = "github:zakk4223/hyprland-easymotion";
       url = "github:bryewalks/hyprland-easymotion";
       inputs.hyprland.follows = "hyprland";
     };

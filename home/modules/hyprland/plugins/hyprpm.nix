@@ -19,7 +19,8 @@ in {
   wayland.windowManager.hyprland.settings.config = lib.mkMerge [
     (lib.mkIf (hyprfocusFromInput != null) {
       plugin.hyprfocus = {
-        mode = "slide";
+        keyboard_focus_animation = "slide";
+        mouse_focus_animation = "none";
         slide_height = 5;
       };
     })
