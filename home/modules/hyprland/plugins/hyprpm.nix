@@ -18,13 +18,13 @@ let
 in {
   wayland.windowManager.hyprland.settings.config = lib.mkMerge [
     (lib.mkIf (hyprfocusFromInput != null) {
-      "plugin:hyprfocus" = {
+      plugin.hyprfocus = {
         mode = "slide";
         slide_height = 5;
       };
     })
     (lib.mkIf (dynamicCursorsFromInput != null) {
-      "plugin:dynamic-cursors" = {
+      plugin."dynamic-cursors" = {
         enabled = true;
         mode = "none";
         threshold = 2;
@@ -61,11 +61,11 @@ in {
       };
     })
     (lib.mkIf (easymotionFromInput != null) {
-      "plugin:easymotion" = {
+      plugin.easymotion = {
         textsize = 54;
         textcolor = draculaRgba.purple;
         bgcolor = draculaRgba.selection;
-        textpadding = "10 10 10 10";
+        textpadding = 10;
         bordersize = 2;
         bordercolor = draculaRgba.foreground;
         rounding = 1;
@@ -76,6 +76,9 @@ in {
   wayland.windowManager.hyprland.extraConfig =
     lib.optionalString (easymotionFromInput != null) ''
       hl.plugin.load("${easymotionFromInput}/lib/libhyprland-easymotion.so")
+      hl.bind(mainMod .. " + F", function()
+        hl.plugin.easymotion.dispatch([[action:dispatch:focuswindow address:{}]])
+      end)
     ''
     + lib.optionalString (hyprfocusFromInput != null) ''
       hl.plugin.load("${hyprfocusFromInput}/lib/libhyprfocus.so")

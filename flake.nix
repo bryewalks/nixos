@@ -37,15 +37,14 @@
     #   inputs.hyprland.follows = "hyprland";
     # };
     #
-    # hyprland-easymotion = {
-    #   url = "github:zakk4223/hyprland-easymotion";
-    #   # url = "github:bryewalks/hyprlnd-easymotion";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-    #
+    hyprland-easymotion = {
+      url = "github:bryewalks/hyprland-easymotion";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     # hypr-dynamic-cursors = {
-    #   # url = "github:VirtCode/hypr-dynamic-cursors";
-    #   url = "github:bryewalks/hypr-dynamic-cursors";
+    #   url = "github:VirtCode/hypr-dynamic-cursors";
+    #   # url = "github:bryewalks/hypr-dynamic-cursors";
     #   inputs.hyprland.follows = "hyprland";
     # };
     #
@@ -91,7 +90,7 @@
       disko,
       home-manager,
       hyprland,
-      # hyprland-easymotion,
+      hyprland-easymotion,
       # hyprland-plugins,
       impermanence,
       import-tree,

@@ -24,7 +24,6 @@ in {
       (bind (mod "A")             "hl.dsp.exec_cmd(audio)")
       (bind (modShift "B")        "hl.dsp.exec_cmd(browser)")
       (bind (mod "D")             ''hl.dsp.exec_cmd("discord")'')
-      (bind (mod "F")             ''hl.dsp.exec_cmd("~/.config/hypr/scripts/easymotion.sh")'')
       (bind (modShift "F")        "hl.dsp.exec_cmd(fileManager)")
       (bind (mod "I")             ''hl.dsp.exec_cmd(terminal .. " btop")'')
       (bind (modShift "M")        "hl.dsp.exec_cmd(music)")

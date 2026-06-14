@@ -467,6 +467,27 @@
         "type": "github"
       }
     },
+    "hyprland-easymotion": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ],
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1781421015,
+        "narHash": "sha256-Jqkq4g0ZQuCrGvPAxozaVrSDMoSy1rE1VIkEclU0Zag=",
+        "owner": "bryewalks",
+        "repo": "hyprland-easymotion",
+        "rev": "972bf35707017de3f0eabc64fdabae1118b2f096",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bryewalks",
+        "repo": "hyprland-easymotion",
+        "type": "github"
+      }
+    },
     "hyprland-guiutils": {
       "inputs": {
         "aquamarine": [
@@ -740,7 +761,7 @@
         "cachyos-kernel-patches": "cachyos-kernel-patches",
         "flake-compat": "flake-compat_2",
         "flake-parts": "flake-parts",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1780771919,
@@ -805,6 +826,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1778869304,
+        "narHash": "sha256-30sZNZoA1cqF5JNO9fVX+wgiQYjB7HJqqJ4ztCDeBZE=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d233902339c02a9c334e7e593de68855ad26c4cb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1780751787,
         "narHash": "sha256-nWR7F46SyrLvN8Ot39XJDpVCswekGakXlOD4KsTYKW0=",
         "owner": "NixOS",
@@ -819,7 +856,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1781074563,
         "narHash": "sha256-md8WlXOlfnIeHeOScMTTHFyf2d6iaTwPl2apR5EQ3P4=",
@@ -910,11 +947,12 @@
         "disko": "disko",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "hyprland-easymotion": "hyprland-easymotion",
         "impermanence": "impermanence",
         "import-tree": "import-tree",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-flatpak": "nix-flatpak",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "nixvim": "nixvim",
         "sops-nix": "sops-nix",
         "steam-config-nix": "steam-config-nix",
