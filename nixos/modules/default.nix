@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.mySystem.passwordConfigured = lib.mkOption {
+  options.mySystem.isPasswordConfigured = lib.mkOption {
     type = lib.types.bool;
     default = false;
   };
@@ -32,7 +32,7 @@
       extraGroups =
         [ "wheel" "networkmanager" "video" "audio" "input" "storage" "docker" ];
       shell = pkgs.zsh;
-      initialPassword = lib.mkIf (!config.mySystem.passwordConfigured) "password";
+      initialPassword = lib.mkIf (!config.mySystem.isPasswordConfigured) "password";
     };
 
     # Programs

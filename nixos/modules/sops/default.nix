@@ -10,7 +10,7 @@
     mode = "0600";
   };
 
-  sops.secrets.hashedPassword = lib.mkIf config.mySystem.passwordConfigured {
+  sops.secrets.hashedPassword = lib.mkIf config.mySystem.isPasswordConfigured {
     owner = "root";
     group = "root";
     mode = "0400";
@@ -18,7 +18,7 @@
   };
 
   users.users.brye.hashedPasswordFile =
-    lib.mkIf config.mySystem.passwordConfigured config.sops.secrets.hashedPassword.path;
+    lib.mkIf config.mySystem.isPasswordConfigured config.sops.secrets.hashedPassword.path;
 
   systemd.tmpfiles.rules =
     [

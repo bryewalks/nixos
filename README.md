@@ -94,7 +94,7 @@ Rebuild (this activates sops secrets, including the hashed password)
 sudo nixos-rebuild switch --flake github:bryewalks/nixos#<hostname>
 ```
 
-Set `mySystem.passwordConfigured = true;` in `nixos/hosts/<hostname>/default.nix` and rebuild again. This switches the user from `initialPassword = "password"` to the `hashedPassword` managed by sops-nix. Without this step the default plaintext password remains active.
+Set `mySystem.isPasswordConfigured = true;` in `nixos/hosts/<hostname>/default.nix` and rebuild again. This switches the user from `initialPassword = "password"` to the `hashedPassword` managed by sops-nix. Without this step the default plaintext password remains active.
 ```sh
 sudo nixos-rebuild switch --flake github:bryewalks/nixos#<hostname>
 ```
