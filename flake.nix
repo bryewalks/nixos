@@ -92,7 +92,7 @@
       home-manager,
       hyprland,
       hyprland-easymotion,
-      # hyprland-plugins,
+      hyprland-plugins,
       impermanence,
       import-tree,
       nix-flatpak,
