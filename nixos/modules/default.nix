@@ -1,106 +1,113 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-  # Nix settings
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.auto-optimise-store = true;
-
-  # Bootloader
-  boot = {
-    loader.efi.canTouchEfiVariables = true;
-    loader.systemd-boot.enable = true;
-    loader.grub.enable = false;
-    loader.timeout = 0; # Hold space to access NixOS Selection screen
+  options.mySystem.passwordConfigured = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
   };
 
-  # Locale
-  time.timeZone = "America/Chicago";
+  config = {
+    # Nix settings
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings.auto-optimise-store = true;
 
-  # Networking
-  networking.networkmanager.enable = true;
-
-  # Users
-  users.mutableUsers = false;
-  users.users.brye = {
-    isNormalUser = true;
-    extraGroups =
-      [ "wheel" "networkmanager" "video" "audio" "input" "storage" "docker" ];
-    shell = pkgs.zsh;
-    initialPassword = "password"; # Replace with passwd or sops
-  };
-
-  # Programs
-  programs.zsh.enable = true;
-  programs.git.enable = true;
-  programs.kdeconnect = {
-    enable = true;
-    package = pkgs.valent;
-  };
-  
-  # Printing
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-
-  services.printing = {
-    enable = true;
-    drivers = with pkgs; [
-      cups-filters
-      cups-browsed
-    ];
-  };
-
-  # Nix helpers
-  programs.nh = {
-    enable = true;
-    flake = "/home/brye/nixos";
-    # Auto garbage collect
-    clean = {
-      enable = true;
-      dates = "daily";
-      extraArgs = "--keep-since 3d --keep 5";
+    # Bootloader
+    boot = {
+      loader.efi.canTouchEfiVariables = true;
+      loader.systemd-boot.enable = true;
+      loader.grub.enable = false;
+      loader.timeout = 0; # Hold space to access NixOS Selection screen
     };
+
+    # Locale
+    time.timeZone = "America/Chicago";
+
+    # Networking
+    networking.networkmanager.enable = true;
+
+    # Users
+    users.mutableUsers = false;
+    users.users.brye = {
+      isNormalUser = true;
+      extraGroups =
+        [ "wheel" "networkmanager" "video" "audio" "input" "storage" "docker" ];
+      shell = pkgs.zsh;
+      initialPassword = lib.mkIf (!config.mySystem.passwordConfigured) "password";
+    };
+
+    # Programs
+    programs.zsh.enable = true;
+    programs.git.enable = true;
+    programs.kdeconnect = {
+      enable = true;
+      package = pkgs.valent;
+    };
+
+    # Printing
+    services.avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
+    services.printing = {
+      enable = true;
+      drivers = with pkgs; [
+        cups-filters
+        cups-browsed
+      ];
+    };
+
+    # Nix helpers
+    programs.nh = {
+      enable = true;
+      flake = "/home/brye/nixos";
+      # Auto garbage collect
+      clean = {
+        enable = true;
+        dates = "daily";
+        extraArgs = "--keep-since 3d --keep 5";
+      };
+    };
+
+    # Security
+    security.sudo = {
+      wheelNeedsPassword = true;
+      extraConfig = ''
+        Defaults lecture = never
+      '';
+    };
+    security.polkit.enable = true;
+    security.rtkit.enable = true;
+
+    # Services
+    services.udisks2.enable = true;
+    services.gvfs.enable = true;
+    services.openssh.enable = true;
+    services.pipewire = {
+      enable = true;
+      pulse.enable = true;
+      alsa.enable = true;
+      jack.enable = true;
+    };
+
+    virtualisation.docker.enable = true;
+
+    # System packages
+    environment.systemPackages = with pkgs; [
+      git
+      glib # needed for valent
+      neovim
+      nh
+      kitty
+      docker-compose
+      lshw
+      system-config-printer
+    ];
+
+    fonts.packages = with pkgs; [ nerd-fonts.caskaydia-cove ];
+
+    # NixOS release compatibility
+    system.stateVersion = "25.11";
   };
-
-  # Security
-  security.sudo = {
-    wheelNeedsPassword = true;
-    extraConfig = ''
-      Defaults lecture = never
-    '';
-  };
-  security.polkit.enable = true;
-  security.rtkit.enable = true;
-
-  # Services
-  services.udisks2.enable = true;
-  services.gvfs.enable = true;
-  services.openssh.enable = true;
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-    alsa.enable = true;
-    jack.enable = true;
-  };
-
-  virtualisation.docker.enable = true;
-
-  # System packages
-  environment.systemPackages = with pkgs; [
-    git
-    glib # needed for valent
-    neovim
-    nh
-    kitty
-    docker-compose
-    lshw
-    system-config-printer
-  ];
-
-  fonts.packages = with pkgs; [ nerd-fonts.caskaydia-cove ];
-
-  # NixOS release compatibility
-  system.stateVersion = "25.11";
 }

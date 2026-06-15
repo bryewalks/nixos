@@ -89,7 +89,12 @@ Copy sops keys to persistent storage
 sudo cp /path/to/sops/keys.txt /persist/system/var/lib/sops/keys.txt
 ```
 
-Rebuild
+Rebuild (this activates sops secrets, including the hashed password)
+```sh
+sudo nixos-rebuild switch --flake github:bryewalks/nixos#<hostname>
+```
+
+Set `mySystem.passwordConfigured = true;` in `nixos/hosts/<hostname>/default.nix` and rebuild again. This switches the user from `initialPassword = "password"` to the `hashedPassword` managed by sops-nix. Without this step the default plaintext password remains active.
 ```sh
 sudo nixos-rebuild switch --flake github:bryewalks/nixos#<hostname>
 ```

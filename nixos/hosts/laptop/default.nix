@@ -9,5 +9,6 @@
   # Needed for stremio
   services.flatpak.enable = true;
 
+  mySystem.passwordConfigured = true;
   sops.defaultSopsFile = ./secrets.yaml;
 }
