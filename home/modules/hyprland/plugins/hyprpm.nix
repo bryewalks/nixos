@@ -11,10 +11,6 @@ let
     lib.attrByPath
       [ "hyprland-plugins" "packages" pkgs.stdenv.hostPlatform.system "hyprfocus" ]
     null inputs;
-  dynamicCursorsFromInput =
-    lib.attrByPath
-      [ "hypr-dynamic-cursors" "packages" pkgs.stdenv.hostPlatform.system "default" ]
-    null inputs;
 in {
   wayland.windowManager.hyprland.settings.config = lib.mkMerge [
     (lib.mkIf (hyprfocusFromInput != null) {
@@ -22,43 +18,6 @@ in {
         keyboard_focus_animation = "slide";
         mouse_focus_animation = "none";
         slide_height = 5;
-      };
-    })
-    (lib.mkIf (dynamicCursorsFromInput != null) {
-      plugin."dynamic-cursors" = {
-        enabled = true;
-        mode = "none";
-        threshold = 2;
-        rotate = {
-          length = 20;
-          offset = 0.0;
-        };
-        tilt = {
-          limit = 5000;
-          "function" = "negative_quadratic";
-        };
-        stretch = {
-          limit = 3000;
-          "function" = "quadratic";
-        };
-        shake = {
-          enabled = true;
-          nearest = true;
-          threshold = 6.0;
-          base = 4.0;
-          speed = 4.0;
-          influence = 0.0;
-          limit = 0.0;
-          timeout = 2000;
-          effects = false;
-          ipc = false;
-        };
-        hyprcursor = {
-          nearest = true;
-          enabled = true;
-          resolution = -1;
-          fallback = "clientside";
-        };
       };
     })
     (lib.mkIf (easymotionFromInput != null) {
@@ -84,7 +43,5 @@ in {
     + lib.optionalString (hyprfocusFromInput != null) ''
       hl.plugin.load("${hyprfocusFromInput}/lib/libhyprfocus.so")
     ''
-    + lib.optionalString (dynamicCursorsFromInput != null) ''
-      hl.plugin.load("${dynamicCursorsFromInput}/lib/libhypr-dynamic-cursors.so")
-    '';
+    ;
 }

@@ -28,7 +28,7 @@
 
     # INFO: Hyprland is pinned to avoid plugins breaking on upstream updates. Forks are kept at the last known working state for the pinned version. When upgrading Hyprland, verify all plugins build/work before syncing forks.
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.55.3";
+      url = "github:hyprwm/Hyprland/v0.55.4";
     };
 
     hyprland-plugins = {
@@ -43,12 +43,6 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    # hypr-dynamic-cursors = {
-    #   url = "github:VirtCode/hypr-dynamic-cursors";
-    #   # url = "github:bryewalks/hypr-dynamic-cursors";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-    #
     import-tree = {
       url = "github:vic/import-tree";
     };
