@@ -83,7 +83,7 @@
     # Services
     services.udisks2.enable = true;
     services.gvfs.enable = true;
-    services.openssh.enable = true;
+    services.openssh.enable = config.mySystem.isPasswordConfigured;
     services.pipewire = {
       enable = true;
       pulse.enable = true;
