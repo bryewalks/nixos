@@ -98,8 +98,8 @@ in {
       (bind (mod "G")      (execCmd "hyprctl clients | grep -q 'class: steam' || steam"))
       (bind (modShift "G") (launch "steam"))
 
-      (bind (mod "M")      (launch "movies"))
       (bind (mod "M")      (toggleSpecial "movies"))
+      (bind (mod "M")      (launch "movies"))
 
       (bind (mod "Y")      (toggleSpecial "aichat"))
       (bind (modShift "Y") (launch "claude"))
