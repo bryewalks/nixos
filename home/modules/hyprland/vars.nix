@@ -10,6 +10,9 @@
     music       = { _var = "kitty cmus"; };
     webapp      = { _var = lib.generators.mkLuaInline ''browser .. " -P WebApp --class WebApp"''; };
     movies      = { _var = "stremio || flatpak run com.stremio.Stremio"; };
+    voip            = { _var = "discord"; };
+    passwordManager = { _var = "bitwarden"; };
+    steam           = { _var = "steam"; };
     gmail       = { _var = "zen-beta --no-remote --new-window -P WebApp-gmail --class WebApp-gmail https://gmail.com"; };
     proton      = { _var = "zen-beta --no-remote --new-window -P WebApp-proton --class WebApp-proton https://mail.proton.me"; };
     claude      = { _var = "zen-beta --no-remote --new-window -P WebApp-claude --class WebApp-claude https://claude.ai"; };

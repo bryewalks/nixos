@@ -7,9 +7,10 @@ let
   bind       = key: dsp:       { _args = [key (mkLua dsp)]; };
   bindOpts   = key: dsp: opts: { _args = [key (mkLua dsp) opts]; };
   bindRepeat = key: dsp:       bindOpts key dsp { repeating = true; };
-  exec    = luaExpr: ''hl.dsp.exec_cmd(${luaExpr})'';
-  execCmd = cmd:     ''hl.dsp.exec_cmd("${cmd}")'';
-  script  = name:    ''hl.dsp.exec_cmd("~/.config/hypr/scripts/${name}.sh")'';
+  launch         = luaExpr: ''hl.dsp.exec_cmd(${luaExpr})'';
+  launchTerminal = cmd:     ''hl.dsp.exec_cmd(terminal .. " ${cmd}")'';
+  execCmd        = cmd:     ''hl.dsp.exec_cmd("${cmd}")'';
+  script         = name:    ''hl.dsp.exec_cmd("~/.config/hypr/scripts/${name}.sh")'';
   luaWs          = ws: if builtins.isInt ws then toString ws else ''"${ws}"'';
   focusDirection = dir:  ''hl.dsp.focus({ direction = "${dir}" })'';
   focusWorkspace = ws:   ''hl.dsp.focus({ workspace = ${luaWs ws} })'';
@@ -68,18 +69,18 @@ in {
       (bind (modShift "T") (toggleSpecial "terminal"))
 
       # ── Applications ──────────────────────────────────────────────────────
-      (bind (mod "A")          (exec "audio"))
-      (bind (modShift "B")     (exec "browser"))
-      (bind (mod "D")          (execCmd "discord"))
-      (bind (modShift "F")     (exec "fileManager"))
-      (bind (mod "I")          (exec ''terminal .. " btop"''))
-      (bind (modShift "M")     (exec "music"))
-      (bind (mod "N")          (exec ''terminal .. " nvim"''))
+      (bind (mod "A")          (launch "audio"))
+      (bind (modShift "B")     (launch "browser"))
+      (bind (mod "D")          (launch "voip"))
+      (bind (modShift "F")     (launch "fileManager"))
+      (bind (mod "I")          (launchTerminal "btop"))
+      (bind (modShift "M")     (launch "music"))
+      (bind (mod "N")          (launchTerminal "nvim"))
       (bind (mod "Q")          (execCmd "pkill waybar || true; waybar"))
-      (bind (mod "W")          (execCmd "bitwarden"))
-      (bind (mod "SPACE")      (exec "menu"))
+      (bind (mod "W")          (launch "passwordManager"))
+      (bind (mod "SPACE")      (launch "menu"))
       (bind (modShift "SPACE") (script "webapp-rofi"))
-      (bind (mod "RETURN")     (exec "terminal"))
+      (bind (mod "RETURN")     (launch "terminal"))
 
       (bind (mod "P")      (script "screenshot-monitor"))
       (bind (modShift "P") (script "screenshot-region"))
@@ -90,19 +91,19 @@ in {
       (bind (mod "X")      (script "wlogout-toggle"))
 
       (bind (mod "E")      (toggleSpecial "email"))
-      (bind (modShift "E") (exec "gmail"))
-      (bind (modShift "E") (exec "proton"))
+      (bind (modShift "E") (launch "gmail"))
+      (bind (modCtrl "E")  (launch "proton"))
 
       (bind (mod "G")      (toggleSpecial "steam"))
       (bind (mod "G")      (execCmd "hyprctl clients | grep -q 'class: steam' || steam"))
-      (bind (modShift "G") (execCmd "steam"))
+      (bind (modShift "G") (launch "steam"))
 
-      (bind (mod "M")      (exec "movies"))
+      (bind (mod "M")      (launch "movies"))
       (bind (mod "M")      (toggleSpecial "movies"))
 
       (bind (mod "Y")      (toggleSpecial "aichat"))
-      (bind (modShift "Y") (exec ''terminal .. " claude"''))
-      (bind (modShift "Y") (exec "claude"))
+      (bind (modShift "Y") (launch "claude"))
+      (bind (modCtrl "Y")  (launchTerminal "claude"))
 
       # ── System ────────────────────────────────────────────────────────────
       (bindOpts "XF86AudioRaiseVolume"  (execCmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")    { locked = true; repeating = true; })
