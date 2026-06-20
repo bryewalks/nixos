@@ -1,6 +1,6 @@
-{ lib, ... }:
+{ lib, hyprlandLib, ... }:
 let
-  mkLua = lib.generators.mkLuaInline;
+  inherit (hyprlandLib) startupHook;
   gameTitles = [
     "Slay the Spire 2"
   ];
@@ -45,16 +45,10 @@ in
   };
 
   wayland.windowManager.hyprland.settings.on = [
-    {
-      _args = [
-        "hyprland.start"
-        (mkLua ''
-          function()
-            hl.exec_cmd("hyprcursor")
-            hl.exec_cmd("~/.config/hypr/scripts/startup.sh")
-          end
-        '')
-      ];
-    }
+    (startupHook ''
+      hl.exec_cmd("hyprcursor")
+      hl.exec_cmd("[workspace 1] kitty")
+      hl.exec_cmd("sleep 1 && kitty +kitten panel -o background_opacity=0 -o dynamic_background_opacity=yes --edge=background --output-name=DP-2 cava")
+    '')
   ];
 }

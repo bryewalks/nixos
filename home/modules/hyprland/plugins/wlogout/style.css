@@ -5,33 +5,33 @@
 }
 
 window {
-  background-color: var(--dracula-backgroundAlpha);
+  background-color: var(--theme-backgroundAlpha);
 }
 
 button {
-  color: var(--dracula-selection);
+  color: var(--theme-selection);
   font-size: 36px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 30%;
-  background-color: var(--dracula-background);
+  background-color: var(--theme-background);
   border-style: solid;
-  border: 10px solid var(--dracula-background);
+  border: 10px solid var(--theme-background);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 40px;
   padding-right: 60px;
 }
 
 button:focus {
-  color: var(--dracula-selection);
-  border: 10px solid var(--dracula-selection);
+  color: var(--theme-selection);
+  border: 10px solid var(--theme-selection);
 }
 
 button:active,
 button:hover {
-  color: var(--dracula-selection);
-  border: 10px solid var(--dracula-purple);
-  background-color: var(--dracula-background);
+  color: var(--theme-selection);
+  border: 10px solid var(--theme-purple);
+  background-color: var(--theme-background);
 }
 
 /*

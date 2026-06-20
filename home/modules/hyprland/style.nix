@@ -1,9 +1,7 @@
-{ lib, ... }:
+{ theme, ... }:
 let
-  themeBuilder = import ../themes/theme-builder.nix { inherit lib; };
-  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
-  palette = draculaTheme.palette;
-  withRgbaAlpha = draculaTheme.withRgbaAlpha;
+  palette      = theme.palette;
+  withRgbaAlpha = theme.withRgbaAlpha;
 in {
   wayland.windowManager.hyprland.settings = {
     config = {

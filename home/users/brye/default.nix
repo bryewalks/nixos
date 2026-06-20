@@ -2,8 +2,12 @@
 
 let
   hostDirectoriesModule = ../../modules/directories + "/${osConfig.networking.hostName}.nix";
+  themeBuilder = import ../../modules/themes/theme-builder.nix { inherit lib; };
+  themeName    = "dracula";
+  theme        = themeBuilder.mkTheme { theme = themeName; };
 in
 {
+  _module.args = { inherit themeBuilder theme themeName; };
   home.username = "brye";
   home.homeDirectory = "/home/brye";
   home.stateVersion = "25.11";

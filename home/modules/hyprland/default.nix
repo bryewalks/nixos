@@ -4,6 +4,7 @@ let
   hostModule = hostDir + "/default.nix";
 in
 {
+  _module.args.hyprlandLib = import ./lib.nix lib;
   imports =
     [
       ./vars.nix

@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, theme, ... }:
 
 let
-  dracula = import ../themes/dracula.nix;
+  palette = theme.palette;
   dracula-papirus = import ../../../nixos/pkgs/dracula-papirus.nix { inherit pkgs; lib = pkgs.lib; color = "dracula-purple"; };
 in {
   stylix = {
@@ -20,22 +20,22 @@ in {
 
     base16Scheme = {
       schema = "withHashTag";
-      base00 = dracula.background;
-      base01 = dracula.lightBackground;
-      base02 = dracula.selection;
-      base03 = dracula.currentLine;
-      base04 = dracula.darkForeground;
-      base05 = dracula.foreground;
-      base06 = dracula.lightForeGround;
-      base07 = dracula.brightWhite;
-      base08 = dracula.red;
-      base09 = dracula.orange;
-      base0A = dracula.yellow;
-      base0B = dracula.green;
-      base0C = dracula.cyan;
-      base0D = dracula.purple;
-      base0E = dracula.magenta;
-      base0F = dracula.brightRed;
+      base00 = palette.background;
+      base01 = palette.lightBackground;
+      base02 = palette.selection;
+      base03 = palette.currentLine;
+      base04 = palette.darkForeground;
+      base05 = palette.foreground;
+      base06 = palette.lightForeGround;
+      base07 = palette.brightWhite;
+      base08 = palette.red;
+      base09 = palette.orange;
+      base0A = palette.yellow;
+      base0B = palette.green;
+      base0C = palette.cyan;
+      base0D = palette.purple;
+      base0E = palette.magenta;
+      base0F = palette.brightRed;
     };
 
     icons = {

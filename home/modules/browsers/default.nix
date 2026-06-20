@@ -1,8 +1,8 @@
-{ ... }:
+{ theme, ... }:
 
 let
-  dracula = import ../themes/dracula.nix;
-  vimiumCss = import ./vimium-css.nix dracula;
+  palette = theme.palette;
+  vimiumCss = import ./vimium-css.nix palette;
 
   webAppProfile = {
     isDefault = false;

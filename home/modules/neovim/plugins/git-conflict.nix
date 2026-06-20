@@ -1,6 +1,6 @@
-{ ... }:
+{ theme, ... }:
 
-let dracula = import ../../themes/dracula.nix;
+let palette = theme.palette;
 in {
   programs.nixvim = {
     plugins.git-conflict = {
@@ -18,10 +18,10 @@ in {
     };
 
     extraConfigLua = ''
-      vim.api.nvim_set_hl(0, "GitConflictIncomingLabel", { bg = "${dracula.purple}", fg = "${dracula.selection}" })
-      vim.api.nvim_set_hl(0, "GitConflictIncoming", { bg = "${dracula.lightPurple}", fg = "${dracula.selection}" })
-      vim.api.nvim_set_hl(0, "GitConflictCurrentLabel", { bg = "${dracula.green}", fg = "${dracula.selection}" })
-      vim.api.nvim_set_hl(0, "GitConflictCurrent", { bg = "${dracula.lightGreen}", fg = "${dracula.selection}" })
+      vim.api.nvim_set_hl(0, "GitConflictIncomingLabel", { bg = "${palette.purple}", fg = "${palette.selection}" })
+      vim.api.nvim_set_hl(0, "GitConflictIncoming", { bg = "${palette.lightPurple}", fg = "${palette.selection}" })
+      vim.api.nvim_set_hl(0, "GitConflictCurrentLabel", { bg = "${palette.green}", fg = "${palette.selection}" })
+      vim.api.nvim_set_hl(0, "GitConflictCurrent", { bg = "${palette.lightGreen}", fg = "${palette.selection}" })
     '';
   };
 }

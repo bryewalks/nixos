@@ -1,12 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, theme, themeBuilder, themeName, ... }:
 let
-  themeBuilder = import ../../../themes/theme-builder.nix { };
-  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; cssPath = ./style.css; };
-  draculaCss = draculaTheme.resolvedCss;
-  draculaJson = draculaTheme.json;
+  css  = (themeBuilder.mkTheme { theme = themeName; cssPath = ./style.css; }).resolvedCss;
+  json = theme.json;
 in
 {
-  home.packages = [ pkgs.wlogout ];
+  home.packages = [ pkgs.wlogout pkgs.hyprshutdown ];
 
   xdg.configFile."wlogout/layout".text = ''
     {
@@ -20,7 +18,7 @@ in
 
     {
         "label": "logout",
-        "action": "hyprctl dispatch exit 0",
+        "action": "hyprshutdown",
         "text": "E",
         "keybind": "e",
         "width": 1,
@@ -64,7 +62,7 @@ in
     }
   '';
 
-  xdg.configFile."wlogout/style.css".text = draculaCss;
+  xdg.configFile."wlogout/style.css".text = css;
 
   xdg.configFile."wlogout/icons" = {
     source = ../../../../assets/icons;

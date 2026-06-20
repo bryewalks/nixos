@@ -1,10 +1,8 @@
-{ ... }:
+{ theme, themeBuilder, themeName, ... }:
 let
-  themeBuilder = import ../../../themes/theme-builder.nix { };
-  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; cssPath = ./style.css; };
-  draculaCss = draculaTheme.resolvedCss;
-  draculaPalette = draculaTheme.palette;
-  draculaJson = draculaTheme.json;
+  css     = (themeBuilder.mkTheme { theme = themeName; cssPath = ./style.css; }).resolvedCss;
+  palette = theme.palette;
+  json    = theme.json;
   scriptsDir = toString ../../scripts;
   scriptPath = name: "${scriptsDir}/${name}";
 in
@@ -124,7 +122,8 @@ in
             "▇"
             "█"
           ];
-          on-click-middle = scriptPath "winwrap.sh";
+          on-click-middle = "kitty +kitten panel -o background_opacity=0 -o dynamic_background_opacity=yes --edge=background --output-name=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name') cava";
+          on-click-right = "pkill cava";
         };
         "custom/wallpaper" = {
           tooltip = false;
@@ -170,10 +169,10 @@ in
             mode = "month";
             on-scroll = 1;
             format = {
-              months = "<span color='${draculaPalette.purple}'><b>{}</b></span>";
-              days = "<span color='${draculaPalette.foreground}'><b>{}</b></span>";
-              weekdays = "<span color='${draculaPalette.cyan}'><b>{}</b></span>";
-              today = "<span color='${draculaPalette.magenta}'><b>{}</b></span>";
+              months = "<span color='${palette.purple}'><b>{}</b></span>";
+              days = "<span color='${palette.foreground}'><b>{}</b></span>";
+              weekdays = "<span color='${palette.cyan}'><b>{}</b></span>";
+              today = "<span color='${palette.magenta}'><b>{}</b></span>";
             };
           };
           actions = {
@@ -186,7 +185,7 @@ in
           format = "{}";
           tooltip = true;
           interval = 900;
-          exec = "WEATHER_COLORS_JSON='${draculaJson}' ${scriptPath "weather.py"}";
+          exec = "WEATHER_COLORS_JSON='${json}' ${scriptPath "weather.py"}";
           return-type = "json";
         };
         "custom/power" = {
@@ -199,6 +198,6 @@ in
       }
     ];
 
-    style = draculaCss;
+    style = css;
   };
 }

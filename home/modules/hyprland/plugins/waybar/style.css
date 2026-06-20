@@ -30,14 +30,14 @@ window#waybar.hidden {
   font-size: 4px;
   margin-bottom: 0px;
   border-radius: 6px;
-  color: var(--dracula-background);
+  color: var(--theme-background);
   transition: none;
 }
 
 #tags button {
   transition: none;
   /* old: #b5e8e0 */
-  color: var(--dracula-cyan);
+  color: var(--theme-cyan);
   background: transparent;
   font-size: 16px;
   border-radius: 2px;
@@ -46,16 +46,16 @@ window#waybar.hidden {
 #tags button.occupied {
   transition: none;
   /* old: #f28fad */
-  color: var(--dracula-magenta);
+  color: var(--theme-magenta);
   background: transparent;
   font-size: 4px;
 }
 
 #tags button.focused {
   /* old: #abe9b3 */
-  color: var(--dracula-lightGreen);
-  border-top: 2px solid var(--dracula-lightGreen);
-  border-bottom: 2px solid var(--dracula-lightGreen);
+  color: var(--theme-lightGreen);
+  border-top: 2px solid var(--theme-lightGreen);
+  border-bottom: 2px solid var(--theme-lightGreen);
 }
 
 #tags button:hover {
@@ -63,15 +63,15 @@ window#waybar.hidden {
   box-shadow: inherit;
   text-shadow: inherit;
   /* old: #fae3b0 */
-  color: var(--dracula-brightYellow);
+  color: var(--theme-brightYellow);
   /* old: #e8a2af */
-  border-color: var(--dracula-brightMagenta);
-  color: var(--dracula-brightMagenta);
+  border-color: var(--theme-brightMagenta);
+  color: var(--theme-brightMagenta);
 }
 
 #tags button.focused:hover {
   /* old: #e8a2af */
-  color: var(--dracula-brightMagenta);
+  color: var(--theme-brightMagenta);
 }
 
 #network {
@@ -82,8 +82,8 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 6px;
   transition: none;
-  color: var(--dracula-background);
-  background: var(--dracula-purple);
+  color: var(--theme-background);
+  background: var(--theme-purple);
 }
 
 #pulseaudio {
@@ -94,8 +94,8 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 6px;
   transition: none;
-  color: var(--dracula-background);
-  background: var(--dracula-yellow);
+  color: var(--theme-background);
+  background: var(--theme-yellow);
 }
 
 #battery {
@@ -106,22 +106,22 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 6px;
   transition: none;
-  color: var(--dracula-background);
+  color: var(--theme-background);
   /* old: #b5e8e0 */
-  background: var(--dracula-cyan);
+  background: var(--theme-cyan);
 }
 
 #battery.charging,
 #battery.plugged {
-  color: var(--dracula-background);
+  color: var(--theme-background);
   /* old: #b5e8e0 */
-  background-color: var(--dracula-cyan);
+  background-color: var(--theme-cyan);
 }
 
 #battery.critical:not(.charging) {
   /* old: #b5e8e0 */
-  background-color: var(--dracula-cyan);
-  color: var(--dracula-background);
+  background-color: var(--theme-cyan);
+  color: var(--theme-background);
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: linear;
@@ -132,9 +132,9 @@ window#waybar.hidden {
 @keyframes blink {
   to {
     /* old: #bf616a */
-    background-color: var(--dracula-red);
+    background-color: var(--theme-red);
     /* old: #b5e8e0 */
-    color: var(--dracula-cyan);
+    color: var(--theme-cyan);
   }
 }
 
@@ -146,9 +146,9 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 6px;
   transition: none;
-  color: var(--dracula-background);
+  color: var(--theme-background);
   /* old: #f8bd96 */
-  background: var(--dracula-orange);
+  background: var(--theme-orange);
 }
 
 #clock {
@@ -159,8 +159,8 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 6px;
   transition: none;
-  color: var(--dracula-background);
-  background: var(--dracula-green);
+  color: var(--theme-background);
+  background: var(--theme-green);
 }
 
 #memory {
@@ -171,8 +171,8 @@ window#waybar.hidden {
   padding-right: 10px;
   border-radius: 6px;
   transition: none;
-  color: var(--dracula-background);
-  background: var(--dracula-magenta);
+  color: var(--theme-background);
+  background: var(--theme-magenta);
 }
 
 #cpu {
@@ -183,8 +183,8 @@ window#waybar.hidden {
   padding-right: 10px;
   border-radius: 6px;
   transition: none;
-  color: var(--dracula-background);
-  background: var(--dracula-cyan);
+  color: var(--theme-background);
+  background: var(--theme-cyan);
 }
 
 #tray {
@@ -196,8 +196,8 @@ window#waybar.hidden {
   border-radius: 6px;
   transition: none;
   /* old: #b5e8e0 */
-  color: var(--dracula-cyan);
-  background: var(--dracula-background);
+  color: var(--theme-cyan);
+  background: var(--theme-background);
 }
 
 #custom-launcher {
@@ -207,8 +207,8 @@ window#waybar.hidden {
   padding-right: 16px;
   border-radius: 6px;
   transition: none;
-  color: var(--dracula-cyan);
-  background: var(--dracula-background);
+  color: var(--theme-cyan);
+  background: var(--theme-background);
 }
 
 #custom-power {
@@ -220,9 +220,9 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 6px;
   transition: none;
-  color: var(--dracula-background);
+  color: var(--theme-background);
   /* old: #f28fad */
-  background: var(--dracula-magenta);
+  background: var(--theme-magenta);
 }
 
 #custom-wallpaper {
@@ -233,8 +233,8 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 6px;
   transition: none;
-  color: var(--dracula-background);
-  background: var(--dracula-purple);
+  color: var(--theme-background);
+  background: var(--theme-purple);
 }
 
 #custom-record {
@@ -246,7 +246,7 @@ window#waybar.hidden {
   border-radius: 6px;
   transition: none;
   color: white;
-  background: var(--dracula-red);
+  background: var(--theme-red);
   animation-name: record-blink;
   animation-duration: 1s;
   animation-timing-function: linear;
@@ -257,7 +257,7 @@ window#waybar.hidden {
 @keyframes record-blink {
   to {
     background-color: transparent;
-    color: var(--dracula-red);
+    color: var(--theme-red);
   }
 }
 
@@ -269,8 +269,8 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 6px;
   transition: none;
-  color: var(--dracula-background);
-  background: var(--dracula-currentLine);
+  color: var(--theme-background);
+  background: var(--theme-currentLine);
 }
 
 #custom-updates {
@@ -281,8 +281,8 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 6px;
   transition: none;
-  color: var(--dracula-background);
-  background: var(--dracula-orange);
+  color: var(--theme-background);
+  background: var(--theme-orange);
 }
 
 #custom-media {
@@ -293,9 +293,9 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 6px;
   transition: none;
-  color: var(--dracula-background);
+  color: var(--theme-background);
   /* old: #f2cdcd */
-  background: var(--dracula-lightPurple);
+  background: var(--theme-lightPurple);
 }
 
 #custom-weather {
@@ -307,24 +307,24 @@ window#waybar.hidden {
   border-radius: 6px;
   transition: none;
   /* old: #282a36 */
-  color: var(--dracula-background);
+  color: var(--theme-background);
   /* old: #6272a4 */
-  background: var(--dracula-currentLine);
+  background: var(--theme-currentLine);
 }
 
 #workspaces button {
   /* old: #96cdfb */
-  color: var(--dracula-brightCyan);
+  color: var(--theme-brightCyan);
 }
 
 #workspaces button.urgent {
   /* old: #f28fad */
-  color: var(--dracula-magenta);
+  color: var(--theme-magenta);
 }
 
 #cava {
   /* old: #8be9fd */
-  color: var(--dracula-cyan);
+  color: var(--theme-cyan);
   font-family: "bargraph";
   margin-bottom: -10px;
 }

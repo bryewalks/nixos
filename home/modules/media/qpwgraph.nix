@@ -1,7 +1,7 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, theme, ... }:
 
 let
-  dracula = import ../themes/dracula.nix;
+  palette = theme.palette;
 in
 {
   home.packages = with pkgs; [
@@ -21,11 +21,11 @@ cfg.read(path)
 
 desired = {
     "GraphColors": {
-        "0x172973e6": "${dracula.cyan}",
-        "0x2c2fdc12": "${dracula.purple}",
-        "0x30fc78a9": "${dracula.red}",
-        "0x50c34e7e": "${dracula.yellow}",
-        "0xb91441cf": "${dracula.green}",
+        "0x172973e6": "${palette.cyan}",
+        "0x2c2fdc12": "${palette.purple}",
+        "0x30fc78a9": "${palette.red}",
+        "0x50c34e7e": "${palette.yellow}",
+        "0xb91441cf": "${palette.green}",
     },
     "SystemTray": {
         "Enabled": "true",

@@ -1,7 +1,7 @@
 { lib ? null }:
 let
   # Theme helpers:
-  # - resolve CSS vars (var(--theme-name)) using a palette
+  # - resolve CSS vars (var(--theme-*)) using a palette
   # - build theme-derived outputs for CSS and Hyprland consumers
   varNames = palette: builtins.attrNames palette;
 
@@ -12,7 +12,7 @@ let
     assert theme != "";
     let
       names = varNames palette;
-      from = map (name: "var(--${theme}-${name})") names;
+      from = map (name: "var(--theme-${name})") names;
       to = map (name: palette.${name}) names;
     in
     builtins.replaceStrings from to css;

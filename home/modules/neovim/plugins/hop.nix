@@ -1,6 +1,6 @@
-{ ... }:
+{ theme, ... }:
 
-let dracula = import ../../themes/dracula.nix;
+let palette = theme.palette;
 in {
   programs.nixvim = {
     plugins.hop = {
@@ -75,9 +75,9 @@ in {
     ];
 
     extraConfigLua = ''
-      vim.cmd.hi("HopNextKey guifg=${dracula.cyan}")
-      vim.cmd.hi("HopNextKey1 guifg=${dracula.magenta}")
-      vim.cmd.hi("HopNextKey2 guifg=${dracula.purple}")
+      vim.cmd.hi("HopNextKey guifg=${palette.cyan}")
+      vim.cmd.hi("HopNextKey1 guifg=${palette.magenta}")
+      vim.cmd.hi("HopNextKey2 guifg=${palette.purple}")
     '';
   };
 }

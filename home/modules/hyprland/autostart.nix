@@ -1,17 +1,5 @@
-{ lib, ... }:
-let
-  mkLua = lib.generators.mkLuaInline;
-  startupHook = body: {
-    _args = [
-      "hyprland.start"
-      (mkLua ''
-        function()
-        ${body}
-        end
-      '')
-    ];
-  };
-in {
+{ hyprlandLib, ... }:
+let inherit (hyprlandLib) startupHook; in {
   wayland.windowManager.hyprland.settings.on = [
     (startupHook ''
       hl.exec_cmd("waybar & swaync & hypridle & hyprpaper")

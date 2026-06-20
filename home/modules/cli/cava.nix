@@ -1,17 +1,17 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 
 let
-  dracula = import ../themes/dracula.nix;
-  pick = key: fallback: if builtins.hasAttr key dracula then dracula.${key} else fallback;
+  palette = theme.palette;
+  pick = key: fallback: if builtins.hasAttr key palette then palette.${key} else fallback;
   cavaGradient = [
-    dracula.cyan
-    (pick "brightCyan" dracula.cyan)
-    (pick "brightPurple" dracula.purple)
-    dracula.purple
-    (pick "brightMagenta" dracula.magenta)
-    dracula.magenta
-    (pick "brightRed" dracula.red)
-    dracula.red
+    palette.cyan
+    (pick "brightCyan" palette.cyan)
+    (pick "brightPurple" palette.purple)
+    palette.purple
+    (pick "brightMagenta" palette.magenta)
+    palette.magenta
+    (pick "brightRed" palette.red)
+    palette.red
   ];
 in
 {

@@ -1,9 +1,7 @@
-{ config, osConfig, lib, pkgs, ... }:
+{ config, osConfig, lib, pkgs, theme, ... }:
 let
   hostDir = ../../hosts + "/${osConfig.networking.hostName}";
   hostHyprpaper = hostDir + "/hyprpaper.nix";
-  themeBuilder = import ../../../themes/theme-builder.nix { };
-  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
 in
 {
   home.packages = [
@@ -28,7 +26,7 @@ in
     backend = hyprpaper
     fill = fill
     sort = name
-    color = ${draculaTheme.palette.white}
+    color = ${theme.palette.white}
     subfolders = False
     all_subfolders = False
     show_hidden = False

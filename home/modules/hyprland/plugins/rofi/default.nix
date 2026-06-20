@@ -1,9 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, theme, ... }:
 let
-  themeBuilder = import ../../../themes/theme-builder.nix { };
-  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
-  draculaAlpha = draculaTheme.hexAlpha;
-  draculaPalette = draculaTheme.palette;
+  hexAlpha   = theme.hexAlpha;
+  palette = theme.palette;
   fontName = config.stylix.fonts.monospace.name;
 in
 {
@@ -35,13 +33,13 @@ in
 
     * {
         font: "''${fontName} 12";
-        background:     ${draculaAlpha.background};
-        background-alt: ${draculaAlpha.selection};
-        foreground:     ${draculaAlpha.foreground};
-        accent:         ${draculaAlpha.cyan};
-        selected:       ${draculaAlpha.purple};
-        active:         ${draculaAlpha.green};
-        urgent:         ${draculaAlpha.red};
+        background:     ${hexAlpha.background};
+        background-alt: ${hexAlpha.selection};
+        foreground:     ${hexAlpha.foreground};
+        accent:         ${hexAlpha.cyan};
+        selected:       ${hexAlpha.purple};
+        active:         ${hexAlpha.green};
+        urgent:         ${hexAlpha.red};
     }
 
     * {
@@ -89,7 +87,7 @@ in
         border-radius:               10px;
         border-color:                @border-colour;
         cursor:                      "default";
-        background-image:            linear-gradient(45deg, ${draculaPalette.cyan}ee, ${draculaPalette.green}ee);
+        background-image:            linear-gradient(45deg, ${palette.cyan}ee, ${palette.green}ee);
         padding:                     2px;
         /* Backgroud Colors */
         background-color:            @background-colour;

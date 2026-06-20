@@ -1,20 +1,20 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 
 let
-  dracula = import ../themes/dracula.nix;
+  palette = theme.palette;
   fzfColors = builtins.concatStringsSep " " [
-    "--color=fg:${dracula.foreground}"
-    "--color=bg:${dracula.background}"
-    "--color=hl:${dracula.purple}"
-    "--color=fg+:${dracula.foreground}"
-    "--color=bg+:${dracula.selection}"
-    "--color=hl+:${dracula.purple}"
-    "--color=info:${dracula.orange}"
-    "--color=prompt:${dracula.green}"
-    "--color=pointer:${dracula.magenta}"
-    "--color=marker:${dracula.magenta}"
-    "--color=spinner:${dracula.orange}"
-    "--color=header:${dracula.currentLine}"
+    "--color=fg:${palette.foreground}"
+    "--color=bg:${palette.background}"
+    "--color=hl:${palette.purple}"
+    "--color=fg+:${palette.foreground}"
+    "--color=bg+:${palette.selection}"
+    "--color=hl+:${palette.purple}"
+    "--color=info:${palette.orange}"
+    "--color=prompt:${palette.green}"
+    "--color=pointer:${palette.magenta}"
+    "--color=marker:${palette.magenta}"
+    "--color=spinner:${palette.orange}"
+    "--color=header:${palette.currentLine}"
   ];
 in {
   home.packages = [ pkgs.fzf ];

@@ -1,8 +1,6 @@
-{ lib, pkgs, inputs, ... }:
+{ lib, pkgs, inputs, theme, ... }:
 let
-  themeBuilder = import ../../themes/theme-builder.nix { inherit lib; };
-  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
-  draculaRgba = draculaTheme.rgba;
+  rgba = theme.rgba;
   easymotionFromInput =
     lib.attrByPath
       [ "hyprland-easymotion" "packages" pkgs.stdenv.hostPlatform.system "default" ]
@@ -23,11 +21,11 @@ in {
     (lib.mkIf (easymotionFromInput != null) {
       plugin.easymotion = {
         textsize = 54;
-        textcolor = draculaRgba.purple;
-        bgcolor = draculaRgba.selection;
+        textcolor = rgba.purple;
+        bgcolor = rgba.selection;
         textpadding = 10;
         bordersize = 2;
-        bordercolor = draculaRgba.foreground;
+        bordercolor = rgba.foreground;
         rounding = 1;
       };
     })

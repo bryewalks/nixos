@@ -1,9 +1,7 @@
-{ lib, pkgs, ... }:
+{ pkgs, theme, ... }:
 
 let
-  themeBuilder = import ../themes/theme-builder.nix { inherit lib; };
-  draculaTheme = themeBuilder.mkTheme { theme = "dracula"; };
-  dracula = draculaTheme.hexNoHash;
+  palette = theme.hexNoHash;
 in {
   home.packages = with pkgs; [
     mangohud
@@ -19,45 +17,45 @@ in {
     position=top-right
     round_corners=10
     background_alpha=0.8
-    background_color=${dracula.background}
+    background_color=${palette.background}
     table_columns=3
 
     ## Text ##
     font_size=18
-    text_color=${dracula.foreground}
-    text_outline_color=${dracula.selection}
+    text_color=${palette.foreground}
+    text_outline_color=${palette.selection}
 
     ## GPU ##
     gpu_text=GPU
     gpu_stats
     gpu_temp
-    gpu_color=${dracula.green}
+    gpu_color=${palette.green}
     gpu_load_change
-    gpu_load_color=${dracula.green},${dracula.yellow},${dracula.red}
+    gpu_load_color=${palette.green},${palette.yellow},${palette.red}
 
     ## CPU ##
     cpu_text=CPU
     cpu_stats
     cpu_temp
-    cpu_color=${dracula.cyan}
+    cpu_color=${palette.cyan}
     cpu_load_change
-    cpu_load_color=${dracula.green},${dracula.yellow},${dracula.red}
+    cpu_load_color=${palette.green},${palette.yellow},${palette.red}
 
     ## RAM ##
     ram
-    ram_color=${dracula.magenta}
+    ram_color=${palette.magenta}
 
     ## FPS ##
     fps
     fps_color_change
-    fps_color=${dracula.red},${dracula.yellow},${dracula.green}
+    fps_color=${palette.red},${palette.yellow},${palette.green}
 
     ## ENGINE ##
-    engine_color=${dracula.purple}
+    engine_color=${palette.purple}
 
     ## Frame timing ##
     frame_timing
-    frametime_color=${dracula.green}
+    frametime_color=${palette.green}
 
     arch
     fps_limit_method=early
@@ -65,6 +63,6 @@ in {
 
     ## Wine ##
     wine
-    wine_color=${dracula.purple}
+    wine_color=${palette.purple}
   '';
 }

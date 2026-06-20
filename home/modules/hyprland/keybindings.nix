@@ -1,30 +1,7 @@
-{ lib, ... }:
+{ lib, hyprlandLib, ... }:
+with hyprlandLib;
 let
-  mkLua    = lib.generators.mkLuaInline;
-  mod      = suffix: mkLua ''mainMod .. " + ${suffix}"'';
-  modShift = suffix: mkLua ''mainMod .. " + SHIFT + ${suffix}"'';
-  modCtrl  = suffix: mkLua ''mainMod .. " + CTRL + ${suffix}"'';
-  bind       = key: dsp:       { _args = [key (mkLua dsp)]; };
-  bindOpts   = key: dsp: opts: { _args = [key (mkLua dsp) opts]; };
-  bindRepeat = key: dsp:       bindOpts key dsp { repeating = true; };
-  launch         = luaExpr: ''hl.dsp.exec_cmd(${luaExpr})'';
-  launchTerminal = cmd:     ''hl.dsp.exec_cmd(terminal .. " ${cmd}")'';
-  execCmd        = cmd:     ''hl.dsp.exec_cmd("${cmd}")'';
-  script         = name:    ''hl.dsp.exec_cmd("~/.config/hypr/scripts/${name}.sh")'';
-  luaWs          = ws: if builtins.isInt ws then toString ws else ''"${ws}"'';
-  focusDirection = dir:  ''hl.dsp.focus({ direction = "${dir}" })'';
-  focusWorkspace = ws:   ''hl.dsp.focus({ workspace = ${luaWs ws} })'';
-  moveDirection  = dir:  ''hl.dsp.window.move({ direction = "${dir}" })'';
-  moveWorkspace  = ws:   ''hl.dsp.window.move({ workspace = ${luaWs ws} })'';
-  resizeWindow   = x: y: ''hl.dsp.window.resize({ x = ${toString x}, y = ${toString y}, relative = true })'';
-  toggleSpecial  = name: ''hl.dsp.workspace.toggle_special("${name}")'';
-  dragWindow   = "hl.dsp.window.drag()";
-  mouseResize  = "hl.dsp.window.resize()";
-  closeWindow  = "hl.dsp.window.close()";
-  floatWindow = action: ''hl.dsp.window.float({ action = "${action}" })'';
-  fullscreen  = mode:   ''hl.dsp.window.fullscreen(${toString mode})'';
-  layout      = name:   ''hl.dsp.layout("${name}")'';
-  pushToTalk  = class: [
+  pushToTalk = class: [
     (bind "mouse:276"
       ''hl.dsp.send_key_state({ mods = "", key = "f9", state = "down", window = "class:^(${class})$" })'')
     (bindOpts "mouse:276"
@@ -36,7 +13,10 @@ in {
     [
       # ── Windows ───────────────────────────────────────────────────────────
       (bind (mod "C") closeWindow)
-      (bind (mod "S") (layout "togglesplit"))
+      (bind (mod "S") (layoutBind {
+        scrolling = layout "consume_or_expel next";
+        dwindle   = layout "togglesplit";
+      }))
       (bind (mod "V") (floatWindow "toggle"))
       (bind (mod "Z") (fullscreen 0))
 
