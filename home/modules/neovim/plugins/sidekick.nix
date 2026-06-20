@@ -11,10 +11,8 @@
             enabled = true;
           };
         };
-        opts = {
-          nes = {
-            enabled = false;
-          };
+        nes = {
+          enabled = false;
         };
       };
     };
