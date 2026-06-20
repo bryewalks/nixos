@@ -785,6 +785,26 @@
         "type": "github"
       }
     },
+    "mcp-servers-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781809598,
+        "narHash": "sha256-KcVbMUL+5m5yOqdlcqwxkkBGCsg9ad1gK0uevVaZJpI=",
+        "owner": "natsukium",
+        "repo": "mcp-servers-nix",
+        "rev": "ef5fbe50038c75772c638d0392623737085ed4ee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "natsukium",
+        "repo": "mcp-servers-nix",
+        "type": "github"
+      }
+    },
     "nix-cachyos-kernel": {
       "inputs": {
         "cachyos-kernel": "cachyos-kernel",
@@ -981,6 +1001,7 @@
         "hyprland-plugins": "hyprland-plugins",
         "impermanence": "impermanence",
         "import-tree": "import-tree",
+        "mcp-servers-nix": "mcp-servers-nix",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs_4",

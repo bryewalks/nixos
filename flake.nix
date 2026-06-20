@@ -78,6 +78,11 @@
         home-manager.follows = "home-manager";
       };
     };
+
+    mcp-servers-nix = {
+      url = "github:natsukium/mcp-servers-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -89,6 +94,7 @@
       hyprland-plugins,
       impermanence,
       import-tree,
+      mcp-servers-nix,
       nix-flatpak,
       nixpkgs,
       nixvim,
@@ -129,6 +135,7 @@
               };
               home-manager.sharedModules = [
                 hyprland.homeManagerModules.default
+                mcp-servers-nix.homeManagerModules.default
                 nix-flatpak.homeManagerModules.nix-flatpak
                 nixvim.homeModules.nixvim
                 stylix.homeModules.stylix

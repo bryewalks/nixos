@@ -10,6 +10,7 @@ in
 
   imports =
     [
+      ../../modules/ai
       ../../modules/apps
       ../../modules/browsers
       ../../modules/cli
