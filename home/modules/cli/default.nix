@@ -10,6 +10,7 @@
     lsd
     ripgrep
     stow
+    unzip
     yazi
   ];
 
