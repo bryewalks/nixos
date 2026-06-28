@@ -2,6 +2,12 @@
 
 {
   services.flatpak = {
+    overrides.global.Context.filesystems = [
+      "/nix/store:ro"
+      "xdg-config/gtk-4.0:ro"
+      "xdg-config/gtk-3.0:ro"
+    ];
+
     remotes = [
       {
         name = "flathub";
