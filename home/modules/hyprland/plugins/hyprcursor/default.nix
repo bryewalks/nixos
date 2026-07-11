@@ -27,6 +27,7 @@ in
     "${hyprcursorDracula}/share/icons/hyprcursor_Dracula";
 
   home.pointerCursor = {
+    enable = true;
     name = "Dracula-cursors";
     package = xcursorDracula;
     size = 24;
