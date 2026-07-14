@@ -2,9 +2,9 @@
 
 {
   home.packages = with pkgs; [
-    flatpak
     loupe
     vlc
+    stremio-linux-shell
   ];
 
   xdg.mimeApps = {
@@ -50,6 +50,5 @@
 
   imports = [
     ./qpwgraph.nix
-    ./stremio.nix
   ];
 }

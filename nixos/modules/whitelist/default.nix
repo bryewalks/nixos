@@ -26,6 +26,7 @@
       "firefox-bin-unwrapped"
       "steam"
       "steam-unwrapped"
+      "stremio-linux-shell"
       "git-conflict.nvim"
     ];
 }

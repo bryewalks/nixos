@@ -46,7 +46,7 @@
       }
       {
         name = "movies-workspace";
-        match.class = "^com\\.stremio\\.stremio$";
+        match.class = "^com\\.stremio\\.[Ss]tremio$";
         workspace = "special:movies silent";
       }
     ];

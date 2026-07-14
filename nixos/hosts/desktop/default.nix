@@ -10,9 +10,6 @@
 
   disabledModules = [ ../../modules/plymouth/default.nix ];
 
-  # Needed for stremio
-  services.flatpak.enable = true;
-
   mySystem.isPasswordConfigured = true;
   sops.defaultSopsFile = ./secrets.yaml;
 

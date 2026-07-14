@@ -9,7 +9,7 @@
     browser     = { _var = "zen-beta --new-window"; };
     music       = { _var = "kitty cmus"; };
     webapp      = { _var = lib.generators.mkLuaInline ''browser .. " -P WebApp --class WebApp"''; };
-    movies      = { _var = "stremio || flatpak run com.stremio.Stremio"; };
+    movies      = { _var = "stremio --no-window-decorations"; };
     voip            = { _var = "discord"; };
     passwordManager = { _var = "bitwarden"; };
     steam           = { _var = "steam"; };

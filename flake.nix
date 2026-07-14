@@ -57,9 +57,9 @@
     };
 
     # INFO: Avoid using flatpaks unless necessary.
-    nix-flatpak = {
-      url = "github:gmodena/nix-flatpak";
-    };
+    # nix-flatpak = {
+    #   url = "github:gmodena/nix-flatpak";
+    # };
 
     stylix = {
       url = "github:nix-community/stylix";
@@ -95,7 +95,6 @@
       impermanence,
       import-tree,
       mcp-servers-nix,
-      nix-flatpak,
       nixpkgs,
       nixvim,
       self,
@@ -136,7 +135,6 @@
               home-manager.sharedModules = [
                 hyprland.homeManagerModules.default
                 mcp-servers-nix.homeManagerModules.default
-                nix-flatpak.homeManagerModules.nix-flatpak
                 nixvim.homeModules.nixvim
                 stylix.homeModules.stylix
                 zen-browser.homeModules.beta
