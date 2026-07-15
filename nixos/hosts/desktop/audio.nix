@@ -62,7 +62,7 @@
     };
   };
 
-  # INFO: Fixes issue where mic requires power cycling
+  # INFO: Mitigates USB autosuspend (not the main cause of mic drops, see below)
   # Disable USB autosuspend for AT2020USB-X
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0909", ATTR{idProduct}=="0052", \
@@ -71,4 +71,11 @@
     ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0909", ATTR{idProduct}=="0052", \
       TEST=="power/autosuspend", ATTR{power/autosuspend}="-1"
   '';
+
+  # INFO: Real fix for mic randomly dropping ("usb usb3-port2: disabled by hub
+  # (EMI?), re-enabling..." in dmesg). The mic is the only device on the
+  # ASMedia ASM2142/ASM3142 USB controller (07:00.0), which has a known Linux
+  # bug where PCIe ASPM power-state transitions spuriously disable ports on
+  # full-speed USB devices. Disabling ASPM system-wide avoids it.
+  boot.kernelParams = [ "pcie_aspm=off" ];
 }
