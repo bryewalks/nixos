@@ -47,6 +47,15 @@
       url = "github:vic/import-tree";
     };
 
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    den = {
+      url = "github:denful/den";
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -85,69 +94,5 @@
     };
   };
 
-  outputs =
-    inputs@{
-      disko,
-      home-manager,
-      hyprland,
-      hyprland-easymotion,
-      hyprland-plugins,
-      impermanence,
-      import-tree,
-      mcp-servers-nix,
-      nixpkgs,
-      nixvim,
-      self,
-      sops-nix,
-      stylix,
-      steam-config-nix,
-      zen-browser,
-      ...
-    }:
-
-    let
-      system = "x86_64-linux";
-
-      mkHostWithImpermanence =
-        hostName:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ({ ... }: {
-              nixpkgs.overlays = [
-                inputs.nix-cachyos-kernel.overlays.pinned
-              ];
-            })
-            disko.nixosModules.disko
-            hyprland.nixosModules.default
-            impermanence.nixosModules.impermanence
-            sops-nix.nixosModules.sops
-            steam-config-nix.nixosModules.default
-            (import-tree ./nixos/hosts/${hostName})
-            (import-tree ./nixos/modules)
-            home-manager.nixosModules.home-manager
-            ({ config, ... }: {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-              };
-              home-manager.sharedModules = [
-                hyprland.homeManagerModules.default
-                mcp-servers-nix.homeManagerModules.default
-                nixvim.homeModules.nixvim
-                stylix.homeModules.stylix
-                zen-browser.homeModules.beta
-              ];
-              home-manager.users.brye = import ./home/users/brye;
-            })
-          ];
-        };
-    in
-    {
-      diskoConfigurations.laptop = import ./nixos/hosts/laptop/disko.nix;
-      nixosConfigurations.laptop = mkHostWithImpermanence "laptop";
-      diskoConfigurations.desktop = import ./nixos/hosts/desktop/disko.nix;
-      nixosConfigurations.desktop = mkHostWithImpermanence "desktop";
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
