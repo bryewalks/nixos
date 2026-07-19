@@ -4,6 +4,17 @@
 { den, inputs, lib, ... }:
 
 {
+  den.hosts.x86_64-linux.desktop = {
+    users.brye = { };
+    # Capability: media directories live on the storage array.
+    # Consumed by modules/features/directories.
+    storageRoot = "/mnt/storage";
+    # Capability: palette consumed by modules/features/theming.
+    themeName = "dracula";
+  };
+
+  flake.diskoConfigurations.desktop = import ./_config/disko.nix;
+
   den.aspects.desktop = {
     includes = [
       den.aspects.base

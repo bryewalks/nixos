@@ -1,7 +1,7 @@
-{ pkgs, theme, themeBuilder, themeName, ... }:
+{ config, pkgs, ... }:
 let
-  css  = (themeBuilder.mkTheme { theme = themeName; cssPath = ./style.css; }).resolvedCss;
-  json = theme.json;
+  css  = config.theme.resolveCss ./style.css;
+  json = config.theme.json;
 in
 {
   home.packages = [ pkgs.wlogout pkgs.hyprshutdown ];
@@ -65,7 +65,7 @@ in
   xdg.configFile."wlogout/style.css".text = css;
 
   xdg.configFile."wlogout/icons" = {
-    source = ../../../../../../assets/icons;
+    source = ./icons;
     recursive = true;
   };
 }

@@ -4,6 +4,14 @@
 { den, inputs, lib, ... }:
 
 {
+  den.hosts.x86_64-linux.laptop = {
+    users.brye = { };
+    # Capability: palette consumed by modules/features/theming.
+    themeName = "dracula";
+  };
+
+  flake.diskoConfigurations.laptop = import ./_config/disko.nix;
+
   den.aspects.laptop = {
     includes = [
       den.aspects.base

@@ -7,6 +7,14 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  # Unfree driver components (whitelist option declared in modules/base).
+  mySystem.allowedUnfree = [
+    "nvidia-x11"
+    "nvidia-settings"
+    "nvidia-persistenced"
+    "nvidia-kernel-modules"
+  ];
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;

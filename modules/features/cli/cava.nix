@@ -2,9 +2,9 @@
 
 {
   den.aspects.cli.provides.to-users.homeManager =
-    { pkgs, theme, ... }:
+    { config, pkgs, ... }:
     let
-      palette = theme.palette;
+      palette = config.theme.palette;
       pick = key: fallback: if builtins.hasAttr key palette then palette.${key} else fallback;
       cavaGradient = [
         palette.cyan

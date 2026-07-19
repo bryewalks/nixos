@@ -18,6 +18,11 @@
 
         services.tumbler.enable = true;
 
+        # Disk mounting and virtual filesystems (trash, MTP, network mounts)
+        # consumed by thunar-volman and the sidebar.
+        services.udisks2.enable = true;
+        services.gvfs.enable = true;
+
         environment.systemPackages = with pkgs; [
           xarchiver
         ];

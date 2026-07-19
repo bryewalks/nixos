@@ -1,6 +1,7 @@
-{ config, pkgs, theme, ... }:
+{ config, pkgs, ... }:
 let
   font = config.stylix.fonts.monospace.name;
+  theme = config.theme;
 in
 {
   home.packages = [ pkgs.hyprlock ];

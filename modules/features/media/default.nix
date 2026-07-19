@@ -3,6 +3,10 @@
 {
   den.aspects.features.includes = [ den.aspects.media ];
 
+  den.aspects.media.nixos = {
+    mySystem.allowedUnfree = [ "stremio-linux-shell" ];
+  };
+
   den.aspects.media.provides.to-users.homeManager =
     { pkgs, ... }:
     {

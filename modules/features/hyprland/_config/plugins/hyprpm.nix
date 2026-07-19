@@ -1,6 +1,6 @@
-{ lib, pkgs, inputs, theme, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
-  rgba = theme.rgba;
+  rgba = config.theme.rgba;
   easymotionFromInput =
     lib.attrByPath
       [ "hyprland-easymotion" "packages" pkgs.stdenv.hostPlatform.system "default" ]

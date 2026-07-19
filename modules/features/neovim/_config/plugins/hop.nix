@@ -1,6 +1,6 @@
-{ theme, ... }:
+{ config, ... }:
 
-let palette = theme.palette;
+let palette = config.theme.palette;
 in {
   programs.nixvim = {
     plugins.hop = {

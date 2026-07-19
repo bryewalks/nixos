@@ -3,10 +3,18 @@
 {
   den.aspects.features.includes = [ den.aspects.browsers ];
 
+  # zen-browser is firefox-bin based.
+  den.aspects.browsers.nixos = {
+    mySystem.allowedUnfree = [
+      "firefox-bin"
+      "firefox-bin-unwrapped"
+    ];
+  };
+
   den.aspects.browsers.provides.to-users.homeManager =
-    { theme, ... }:
+    { config, ... }:
     let
-      palette = theme.palette;
+      palette = config.theme.palette;
       vimiumCss = import ./_vimium-css.nix palette;
 
       webAppProfile = {

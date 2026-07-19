@@ -5,9 +5,6 @@
 
   den.aspects.sddm.nixos =
     { pkgs, ... }:
-    let
-      xcursorDracula = import ../../../pkgs/dracula-cursors.nix { inherit pkgs; };
-    in
     {
       services.displayManager.sddm = {
         enable = true;
@@ -36,7 +33,7 @@
             background = "backgrounds/wall.jpg";
             userIcon = false;
           })
-          xcursorDracula
+          dracula-cursors
         ];
     };
 }

@@ -1,7 +1,7 @@
-{ config, pkgs, theme, ... }:
+{ config, pkgs, ... }:
 let
-  hexAlpha   = theme.hexAlpha;
-  palette = theme.palette;
+  hexAlpha   = config.theme.hexAlpha;
+  palette = config.theme.palette;
   fontName = config.stylix.fonts.monospace.name;
 in
 {

@@ -24,6 +24,11 @@
       {
         imports = [ inputs.steam-config-nix.nixosModules.default ];
 
+        mySystem.allowedUnfree = [
+          "steam"
+          "steam-unwrapped"
+        ];
+
         programs.gamemode.enable = true;
         programs.steam = {
           enable = true;
@@ -47,9 +52,9 @@
       };
 
     provides.to-users.homeManager =
-      { pkgs, theme, ... }:
+      { config, pkgs, ... }:
       let
-        palette = theme.hexNoHash;
+        palette = config.theme.hexNoHash;
       in
       {
         home.packages = with pkgs; [

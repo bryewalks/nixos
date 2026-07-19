@@ -1,7 +1,7 @@
-{ theme, ... }:
+{ config, ... }:
 let
-  palette      = theme.palette;
-  withRgbaAlpha = theme.withRgbaAlpha;
+  palette      = config.theme.palette;
+  withRgbaAlpha = config.theme.withRgbaAlpha;
 in {
   wayland.windowManager.hyprland.settings = {
     config = {

@@ -1,14 +1,14 @@
-{ ... }:
+# Declares the diskoConfigurations flake output so each host can export its
+# own disko config from its folder (undeclared flake outputs cannot merge
+# across files). Hosts register themselves in modules/hosts/<name>/.
+{ lib, flake-parts-lib, ... }:
 
 {
-  den.hosts.x86_64-linux.laptop.users.brye = { };
-  den.hosts.x86_64-linux.desktop = {
-    users.brye = { };
-    # Capability: media directories live on the storage array.
-    # Consumed by modules/features/directories.
-    storageRoot = "/mnt/storage";
+  options.flake = flake-parts-lib.mkSubmoduleOptions {
+    diskoConfigurations = lib.mkOption {
+      type = lib.types.lazyAttrsOf lib.types.raw;
+      default = { };
+      description = "Per-host disko configurations, consumed by disko-install.";
+    };
   };
-
-  flake.diskoConfigurations.laptop = import ./laptop/_config/disko.nix;
-  flake.diskoConfigurations.desktop = import ./desktop/_config/disko.nix;
 }

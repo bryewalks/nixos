@@ -1,6 +1,5 @@
 { lib, pkgs, ... }:
 let
-  xcursorDracula = import ../../../../../../pkgs/dracula-cursors.nix { inherit pkgs; };
   hyprcursorDracula = pkgs.stdenvNoCC.mkDerivation {
     pname = "hyprcursor-dracula-kde";
     version = "git";
@@ -29,7 +28,7 @@ in
   home.pointerCursor = {
     enable = true;
     name = "Dracula-cursors";
-    package = xcursorDracula;
+    package = pkgs.dracula-cursors;
     size = 24;
     x11.enable = true;
     gtk.enable = true;

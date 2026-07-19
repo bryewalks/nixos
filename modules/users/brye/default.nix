@@ -15,6 +15,9 @@
       {
         programs.zsh.enable = true;
 
+        # brye owns the flake checkout nh operates on.
+        programs.nh.flake = "/home/brye/nixos";
+
         users.users.brye = {
           isNormalUser = true;
           extraGroups =

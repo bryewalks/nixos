@@ -3,6 +3,10 @@
 {
   den.aspects.features.includes = [ den.aspects.ai ];
 
+  den.aspects.ai.nixos = {
+    mySystem.allowedUnfree = [ "claude-code" ];
+  };
+
   den.aspects.ai.provides.to-users.homeManager = {
     imports = [ inputs.mcp-servers-nix.homeManagerModules.default ];
 

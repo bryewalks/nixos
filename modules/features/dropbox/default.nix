@@ -3,6 +3,10 @@
 {
   den.aspects.features.includes = [ den.aspects.dropbox ];
 
+  den.aspects.dropbox.nixos = {
+    mySystem.allowedUnfree = [ "dropbox" ];
+  };
+
   den.aspects.dropbox.provides.to-users.homeManager =
     { pkgs, ... }:
     {

@@ -1,10 +1,10 @@
 { den, ... }:
 
 {
-  den.aspects.media.provides.to-users.homeManager =
-    { pkgs, lib, theme, ... }:
+  den.aspects.audio.provides.to-users.homeManager =
+    { config, pkgs, lib, ... }:
     let
-      palette = theme.palette;
+      palette = config.theme.palette;
     in
     {
       home.packages = with pkgs; [

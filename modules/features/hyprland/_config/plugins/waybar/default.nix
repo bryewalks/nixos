@@ -1,8 +1,8 @@
-{ theme, themeBuilder, themeName, ... }:
+{ config, ... }:
 let
-  css     = (themeBuilder.mkTheme { theme = themeName; cssPath = ./style.css; }).resolvedCss;
-  palette = theme.palette;
-  json    = theme.json;
+  css     = config.theme.resolveCss ./style.css;
+  palette = config.theme.palette;
+  json    = config.theme.json;
   scriptsDir = toString ../../scripts;
   scriptPath = name: "${scriptsDir}/${name}";
 in

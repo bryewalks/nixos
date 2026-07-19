@@ -11,7 +11,6 @@
         cmus
         fastfetch
         fd
-        lazydocker
         lsd
         ripgrep
         stow

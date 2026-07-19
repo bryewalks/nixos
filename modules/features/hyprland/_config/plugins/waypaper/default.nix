@@ -1,4 +1,4 @@
-{ config, lib, pkgs, theme, ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   home.packages = [
     pkgs.hyprpaper
@@ -6,7 +6,7 @@
   ];
 
   xdg.dataFile."wallpapers" = {
-    source = ../../../../../../assets/wallpapers;
+    source = "${inputs.self}/assets/wallpapers";
     recursive = true;
   };
 
@@ -20,7 +20,7 @@
     backend = hyprpaper
     fill = fill
     sort = name
-    color = ${theme.palette.white}
+    color = ${config.theme.palette.white}
     subfolders = False
     all_subfolders = False
     show_hidden = False

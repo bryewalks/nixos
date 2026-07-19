@@ -1,16 +1,26 @@
 # Brye's NixOS
 
-Quick install notes for this [NixOS](https://nixos.org/) flake. Using [disko](https://github.com/nix-community/disko), [impermanence](https://github.com/nix-community/impermanence), [sops-nix](https://github.com/Mic92/sops-nix) and [home-manager](https://github.com/nix-community/home-manager).
+Install notes for this [NixOS](https://nixos.org/) flake. Built on [flake-parts](https://github.com/hercules-ci/flake-parts) with [den](https://github.com/denful/den), using [disko](https://github.com/nix-community/disko), [impermanence](https://github.com/nix-community/impermanence), [sops-nix](https://github.com/Mic92/sops-nix) and [home-manager](https://github.com/nix-community/home-manager).
 
-![Fastfetch](fastfetch.png)
+![Fastfetch](assets/fastfetch.png)
+
+## Layout
+
+Everything lives under [modules/](./modules), loaded by import-tree — every file is a flake-parts module.
+
+- `modules/base/` — foundation every host includes (boot, networking, nix, security)
+- `modules/hosts/<hostname>/` — self-contained host: registration (`den.hosts`), aspect composition, disko export; `_config/` holds the machine's hardware reality (disko, hardware, gpu, filesystem, secrets)
+- `modules/users/` — user entities (account, home-manager basics, user secrets)
+- `modules/features/` — everything else, as den aspects
+- `modules/packages/` — custom packages, overlaid onto nixpkgs and exported as flake packages (`nix build .#dracula-cursors`)
 
 ## Fresh install (NixOS ISO)
 
-Replace `<hostname>` with the host folder under [nixos/hosts](./nixos/hosts).
+Replace `<hostname>` with a host folder under [modules/hosts](./modules/hosts).
 
-### Reformatting Existing Machine
+### Reformatting an existing host
 
-Format drive and install NixOS using disko-install: 
+Format the drive and install in one step with disko-install:
 ```sh
 sudo nix --extra-experimental-features "nix-command flakes" \
   run "github:nix-community/disko/latest#disko-install" \
@@ -22,7 +32,7 @@ sudo nix --extra-experimental-features "nix-command flakes" \
 sudo reboot
 ```
 
-** You may need to format drive with disko first then nixos-install depending on RAM:
+Alternatively, format and install as separate steps (avoids disko-install building in the ISO's tmpfs):
 ```sh
 sudo nix --extra-experimental-features "nix-command flakes" \
   run github:nix-community/disko \
@@ -38,17 +48,21 @@ sudo nixos-install --flake github:bryewalks/nixos#<hostname>
 sudo reboot
 ```
 
-Continue with the [Post install](#post-install) steps.
+Continue with [Post install](#post-install).
 
-### New Machine Setup
+### New host setup
 
 #### Prerequisites
-- Create a disk config using [Disko](https://github.com/nix-community/disko) for new machine at nixos/hosts/\<hostname>\/disko.nix [example](./nixos/hosts/laptop/disko.nix). 
-- Optionally create a secrets.yaml file at nixos/hosts/\<hostname>\/secrets.yaml with github ssh key (sshKey) and user password (hashedPassword) [example](./nixos/hosts/laptop/secrets.yaml). 
-- Additional details on secrets management can be found [here](#secrets-management)
 
+Create `modules/hosts/<hostname>/` with:
+- `default.nix` — registers the host (`den.hosts`) with its capabilities (`themeName`, optionally `storageRoot`), exports its disko config (`flake.diskoConfigurations`), and composes its aspects (`base`, `features`, ...) ([example](./modules/hosts/laptop/default.nix))
+- `_config/default.nix` — `networking.hostName`, `sops.defaultSopsFile`, host options ([example](./modules/hosts/laptop/_config/default.nix))
+- `_config/disko.nix` — disk layout ([example](./modules/hosts/laptop/_config/disko.nix))
+- `_config/secrets.yaml` — optional; ssh key (`sshKey`) and user password (`hashedPassword`), see [Secrets management](#secrets-management)
 
-Format and mount drive with disko:
+#### Install
+
+Format and mount the drive with disko:
 ```sh
 sudo nix --extra-experimental-features "nix-command flakes" \
   run github:nix-community/disko \
@@ -56,83 +70,82 @@ sudo nix --extra-experimental-features "nix-command flakes" \
   --flake github:bryewalks/nixos#<hostname>
 ```
 
-Clone repo into mounted disk
+Clone the repo into the mounted disk:
 ```sh
 sudo git clone https://github.com/bryewalks/nixos /mnt/tmp/nixos
 ```
 
-Generate hardware config
+Generate the hardware config:
 ```sh
 sudo nixos-generate-config --no-filesystems \
   --show-hardware-config \
-  | sudo tee /mnt/tmp/nixos/nixos/hosts/<hostname>/hardware.nix \
+  | sudo tee /mnt/tmp/nixos/modules/hosts/<hostname>/_config/hardware.nix \
   > /dev/null
 ```
 
-Install NixOS
+Install:
 ```sh
 sudo nixos-install --flake /mnt/tmp/nixos#<hostname>
 ```
 
-* Hardware config will need to be commited at this point or regenerated post initial login.
+Commit the hardware config now, or regenerate it after first login.
 
 ```sh
 sudo reboot
 ```
 
-Continue with the [Post install](#post-install) steps.
+Continue with [Post install](#post-install).
 
 ### Post install
 
-Copy sops keys to persistent storage
+Copy the sops age key to persistent storage:
 ```sh
 sudo cp /path/to/sops/keys.txt /persist/system/var/lib/sops/keys.txt
 ```
 
-Rebuild (this activates sops secrets, including the hashed password)
+Rebuild (activates sops secrets, including the hashed password):
 ```sh
 sudo nixos-rebuild switch --flake github:bryewalks/nixos#<hostname>
 ```
 
-Set `mySystem.isPasswordConfigured = true;` in `nixos/hosts/<hostname>/default.nix` and rebuild again. This switches the user from `initialPassword = "password"` to the `hashedPassword` managed by sops-nix. Without this step the default plaintext password remains active.
+Set `mySystem.isPasswordConfigured = true;` in `modules/hosts/<hostname>/_config/default.nix` and rebuild again. This switches the user from `initialPassword = "password"` to the sops-managed `hashedPassword` — until then the default plaintext password remains active.
 ```sh
 sudo nixos-rebuild switch --flake github:bryewalks/nixos#<hostname>
 ```
 
-Clone NixOS repo
+Clone the repo for day-to-day use:
 ```sh
 git clone git@github.com:bryewalks/nixos
 ```
 
+## Secrets management
 
-## Secrets Management
+[sops-nix](https://github.com/Mic92/sops-nix) with [age](https://github.com/FiloSottile/age). Secrets live in per-host `secrets.yaml` files, decrypted at build/activation time.
 
-This repo uses [sops-nix](https://github.com/Mic92/sops-nix) with [age](https://github.com/FiloSottile/age). Secrets live in per-host `secrets.yaml` files and are decrypted using an age key at build/activation time.
+Paths:
+- Age key file: `/persist/system/var/lib/sops/keys.txt` (set in `modules/features/sops/default.nix`)
+- Per-host secrets: `modules/hosts/<hostname>/_config/secrets.yaml` (via `sops.defaultSopsFile` in each host's `_config/default.nix`)
 
-Paths used by this repo:
-- Age key file: `/persist/system/var/lib/sops/keys.txt` (configured in `nixos/modules/sops/default.nix`)
-- Per-host secrets file: `nixos/hosts/<hostname>/secrets.yaml` (set via `sops.defaultSopsFile` in each host)
-
-Secrets expected in `secrets.yaml`:
-- `sshKey`: private key contents for `/home/brye/.ssh/id_ed25519`
-- `hashedPassword`: hashed password string used by `users.users.brye.hashedPasswordFile`
+Expected secrets:
+- `sshKey` — private key contents for `/home/brye/.ssh/id_ed25519`
+- `hashedPassword` — hashed password used by `users.users.brye.hashedPasswordFile`
 
 ### Age key setup
 
-1) Generate a new age key (store where sops-nix expects it):
+Generate a key where sops-nix expects it:
 ```sh
 mkdir -p /persist/system/var/lib/sops
 age-keygen -o /persist/system/var/lib/sops/keys.txt
 ```
 
-2) Print the public key (use this in `secrets.yaml` recipients if needed):
+Print the public key (for `secrets.yaml` recipients):
 ```sh
 age-keygen -y /persist/system/var/lib/sops/keys.txt
 ```
 
-3) Create or edit a secrets file with an explicit recipient:
+Create or edit a secrets file with an explicit recipient:
 ```sh
-sops --age <publicKey> nixos/hosts/<hostname>/secrets.yaml
+sops --age <publicKey> modules/hosts/<hostname>/_config/secrets.yaml
 ```
 
 ### Generating a hashed password
@@ -140,19 +153,19 @@ sops --age <publicKey> nixos/hosts/<hostname>/secrets.yaml
 openssl passwd -6
 ```
 
-### Extra commands
+## Extra commands
 
-Check flake for errors (no build):
+Check the flake for errors (no build):
 ```sh
-sudo nix --extra-experimental-features "nix-command flakes" flake check --no-build
+nix flake check --no-build
 ```
 
-Check specific host:
+Evaluate a specific host:
 ```sh
-sudo nix --extra-experimental-features "nix-command flakes" eval .#nixosConfigurations.<host>.config.system.build.toplevel.drvPath
+nix eval .#nixosConfigurations.<hostname>.config.system.build.toplevel.drvPath
 ```
 
-Generate hardware config on existing none nixos machine (requires nix):
+Generate a hardware config on a non-NixOS machine (requires nix):
 ```sh
 sudo nix --extra-experimental-features "nix-command flakes" shell nixpkgs#nixos-install-tools -c nixos-generate-config --show-hardware-config > hardware.nix
 ```
