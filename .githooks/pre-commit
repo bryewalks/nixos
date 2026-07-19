@@ -4,13 +4,20 @@
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 
+# Colors only when stdout is a terminal.
+if [ -t 1 ]; then
+  green=$'\033[32m' red=$'\033[31m' reset=$'\033[0m'
+else
+  green='' red='' reset=''
+fi
+
 run_check() {
   local label=$1 attr=$2 hint=$3 out
   printf 'pre-commit ▸ %s ' "$label"
   if out=$(nix build --no-link ".#checks.x86_64-linux.$attr" 2>&1); then
-    printf 'ok\n'
+    printf '%sok%s\n' "$green" "$reset"
   else
-    printf 'FAIL\n%s\nfix with: %s\n' "$out" "$hint"
+    printf '%sFAIL%s\n%s\nfix with: %s\n' "$red" "$reset" "$out" "$hint"
     exit 1
   fi
 }
