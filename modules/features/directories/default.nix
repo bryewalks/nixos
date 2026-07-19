@@ -15,7 +15,7 @@ let
     };
 in
 {
-  den.aspects.features.includes = [ den.aspects.directories ];
+  den.aspects.workstation.includes = [ den.aspects.directories ];
 
   den.aspects.directories =
     { host, ... }:

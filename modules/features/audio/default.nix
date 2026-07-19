@@ -2,7 +2,7 @@
 { den, ... }:
 
 {
-  den.aspects.features.includes = [ den.aspects.audio ];
+  den.aspects.workstation.includes = [ den.aspects.audio ];
 
   den.aspects.audio.nixos = {
     security.rtkit.enable = true;

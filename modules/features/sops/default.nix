@@ -8,7 +8,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  den.aspects.features.includes = [ den.aspects.sops ];
+  den.aspects.workstation.includes = [ den.aspects.sops ];
 
   den.aspects.sops.nixos =
     { config, ... }:

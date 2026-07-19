@@ -1,7 +1,7 @@
 { den, ... }:
 
 {
-  den.aspects.features.includes = [ den.aspects.sddm ];
+  den.aspects.workstation.includes = [ den.aspects.sddm ];
 
   den.aspects.sddm.nixos =
     { pkgs, ... }:

@@ -9,7 +9,7 @@
     };
 
     # The OS-level account, delivered to whichever host brye is on.
-    # mySystem.isPasswordConfigured is declared in modules/base.
+    # mySystem.isPasswordConfigured is declared in modules/defaults/security.nix.
     provides.to-hosts.nixos =
       {
         config,

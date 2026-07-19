@@ -9,7 +9,7 @@
     };
   };
 
-  den.aspects.features.includes = [ den.aspects.browsers ];
+  den.aspects.workstation.includes = [ den.aspects.browsers ];
 
   den.aspects.browsers = {
     # zen-browser is firefox-bin based.

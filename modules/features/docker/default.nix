@@ -1,7 +1,7 @@
 { den, ... }:
 
 {
-  den.aspects.features.includes = [ den.aspects.docker ];
+  den.aspects.workstation.includes = [ den.aspects.docker ];
 
   den.aspects.docker = {
     nixos =

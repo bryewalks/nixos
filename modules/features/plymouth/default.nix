@@ -1,4 +1,4 @@
-# Not registered into den.aspects.features: the desktop deliberately runs
+# Not registered into den.aspects.workstation: the desktop deliberately runs
 # without plymouth, so only the laptop host includes this aspect.
 { den, ... }:
 

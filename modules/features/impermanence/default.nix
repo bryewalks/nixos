@@ -6,7 +6,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  den.aspects.features.includes = [ den.aspects.impermanence ];
+  den.aspects.workstation.includes = [ den.aspects.impermanence ];
 
   den.aspects.impermanence.nixos =
     { config, ... }:

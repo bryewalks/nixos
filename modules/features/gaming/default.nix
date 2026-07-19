@@ -6,7 +6,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  den.aspects.features.includes = [ den.aspects.gaming ];
+  den.aspects.workstation.includes = [ den.aspects.gaming ];
 
   den.aspects.gaming = {
     nixos =

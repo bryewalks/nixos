@@ -1,7 +1,7 @@
 { den, ... }:
 
 {
-  den.aspects.features.includes = [ den.aspects.terminals ];
+  den.aspects.workstation.includes = [ den.aspects.terminals ];
 
   den.aspects.terminals.provides.to-users.homeManager =
     { pkgs, ... }:

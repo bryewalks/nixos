@@ -8,7 +8,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  den.aspects.features.includes = [ den.aspects.neovim ];
+  den.aspects.workstation.includes = [ den.aspects.neovim ];
 
   den.aspects.neovim = {
     # Sidekick stack (see _config/plugins/sidekick.nix).

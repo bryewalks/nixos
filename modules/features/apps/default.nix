@@ -1,7 +1,7 @@
 { den, ... }:
 
 {
-  den.aspects.features.includes = [ den.aspects.apps ];
+  den.aspects.workstation.includes = [ den.aspects.apps ];
 
   den.aspects.apps = {
     nixos = {

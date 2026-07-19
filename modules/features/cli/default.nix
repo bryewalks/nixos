@@ -1,7 +1,7 @@
 { den, ... }:
 
 {
-  den.aspects.features.includes = [ den.aspects.cli ];
+  den.aspects.workstation.includes = [ den.aspects.cli ];
 
   den.aspects.cli.provides.to-users.homeManager =
     { pkgs, ... }:

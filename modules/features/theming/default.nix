@@ -20,7 +20,7 @@ in
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  den.aspects.features.includes = [ den.aspects.theming ];
+  den.aspects.workstation.includes = [ den.aspects.theming ];
 
   den.aspects.theming =
     { host, ... }:

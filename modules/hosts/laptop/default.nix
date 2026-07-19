@@ -19,10 +19,8 @@
 
   den.aspects.laptop = {
     includes = [
-      den.aspects.base
-      den.aspects.features
+      den.aspects.workstation
       den.aspects.plymouth
-      den.aspects.hyprland-laptop
     ];
     nixos.imports = [
       (inputs.import-tree.initFilter (lib.hasSuffix ".nix") ./_config)

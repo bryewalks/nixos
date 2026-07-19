@@ -8,10 +8,10 @@ Install notes for this [NixOS](https://nixos.org/) flake. Built on [flake-parts]
 
 Everything lives under [modules/](./modules), loaded by import-tree — every file is a flake-parts module. `flake.nix` itself is generated (see [Flake inputs](#flake-inputs-flake-file)).
 
-- `modules/base/` — foundation every host includes (boot, networking, nix, security)
+- `modules/defaults/` — universal baseline; each file is one aspect registered into `den.default`, which den applies to every host automatically (boot, networking, nix, security, disko, home-manager, rescue, persistence)
 - `modules/hosts/<hostname>/` — self-contained host: registration (`den.hosts`), aspect composition, disko export; `_config/` holds the machine's hardware reality (disko, hardware, gpu, filesystem, secrets)
 - `modules/users/` — user entities (account, home-manager basics, user secrets)
-- `modules/features/` — everything else, as den aspects
+- `modules/features/` — everything else, as den aspects; most register into the `workstation` bundle hosts include, per-host binary features (plymouth, hyprland-*) stay outside it
 - `modules/packages/` — custom packages, overlaid onto nixpkgs and exported as flake packages (`nix build .#dracula-cursors`)
 
 ## Fresh install (NixOS ISO)
@@ -55,7 +55,7 @@ Continue with [Post install](#post-install).
 #### Prerequisites
 
 Create `modules/hosts/<hostname>/` with:
-- `default.nix` — registers the host (`den.hosts`) with its capabilities (`themeName`, optionally `storageRoot`), exports its disko config (`flake.diskoConfigurations`), and composes its aspects (`base`, `features`, ...) ([example](./modules/hosts/laptop/default.nix))
+- `default.nix` — registers the host (`den.hosts`) with its capabilities (`themeName`, optionally `storageRoot`), exports its disko config (`flake.diskoConfigurations`), and composes its aspects (`workstation`, per-host extras; the `den.default` baseline applies automatically) ([example](./modules/hosts/laptop/default.nix))
 - `_config/default.nix` — `networking.hostName`, `sops.defaultSopsFile`, host options ([example](./modules/hosts/laptop/_config/default.nix))
 - `_config/disko.nix` — disk layout ([example](./modules/hosts/laptop/_config/disko.nix))
 - `_config/secrets.yaml` — optional; ssh key (`sshKey`) and user password (`hashedPassword`), see [Secrets management](#secrets-management)

@@ -13,7 +13,9 @@ let
   };
 in
 {
-  den.aspects.base.nixos = {
+  den.default.includes = [ den.aspects.packages ];
+
+  den.aspects.packages.nixos = {
     nixpkgs.overlays = [ (final: _prev: packages final) ];
   };
 

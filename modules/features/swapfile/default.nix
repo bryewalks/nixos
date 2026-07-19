@@ -1,7 +1,7 @@
 { den, ... }:
 
 {
-  den.aspects.features.includes = [ den.aspects.swapfile ];
+  den.aspects.workstation.includes = [ den.aspects.swapfile ];
 
   den.aspects.swapfile.nixos =
     {

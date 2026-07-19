@@ -1,6 +1,6 @@
 # _config/ holds the hyprland home configuration verbatim (underscored so
 # import-tree leaves it alone). Per-host monitor/workspace layouts live in
-# hosts/ as hyprland-<host> aspects included by each host.
+# hosts/ and register straight into each host's aspect.
 { den, inputs, ... }:
 
 {
@@ -23,7 +23,7 @@
     };
   };
 
-  den.aspects.features.includes = [ den.aspects.hyprland ];
+  den.aspects.workstation.includes = [ den.aspects.hyprland ];
 
   den.aspects.hyprland = {
     nixos =
