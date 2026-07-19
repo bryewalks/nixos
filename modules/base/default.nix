@@ -22,6 +22,12 @@
         description = "Unfree package names allowed; each aspect appends its own.";
       };
 
+      options.mySystem.persistRoot = lib.mkOption {
+        type = lib.types.str;
+        default = "/persist";
+        description = "Root of the impermanence persistence tree; consumed by impermanence, sops, and swapfile. Must match the host's disko mountpoint.";
+      };
+
       config = {
         nixpkgs.config.allowUnfreePredicate =
           pkg: builtins.elem (lib.getName pkg) config.mySystem.allowedUnfree;

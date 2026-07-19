@@ -5,13 +5,18 @@
 {
   den.aspects.features.includes = [ den.aspects.sops ];
 
-  den.aspects.sops.nixos = {
-    imports = [ inputs.sops-nix.nixosModules.sops ];
+  den.aspects.sops.nixos =
+    { config, ... }:
+    let
+      sopsDir = "${config.mySystem.persistRoot}/system/var/lib/sops";
+    in
+    {
+      imports = [ inputs.sops-nix.nixosModules.sops ];
 
-    sops = { age.keyFile = "/persist/system/var/lib/sops/keys.txt"; };
+      sops = { age.keyFile = "${sopsDir}/keys.txt"; };
 
-    systemd.tmpfiles.rules = [
-      "d /persist/system/var/lib/sops 0755 root root -"
-    ];
-  };
+      systemd.tmpfiles.rules = [
+        "d ${sopsDir} 0755 root root -"
+      ];
+    };
 }

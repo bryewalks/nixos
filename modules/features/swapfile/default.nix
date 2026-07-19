@@ -21,7 +21,7 @@
 
         path = lib.mkOption {
           type = lib.types.str;
-          default = "/persist/swap/swapfile";
+          default = "${config.mySystem.persistRoot}/swap/swapfile";
           description = "Swap file path.";
         };
 
