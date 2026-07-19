@@ -1,6 +1,11 @@
 { den, inputs, ... }:
 
 {
+  flake-file.inputs.impermanence = {
+    url = "github:nix-community/impermanence";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   den.aspects.features.includes = [ den.aspects.impermanence ];
 
   den.aspects.impermanence.nixos =

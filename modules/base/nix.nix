@@ -1,6 +1,8 @@
 { den, inputs, ... }:
 
 {
+  flake-file.inputs.nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
   den.aspects.base.nixos = {
     nixpkgs.overlays = [
       inputs.nix-cachyos-kernel.overlays.pinned

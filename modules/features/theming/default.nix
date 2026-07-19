@@ -10,6 +10,11 @@ let
   themeBuilder = import ./_themes/theme-builder.nix { inherit lib; };
 in
 {
+  flake-file.inputs.stylix = {
+    url = "github:nix-community/stylix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   den.aspects.features.includes = [ den.aspects.theming ];
 
   den.aspects.theming =

@@ -3,22 +3,29 @@
 { den, inputs, ... }:
 
 {
-  den.aspects.features.includes = [ den.aspects.neovim ];
-
-  # Sidekick stack (see _config/plugins/sidekick.nix).
-  den.aspects.neovim.nixos = {
-    mySystem.allowedUnfree = [
-      "claude-code"
-      "copilot-language-server"
-      "github-copilot-cli"
-      "git-conflict.nvim"
-    ];
+  flake-file.inputs.nixvim = {
+    url = "github:nix-community/nixvim";
+    inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  den.aspects.neovim.provides.to-users.homeManager = {
-    imports = [
-      inputs.nixvim.homeModules.nixvim
-      ./_config
-    ];
+  den.aspects.features.includes = [ den.aspects.neovim ];
+
+  den.aspects.neovim = {
+    # Sidekick stack (see _config/plugins/sidekick.nix).
+    nixos = {
+      mySystem.allowedUnfree = [
+        "claude-code"
+        "copilot-language-server"
+        "github-copilot-cli"
+        "git-conflict.nvim"
+      ];
+    };
+
+    provides.to-users.homeManager = {
+      imports = [
+        inputs.nixvim.homeModules.nixvim
+        ./_config
+      ];
+    };
   };
 }
