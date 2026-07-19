@@ -11,7 +11,12 @@
     # The OS-level account, delivered to whichever host brye is on.
     # mySystem.isPasswordConfigured is declared in modules/base.
     provides.to-hosts.nixos =
-      { config, lib, pkgs, ... }:
+      {
+        config,
+        lib,
+        pkgs,
+        ...
+      }:
       {
         programs.zsh.enable = true;
 
@@ -20,12 +25,18 @@
 
         users.users.brye = {
           isNormalUser = true;
-          extraGroups =
-            [ "wheel" "networkmanager" "video" "audio" "input" "storage" "docker" ];
+          extraGroups = [
+            "wheel"
+            "networkmanager"
+            "video"
+            "audio"
+            "input"
+            "storage"
+            "docker"
+          ];
           shell = pkgs.zsh;
           initialPassword = lib.mkIf (!config.mySystem.isPasswordConfigured) "password";
-          hashedPasswordFile =
-            lib.mkIf config.mySystem.isPasswordConfigured config.sops.secrets.hashedPassword.path;
+          hashedPasswordFile = lib.mkIf config.mySystem.isPasswordConfigured config.sops.secrets.hashedPassword.path;
         };
 
         # brye's secrets (sops itself is wired by the sops aspect).

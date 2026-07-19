@@ -1,11 +1,18 @@
-{ lib ? null }:
+{
+  lib ? null,
+}:
 let
   # Theme helpers:
   # - resolve CSS vars (var(--theme-*)) using a palette
   # - build theme-derived outputs for CSS and Hyprland consumers
   varNames = palette: builtins.attrNames palette;
 
-  resolvePaletteVars = { palette, css, theme }:
+  resolvePaletteVars =
+    {
+      palette,
+      css,
+      theme,
+    }:
     assert builtins.isAttrs palette;
     assert builtins.isString css;
     assert builtins.isString theme;
@@ -30,7 +37,9 @@ rec {
     assert cssPath == null || builtins.pathExists cssPath;
     let
       themePath = ./. + "/${theme}.nix";
-      _ = assert builtins.pathExists themePath; true;
+      _ =
+        assert builtins.pathExists themePath;
+        true;
       palette = import themePath;
       css = if cssPath == null then "" else builtins.readFile cssPath;
       stripHash = hex: builtins.replaceStrings [ "#" ] [ "" ] hex;

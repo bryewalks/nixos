@@ -4,7 +4,9 @@
   programs.nixvim = {
     plugins.lualine = {
       enable = true;
-      settings = { theme = "dracula"; };
+      settings = {
+        theme = "dracula";
+      };
     };
   };
 }

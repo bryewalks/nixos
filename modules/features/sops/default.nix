@@ -18,7 +18,9 @@
     {
       imports = [ inputs.sops-nix.nixosModules.sops ];
 
-      sops = { age.keyFile = "${sopsDir}/keys.txt"; };
+      sops = {
+        age.keyFile = "${sopsDir}/keys.txt";
+      };
 
       systemd.tmpfiles.rules = [
         "d ${sopsDir} 0755 root root -"

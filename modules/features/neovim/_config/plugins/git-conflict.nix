@@ -1,7 +1,9 @@
 { config, ... }:
 
-let palette = config.theme.palette;
-in {
+let
+  palette = config.theme.palette;
+in
+{
   programs.nixvim = {
     plugins.git-conflict = {
       enable = true;

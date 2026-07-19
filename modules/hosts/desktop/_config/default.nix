@@ -14,7 +14,7 @@
   # CachyOS Kernel
   # INFO: Ensure the following nix settings are added to nix build before using cachyos kernel otherwise it will not find a binary cache.
   # https://github.com/xddxdd/nix-cachyos-kernel
-  nix.settings.substituters = [ 
+  nix.settings.substituters = [
     "https://attic.xuyh0120.win/lantian"
     "https://cache.garnix.io"
   ];

@@ -2,7 +2,7 @@
 
 {
   programs.nixvim = {
-    plugins.vim-test =  {
+    plugins.vim-test = {
       enable = true;
     };
     plugins.vimux = {

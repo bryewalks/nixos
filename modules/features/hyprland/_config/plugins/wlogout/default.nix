@@ -1,10 +1,13 @@
 { config, pkgs, ... }:
 let
-  css  = config.theme.resolveCss ./style.css;
+  css = config.theme.resolveCss ./style.css;
   json = config.theme.json;
 in
 {
-  home.packages = [ pkgs.wlogout pkgs.hyprshutdown ];
+  home.packages = [
+    pkgs.wlogout
+    pkgs.hyprshutdown
+  ];
 
   xdg.configFile."wlogout/layout".text = ''
     {

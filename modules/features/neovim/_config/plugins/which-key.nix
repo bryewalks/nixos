@@ -11,19 +11,25 @@
         mode = "n";
         key = "<leader>b";
         action = "<CR>";
-        options = { desc = "Buffer"; };
+        options = {
+          desc = "Buffer";
+        };
       }
       {
         mode = "n";
         key = "<leader>o";
         action = "<CR>";
-        options = { desc = "Other"; };
+        options = {
+          desc = "Other";
+        };
       }
       {
         mode = "n";
         key = "<leader>bw";
         action = "<Cmd>WhichKey<CR>";
-        options = { desc = "Which Key"; };
+        options = {
+          desc = "Which Key";
+        };
       }
       {
         mode = "n";
@@ -33,7 +39,9 @@
                       require("which-key").show({ global = false })
           	  end
           	'';
-        options = { desc = "Buffer Local Keymaps (which-key)"; };
+        options = {
+          desc = "Buffer Local Keymaps (which-key)";
+        };
       }
     ];
   };

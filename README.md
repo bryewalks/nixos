@@ -177,6 +177,11 @@ Check the flake for errors (no build):
 nix flake check --no-build
 ```
 
+Format the tree (treefmt + nixfmt, configured in `modules/formatter.nix`; `nix flake check` fails on unformatted files):
+```sh
+nix fmt
+```
+
 Evaluate a specific host:
 ```sh
 nix eval .#nixosConfigurations.<hostname>.config.system.build.toplevel.drvPath

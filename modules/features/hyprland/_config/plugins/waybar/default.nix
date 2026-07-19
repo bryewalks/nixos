@@ -1,8 +1,8 @@
 { config, ... }:
 let
-  css     = config.theme.resolveCss ./style.css;
+  css = config.theme.resolveCss ./style.css;
   palette = config.theme.palette;
-  json    = config.theme.json;
+  json = config.theme.json;
   scriptsDir = toString ../../scripts;
   scriptPath = name: "${scriptsDir}/${name}";
 in
@@ -100,7 +100,9 @@ in
             default = "";
           };
         };
-        "river/tags" = { num-tags = 6; };
+        "river/tags" = {
+          num-tags = 6;
+        };
 
         cava = {
           framerate = 120;
@@ -146,7 +148,11 @@ in
           format-muted = " {volume}%";
           on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
           on-click-middle = "systemctl --user restart pipewire";
-          format-icons.default = [ "" "" "" ];
+          format-icons.default = [
+            ""
+            ""
+            ""
+          ];
         };
         battery = {
           states = {
@@ -158,7 +164,13 @@ in
           format-charging = " {capacity}%";
           format-plugged = " {capacity}%";
           format-alt = "{time} {icon}";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
         clock = {
           format = " {:%H:%M}";

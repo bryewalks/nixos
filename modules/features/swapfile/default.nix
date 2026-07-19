@@ -4,7 +4,12 @@
   den.aspects.features.includes = [ den.aspects.swapfile ];
 
   den.aspects.swapfile.nixos =
-    { config, lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       cfg = config.swapfile;
       swapDir = builtins.dirOf cfg.path;
@@ -46,11 +51,13 @@
           "d ${swapDir} 0755 root root -"
         ];
 
-        swapDevices = [{
-          device = cfg.path;
-          size = cfg.sizeGiB * 1024;
-          priority = cfg.priority;
-        }];
+        swapDevices = [
+          {
+            device = cfg.path;
+            size = cfg.sizeGiB * 1024;
+            priority = cfg.priority;
+          }
+        ];
 
         system.activationScripts.ensureBtrfsSwapfile.text = ''
           set -euo pipefail

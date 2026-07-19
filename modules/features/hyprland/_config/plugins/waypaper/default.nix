@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   home.packages = [
     pkgs.hyprpaper
@@ -40,20 +46,19 @@
     keybindings = ${config.xdg.configHome}/waypaper/keybindings.ini
   '';
 
-  home.activation.waypaperSeedConfig =
-    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      cfg="${config.xdg.configHome}/waypaper/config.ini"
-      tmpl="${config.xdg.configHome}/waypaper/config.ini.template"
+  home.activation.waypaperSeedConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    cfg="${config.xdg.configHome}/waypaper/config.ini"
+    tmpl="${config.xdg.configHome}/waypaper/config.ini.template"
 
-      if [ -L "$cfg" ]; then
-        rm -f "$cfg"
-      fi
+    if [ -L "$cfg" ]; then
+      rm -f "$cfg"
+    fi
 
-      if [ ! -e "$cfg" ]; then
-        mkdir -p "$(dirname "$cfg")"
-        cp "$tmpl" "$cfg"
-      fi
+    if [ ! -e "$cfg" ]; then
+      mkdir -p "$(dirname "$cfg")"
+      cp "$tmpl" "$cfg"
+    fi
 
-      chmod u+rw "$cfg"
-    '';
+    chmod u+rw "$cfg"
+  '';
 }

@@ -39,10 +39,9 @@ in
             setSessionVariables = false;
           };
 
-          home.activation.createUserDirectories =
-            lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-              mkdir -p "$HOME/Code" "$HOME/Games"
-            '';
+          home.activation.createUserDirectories = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            mkdir -p "$HOME/Code" "$HOME/Games"
+          '';
         };
     };
 }

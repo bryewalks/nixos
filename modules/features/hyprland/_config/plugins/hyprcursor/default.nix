@@ -36,9 +36,24 @@ in
 
   wayland.windowManager.hyprland.settings = {
     env = [
-      { _args = ["HYPRCURSOR_SIZE" "24"]; }
-      { _args = ["HYPRCURSOR_THEME" "hyprcursor_Dracula"]; }
-      { _args = ["WLR_NO_HARDWARE_CURSORS" "1"]; }
+      {
+        _args = [
+          "HYPRCURSOR_SIZE"
+          "24"
+        ];
+      }
+      {
+        _args = [
+          "HYPRCURSOR_THEME"
+          "hyprcursor_Dracula"
+        ];
+      }
+      {
+        _args = [
+          "WLR_NO_HARDWARE_CURSORS"
+          "1"
+        ];
+      }
     ];
   };
 }

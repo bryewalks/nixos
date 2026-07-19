@@ -1,4 +1,8 @@
-{ pkgs, lib, color ? "dracula-purple" }:
+{
+  pkgs,
+  lib,
+  color ? "dracula-purple",
+}:
 
 let
   dracula-papirus-src = pkgs.fetchFromGitHub {

@@ -1,5 +1,8 @@
 { hyprlandLib, ... }:
-let inherit (hyprlandLib) startupHook; in {
+let
+  inherit (hyprlandLib) startupHook;
+in
+{
   wayland.windowManager.hyprland.settings.on = [
     (startupHook ''
       hl.exec_cmd("waybar & swaync & hypridle & hyprpaper")

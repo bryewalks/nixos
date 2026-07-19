@@ -12,7 +12,12 @@
   };
 
   den.aspects.base.nixos =
-    { config, lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       imports = [ inputs.disko.nixosModules.disko ];
 

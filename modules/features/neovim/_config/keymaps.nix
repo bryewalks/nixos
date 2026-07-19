@@ -87,26 +87,38 @@
     # System clipboard helpers
     # Yank into system clipboard
     {
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<leader>y";
       action = ''"+y'';
       options.desc = "yank to clipboard motion";
     }
     {
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<leader>Y";
       action = ''"+Y'';
       options.desc = "yank to clipboard line";
     }
     # Delete into system clipboard
     {
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<leader>d";
       action = ''"+d'';
       options.desc = "delete to clipboard motion";
     }
     {
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<leader>D";
       action = ''"+D'';
       options.desc = "delete to clipboard line";

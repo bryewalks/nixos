@@ -1,15 +1,26 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   rgba = config.theme.rgba;
-  easymotionFromInput =
-    lib.attrByPath
-      [ "hyprland-easymotion" "packages" pkgs.stdenv.hostPlatform.system "default" ]
-    null inputs;
-  hyprfocusFromInput =
-    lib.attrByPath
-      [ "hyprland-plugins" "packages" pkgs.stdenv.hostPlatform.system "hyprfocus" ]
-    null inputs;
-in {
+  easymotionFromInput = lib.attrByPath [
+    "hyprland-easymotion"
+    "packages"
+    pkgs.stdenv.hostPlatform.system
+    "default"
+  ] null inputs;
+  hyprfocusFromInput = lib.attrByPath [
+    "hyprland-plugins"
+    "packages"
+    pkgs.stdenv.hostPlatform.system
+    "hyprfocus"
+  ] null inputs;
+in
+{
   wayland.windowManager.hyprland.settings.config = lib.mkMerge [
     (lib.mkIf (hyprfocusFromInput != null) {
       plugin.hyprfocus = {
@@ -40,6 +51,5 @@ in {
     ''
     + lib.optionalString (hyprfocusFromInput != null) ''
       hl.plugin.load("${hyprfocusFromInput}/lib/libhyprfocus.so")
-    ''
-    ;
+    '';
 }

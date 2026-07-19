@@ -8,7 +8,10 @@
       inputs.nix-cachyos-kernel.overlays.pinned
     ];
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     nix.settings.auto-optimise-store = true;
 
     # Required for nix flake operations

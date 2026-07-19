@@ -9,7 +9,11 @@
         close_if_last_window = true;
         popup_border_style = "rounded";
         use_popups_for_input = false;
-        filesystem = { filtered_items = { visible = true; }; };
+        filesystem = {
+          filtered_items = {
+            visible = true;
+          };
+        };
       };
     };
 

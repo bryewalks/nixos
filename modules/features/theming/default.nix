@@ -4,7 +4,12 @@
 # the home-manager `theme` option, and carries the stylix configuration.
 # NOTE: icons (dracula-papirus below), cursors, and the sddm theme are still
 # dracula-hardcoded — a non-dracula themeName changes palettes only.
-{ den, inputs, lib, ... }:
+{
+  den,
+  inputs,
+  lib,
+  ...
+}:
 
 let
   themeBuilder = import ./_themes/theme-builder.nix { inherit lib; };
@@ -112,7 +117,12 @@ in
 
         config.theme = theme // {
           name = themeName;
-          resolveCss = path: (themeBuilder.mkTheme { theme = themeName; cssPath = path; }).resolvedCss;
+          resolveCss =
+            path:
+            (themeBuilder.mkTheme {
+              theme = themeName;
+              cssPath = path;
+            }).resolvedCss;
         };
       };
     };

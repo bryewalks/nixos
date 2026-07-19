@@ -2,7 +2,10 @@
 {
   wayland.windowManager.hyprland.settings = {
     workspace_rule = [
-      { workspace = "special:browser"; layout = "scrolling"; }
+      {
+        workspace = "special:browser";
+        layout = "scrolling";
+      }
     ];
 
     window_rule = [

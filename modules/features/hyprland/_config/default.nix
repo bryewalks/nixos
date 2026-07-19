@@ -1,4 +1,9 @@
-{ inputs, lib, pkgs, ... }:
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 {
   _module.args.hyprlandLib = import ./lib.nix lib;
   imports = [
