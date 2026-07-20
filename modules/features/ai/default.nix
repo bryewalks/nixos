@@ -10,7 +10,7 @@
 
   den.aspects.ai = {
     nixos = {
-      mySystem.allowedUnfree = [ "claude-code" ];
+      unfree.packages = [ "claude-code" ];
     };
 
     provides.to-users.homeManager = {

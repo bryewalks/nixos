@@ -9,9 +9,11 @@
   den.aspects.workstation.includes = [ den.aspects.impermanence ];
 
   den.aspects.impermanence.nixos =
-    { config, ... }:
+    { host, ... }:
     let
-      persistRoot = config.mySystem.persistRoot;
+      # Bare read (no fallback): a host without the persistRoot capability
+      # should fail eval, not silently persist somewhere else.
+      persistRoot = host.persistRoot;
     in
     {
       imports = [ inputs.impermanence.nixosModules.impermanence ];

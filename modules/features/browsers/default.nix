@@ -14,7 +14,7 @@
   den.aspects.browsers = {
     # zen-browser is firefox-bin based.
     nixos = {
-      mySystem.allowedUnfree = [
+      unfree.packages = [
         "firefox-bin"
         "firefox-bin-unwrapped"
       ];

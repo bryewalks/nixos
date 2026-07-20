@@ -1,11 +1,6 @@
 {
-  networking.hostName = "laptop";
-
-  swapfile = {
-    enable = true;
-    sizeGiB = 8;
-  };
-
-  mySystem.isPasswordConfigured = true;
   sops.defaultSopsFile = ./secrets.yaml;
+
+  # Release this machine was installed under — never bump on upgrades.
+  system.stateVersion = "25.11";
 }

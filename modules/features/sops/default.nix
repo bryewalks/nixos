@@ -11,9 +11,9 @@
   den.aspects.workstation.includes = [ den.aspects.sops ];
 
   den.aspects.sops.nixos =
-    { config, ... }:
+    { host, ... }:
     let
-      sopsDir = "${config.mySystem.persistRoot}/system/var/lib/sops";
+      sopsDir = "${host.persistRoot}/system/var/lib/sops";
     in
     {
       imports = [ inputs.sops-nix.nixosModules.sops ];

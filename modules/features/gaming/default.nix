@@ -31,7 +31,7 @@
       {
         imports = [ inputs.steam-config-nix.nixosModules.default ];
 
-        mySystem.allowedUnfree = [
+        unfree.packages = [
           "steam"
           "steam-unwrapped"
         ];

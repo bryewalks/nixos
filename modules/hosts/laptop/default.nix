@@ -11,7 +11,9 @@
 {
   den.hosts.x86_64-linux.laptop = {
     users.brye = { };
-    # Capability: palette consumed by modules/features/theming.
+    passwordConfigured = true;
+    persistRoot = "/persist";
+    swapSizeGiB = 8;
     themeName = "dracula";
   };
 

@@ -11,10 +11,10 @@
 {
   den.hosts.x86_64-linux.desktop = {
     users.brye = { };
-    # Capability: media directories live on the storage array.
-    # Consumed by modules/features/directories.
+    passwordConfigured = true;
+    persistRoot = "/persist";
     storageRoot = "/mnt/storage";
-    # Capability: palette consumed by modules/features/theming.
+    swapSizeGiB = 36;
     themeName = "dracula";
   };
 
@@ -23,6 +23,7 @@
   den.aspects.desktop = {
     includes = [
       den.aspects.workstation
+      den.aspects.cachyos-kernel
     ];
     nixos.imports = [
       (inputs.import-tree.initFilter (lib.hasSuffix ".nix") ./_config)

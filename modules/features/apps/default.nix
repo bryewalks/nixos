@@ -5,12 +5,10 @@
 
   den.aspects.apps = {
     nixos = {
-      mySystem.allowedUnfree = [ "discord" ];
+      unfree.packages = [ "discord" ];
 
       # bitwarden-desktop pins an electron marked insecure upstream.
-      nixpkgs.config.permittedInsecurePackages = [
-        "electron-39.8.10"
-      ];
+      permittedInsecurePackages.packages = [ "electron-39.8.10" ];
     };
 
     provides.to-users.homeManager =

@@ -9,14 +9,19 @@
     };
 
     # The OS-level account, delivered to whichever host brye is on.
-    # mySystem.isPasswordConfigured is declared in modules/defaults/security.nix.
+    # Flat-form class module: `host` is injected by den alongside the
+    # module-system args; passwordConfigured is the host capability.
     provides.to-hosts.nixos =
       {
+        host,
         config,
         lib,
         pkgs,
         ...
       }:
+      let
+        passwordConfigured = host.passwordConfigured or false;
+      in
       {
         programs.zsh.enable = true;
 
@@ -35,8 +40,8 @@
             "docker"
           ];
           shell = pkgs.zsh;
-          initialPassword = lib.mkIf (!config.mySystem.isPasswordConfigured) "password";
-          hashedPasswordFile = lib.mkIf config.mySystem.isPasswordConfigured config.sops.secrets.hashedPassword.path;
+          initialPassword = lib.mkIf (!passwordConfigured) "password";
+          hashedPasswordFile = lib.mkIf passwordConfigured config.sops.secrets.hashedPassword.path;
         };
 
         # brye's secrets (sops itself is wired by the sops aspect).
@@ -47,7 +52,7 @@
           mode = "0600";
         };
 
-        sops.secrets.hashedPassword = lib.mkIf config.mySystem.isPasswordConfigured {
+        sops.secrets.hashedPassword = lib.mkIf passwordConfigured {
           owner = "root";
           group = "root";
           mode = "0400";

@@ -3,81 +3,51 @@
 {
   den.aspects.workstation.includes = [ den.aspects.swapfile ];
 
+  # Hosts opt in via the swapSizeGiB capability; absence = no swapfile.
   den.aspects.swapfile.nixos =
     {
-      config,
+      host,
       lib,
       pkgs,
       ...
     }:
     let
-      cfg = config.swapfile;
-      swapDir = builtins.dirOf cfg.path;
+      path = "${host.persistRoot}/swap/swapfile";
+      swapDir = builtins.dirOf path;
     in
-    {
-      options.swapfile = {
-        enable = lib.mkEnableOption "swapfile setup";
+    lib.optionalAttrs (host ? swapSizeGiB) {
+      boot.initrd.systemd.enable = true;
 
-        sizeGiB = lib.mkOption {
-          type = lib.types.int;
-          default = 0;
-          description = "Swap file size in GiB.";
-        };
+      systemd.tmpfiles.rules = [
+        "d ${swapDir} 0755 root root -"
+      ];
 
-        path = lib.mkOption {
-          type = lib.types.str;
-          default = "${config.mySystem.persistRoot}/swap/swapfile";
-          description = "Swap file path.";
-        };
+      swapDevices = [
+        {
+          device = path;
+          size = host.swapSizeGiB * 1024;
+          priority = 100;
+        }
+      ];
 
-        priority = lib.mkOption {
-          type = lib.types.int;
-          default = 100;
-          description = "Swap priority.";
-        };
-      };
+      system.activationScripts.ensureBtrfsSwapfile.text = ''
+        set -euo pipefail
 
-      config = lib.mkIf cfg.enable {
-        assertions = [
-          {
-            assertion = cfg.sizeGiB > 0;
-            message = "swapfile.sizeGiB must be greater than 0 when swapfile is enabled.";
-          }
-        ];
+        mkdir -p ${swapDir}
 
-        boot.initrd.systemd.enable = true;
+        # Only apply btrfs hints if the swap directory lives on btrfs
+        if ${pkgs.util-linux}/bin/findmnt -n -o FSTYPE --target ${swapDir} \
+          | ${pkgs.gnugrep}/bin/grep -qx btrfs; then
+          ${pkgs.e2fsprogs}/bin/chattr +C ${swapDir} || true
+        fi
 
-        systemd.tmpfiles.rules = [
-          "d ${swapDir} 0755 root root -"
-        ];
+        if [ ! -e ${path} ]; then
+          ${pkgs.btrfs-progs}/bin/btrfs filesystem mkswapfile --size ${toString host.swapSizeGiB}g ${path}
+        fi
 
-        swapDevices = [
-          {
-            device = cfg.path;
-            size = cfg.sizeGiB * 1024;
-            priority = cfg.priority;
-          }
-        ];
-
-        system.activationScripts.ensureBtrfsSwapfile.text = ''
-          set -euo pipefail
-
-          mkdir -p ${swapDir}
-
-          # Only apply btrfs hints if the swap directory lives on btrfs
-          if ${pkgs.util-linux}/bin/findmnt -n -o FSTYPE --target ${swapDir} \
-            | ${pkgs.gnugrep}/bin/grep -qx btrfs; then
-            ${pkgs.e2fsprogs}/bin/chattr +C ${swapDir} || true
-          fi
-
-          if [ ! -e ${cfg.path} ]; then
-            ${pkgs.btrfs-progs}/bin/btrfs filesystem mkswapfile --size ${toString cfg.sizeGiB}g ${cfg.path}
-          fi
-
-          # mkswap is harmless if already a swap signature; swapon is harmless if already active
-          ${pkgs.util-linux}/bin/mkswap ${cfg.path} >/dev/null 2>&1 || true
-          ${pkgs.util-linux}/bin/swapon ${cfg.path} 2>/dev/null || true
-        '';
-      };
+        # mkswap is harmless if already a swap signature; swapon is harmless if already active
+        ${pkgs.util-linux}/bin/mkswap ${path} >/dev/null 2>&1 || true
+        ${pkgs.util-linux}/bin/swapon ${path} 2>/dev/null || true
+      '';
     };
 }

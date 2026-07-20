@@ -12,8 +12,7 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # Unfree driver components (whitelist option declared in modules/base).
-  mySystem.allowedUnfree = [
+  unfree.packages = [
     "nvidia-x11"
     "nvidia-settings"
     "nvidia-persistenced"

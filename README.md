@@ -8,10 +8,10 @@ Install notes for this [NixOS](https://nixos.org/) flake. Built on [flake-parts]
 
 Everything lives under [modules/](./modules), loaded by import-tree — every file is a flake-parts module. `flake.nix` itself is generated (see [Flake inputs](#flake-inputs-flake-file)).
 
-- `modules/defaults/` — universal baseline; each file is one aspect registered into `den.default`, which den applies to every host automatically (boot, networking, nix, security, disko, home-manager, rescue, persistence)
+- `modules/defaults/` — universal baseline; each file is one aspect registered into `den.default`, which den applies to every host automatically (boot, networking, nix, security, disko, home-manager, rescue)
 - `modules/hosts/<hostname>/` — self-contained host: registration (`den.hosts`), aspect composition, disko export; `_config/` holds the machine's hardware reality (disko, hardware, gpu, filesystem, secrets)
 - `modules/users/` — user entities (account, home-manager basics, user secrets)
-- `modules/features/` — everything else, as den aspects; most register into the `workstation` bundle hosts include, per-host binary features (plymouth, hyprland-*) stay outside it
+- `modules/features/` — everything else, as den aspects; most register into the `workstation` bundle hosts include, per-host choices (plymouth, cachyos-kernel) stay outside it
 - `modules/packages/` — custom packages, overlaid onto nixpkgs and exported as flake packages (`nix build .#dracula-cursors`)
 
 ## Fresh install (NixOS ISO)
@@ -55,8 +55,8 @@ Continue with [Post install](#post-install).
 #### Prerequisites
 
 Create `modules/hosts/<hostname>/` with:
-- `default.nix` — registers the host (`den.hosts`) with its capabilities (`themeName`, optionally `storageRoot`), exports its disko config (`flake.diskoConfigurations`), and composes its aspects (`workstation`, per-host extras; the `den.default` baseline applies automatically) ([example](./modules/hosts/laptop/default.nix))
-- `_config/default.nix` — `networking.hostName`, `sops.defaultSopsFile`, host options ([example](./modules/hosts/laptop/_config/default.nix))
+- `default.nix` — registers the host (`den.hosts`) with its capabilities (`persistRoot` — must match the disko mountpoint, `themeName`, optionally `swapSizeGiB` and `storageRoot`; leave out `passwordConfigured` until [Post install](#post-install)), exports its disko config (`flake.diskoConfigurations`), and composes its aspects (`workstation`, per-host extras; the `den.default` baseline applies automatically; hostname comes from the entity name) ([example](./modules/hosts/laptop/default.nix))
+- `_config/default.nix` — `sops.defaultSopsFile`, `system.stateVersion` (the release being installed), host options ([example](./modules/hosts/laptop/_config/default.nix))
 - `_config/disko.nix` — disk layout ([example](./modules/hosts/laptop/_config/disko.nix))
 - `_config/secrets.yaml` — optional; ssh key (`sshKey`) and user password (`hashedPassword`), see [Secrets management](#secrets-management)
 
@@ -108,7 +108,7 @@ Rebuild (activates sops secrets, including the hashed password):
 sudo nixos-rebuild switch --flake github:bryewalks/nixos#<hostname>
 ```
 
-Set `mySystem.isPasswordConfigured = true;` in `modules/hosts/<hostname>/_config/default.nix` and rebuild again. This switches the user from `initialPassword = "password"` to the sops-managed `hashedPassword` — until then the default plaintext password remains active.
+Add `passwordConfigured = true;` to the host entity in `modules/hosts/<hostname>/default.nix` and rebuild again. This switches the user from `initialPassword = "password"` to the sops-managed `hashedPassword` (and enables openssh) — until then the default plaintext password remains active.
 ```sh
 sudo nixos-rebuild switch --flake github:bryewalks/nixos#<hostname>
 ```

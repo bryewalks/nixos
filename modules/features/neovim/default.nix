@@ -11,9 +11,9 @@
   den.aspects.workstation.includes = [ den.aspects.neovim ];
 
   den.aspects.neovim = {
-    # Sidekick stack (see _config/plugins/sidekick.nix).
     nixos = {
-      mySystem.allowedUnfree = [
+      # Sidekick stack (see _config/plugins/sidekick.nix).
+      unfree.packages = [
         "claude-code"
         "copilot-language-server"
         "github-copilot-cli"

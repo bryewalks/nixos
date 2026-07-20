@@ -5,7 +5,7 @@
 
   den.aspects.media = {
     nixos = {
-      mySystem.allowedUnfree = [ "stremio-linux-shell" ];
+      unfree.packages = [ "stremio-linux-shell" ];
     };
 
     provides.to-users.homeManager =

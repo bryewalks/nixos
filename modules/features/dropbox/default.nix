@@ -5,7 +5,7 @@
 
   den.aspects.dropbox = {
     nixos = {
-      mySystem.allowedUnfree = [ "dropbox" ];
+      unfree.packages = [ "dropbox" ];
     };
 
     provides.to-users.homeManager =

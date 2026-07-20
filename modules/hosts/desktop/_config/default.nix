@@ -1,26 +1,6 @@
-{ pkgs, ... }:
-
 {
-  networking.hostName = "desktop";
-
-  swapfile = {
-    enable = true;
-    sizeGiB = 36;
-  };
-
-  mySystem.isPasswordConfigured = true;
   sops.defaultSopsFile = ./secrets.yaml;
 
-  # CachyOS Kernel
-  # INFO: Ensure the following nix settings are added to nix build before using cachyos kernel otherwise it will not find a binary cache.
-  # https://github.com/xddxdd/nix-cachyos-kernel
-  nix.settings.substituters = [
-    "https://attic.xuyh0120.win/lantian"
-    "https://cache.garnix.io"
-  ];
-  nix.settings.trusted-public-keys = [
-    "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-    "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-  ];
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore;
+  # Release this machine was installed under — never bump on upgrades.
+  system.stateVersion = "25.11";
 }

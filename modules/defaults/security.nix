@@ -4,26 +4,21 @@
   den.default.includes = [ den.aspects.security ];
 
   den.aspects.security.nixos =
-    { config, lib, ... }:
+    { host, ... }:
     {
-      options.mySystem.isPasswordConfigured = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
+      security.sudo = {
+        wheelNeedsPassword = true;
+        extraConfig = ''
+          Defaults lecture = never
+        '';
       };
+      security.polkit.enable = true;
 
-      config = {
-        security.sudo = {
-          wheelNeedsPassword = true;
-          extraConfig = ''
-            Defaults lecture = never
-          '';
-        };
-        security.polkit.enable = true;
+      # Hosts declare the passwordConfigured capability once their real
+      # password + sops secrets exist; until then they stay bootstrap-safe.
+      services.openssh.enable = host.passwordConfigured or false;
 
-        services.openssh.enable = config.mySystem.isPasswordConfigured;
-
-        # Accounts themselves live with the user entities (modules/users/*).
-        users.mutableUsers = false;
-      };
+      # Accounts themselves live with the user entities (modules/users/*).
+      users.mutableUsers = false;
     };
 }
