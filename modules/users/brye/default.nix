@@ -6,6 +6,11 @@
       home.username = "brye";
       home.homeDirectory = "/home/brye";
       home.stateVersion = "25.11";
+
+      programs.git.settings.user = {
+        name = "bryewalks";
+        email = "bryewalks@gmail.com";
+      };
     };
 
     # The OS-level account, delivered to whichever host brye is on.

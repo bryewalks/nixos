@@ -3,7 +3,10 @@ let
   css = config.theme.resolveCss ./style.css;
   palette = config.theme.palette;
   json = config.theme.json;
-  scriptsDir = toString ../../scripts;
+  scriptsDir = builtins.path {
+    path = ../../scripts;
+    name = "hyprland-scripts";
+  };
   scriptPath = name: "${scriptsDir}/${name}";
 in
 {
