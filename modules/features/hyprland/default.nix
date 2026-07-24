@@ -42,6 +42,10 @@
             pkgs.xdg-desktop-portal-gtk
           ];
         };
+
+        #INFO: Bug in xdg-desktop-portal where kvantum causes portal crash. temp override theme.
+        # https://github.com/hyprwm/xdg-desktop-portal-hyprland/issues/414
+        systemd.user.services.xdg-desktop-portal-hyprland.environment.QT_QPA_PLATFORMTHEME = "";
       };
 
     provides.to-users.homeManager = {
