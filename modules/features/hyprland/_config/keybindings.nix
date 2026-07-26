@@ -86,6 +86,7 @@ in
     (bind (modCtrl "Y") (launchTerminal "claude"))
 
     # ── System ────────────────────────────────────────────────────────────
+    (bind (mod "U") (script "idle-inhibit-toggle"))
     (bindOpts "XF86AudioRaiseVolume" (execCmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+") {
       locked = true;
       repeating = true;

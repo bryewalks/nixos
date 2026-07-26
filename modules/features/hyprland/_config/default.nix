@@ -23,6 +23,7 @@
     hyprpolkitagent
     hyprshot
     jq
+    libnotify
     networkmanagerapplet
     playerctl
     slurp

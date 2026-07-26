@@ -22,6 +22,7 @@ in
           "custom/media"
           "custom/snapshot"
           "custom/record"
+          "custom/idle-inhibit"
           "tray"
         ];
         modules-center = [ "hyprland/workspaces" ];
@@ -75,12 +76,22 @@ in
           on-click-right = scriptPath "screenshot-region.sh";
         };
         "custom/record" = {
-          interval = 0;
+          # NOTE: interval must NOT be 0 - a waybar 0.15.0 bug breaks tooltips
+          # bar-wide for any interval=0 custom module once it shows content.
+          interval = 86400; # once a day
           signal = 8;
           exec = "pgrep -x wf-recorder > /dev/null && echo '●'";
           on-click = scriptPath "record-monitor.sh";
           on-click-middle = scriptPath "record-window.sh";
           on-click-right = scriptPath "record-region.sh";
+        };
+        "custom/idle-inhibit" = {
+          interval = 86400; # once a day
+          signal = 9;
+          exec = scriptPath "idle-inhibit-status.sh";
+          tooltip = true;
+          tooltip-format = "Idle inhibit on · SUPER + U to disable";
+          on-click = scriptPath "idle-inhibit-toggle.sh";
         };
         tray = {
           icon-size = 18;
