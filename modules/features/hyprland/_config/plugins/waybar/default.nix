@@ -160,8 +160,9 @@ in
           scroll-step = 5;
           format = "{icon} {volume}%";
           format-muted = " {volume}%";
-          on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           on-click-middle = "systemctl --user restart pipewire";
+          on-click-right = "pavucontrol";
           format-icons.default = [
             ""
             ""

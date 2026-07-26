@@ -25,6 +25,7 @@
     jq
     libnotify
     networkmanagerapplet
+    pavucontrol
     playerctl
     slurp
     swaynotificationcenter

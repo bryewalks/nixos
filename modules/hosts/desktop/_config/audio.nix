@@ -57,6 +57,16 @@
               "priority.driver" = 100;
             };
           }
+          {
+            matches = [
+              {
+                "device.name" = "alsa_card.usb-046d_HD_Pro_Webcam_C920_83E9C43F-02";
+              }
+            ];
+            actions.update-props = {
+              "device.disabled" = true;
+            };
+          }
         ];
       };
     };
