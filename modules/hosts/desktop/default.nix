@@ -14,6 +14,7 @@
     passwordConfigured = true;
     persistRoot = "/persist";
     storageRoot = "/mnt/storage";
+    backupRoot = "/mnt/backups";
     swapSizeGiB = 36;
     themeName = "dracula";
   };
@@ -24,6 +25,7 @@
     includes = [
       den.aspects.workstation
       den.aspects.cachyos-kernel
+      den.aspects.backups
     ];
     nixos.imports = [
       (inputs.import-tree.initFilter (lib.hasSuffix ".nix") ./_config)
