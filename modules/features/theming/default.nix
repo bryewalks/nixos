@@ -124,6 +124,9 @@ in
               cssPath = path;
             }).resolvedCss;
         };
+
+        # Zen browser default theme.
+        config.dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
       };
     };
 }
