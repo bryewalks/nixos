@@ -15,7 +15,7 @@
         withGamemode =
           attrs:
           lib.recursiveUpdate attrs {
-            launchOptions.wrappers = [ (lib.getExe pkgs.gamemode) ] ++ (attrs.launchOptions.wrappers or [ ]);
+            wrappers = [ (lib.getExe pkgs.gamemode) ] ++ (attrs.wrappers or [ ]);
           };
 
         apps = {

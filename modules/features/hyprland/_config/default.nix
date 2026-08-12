@@ -21,7 +21,9 @@
     brightnessctl
     hyprpicker
     hyprpolkitagent
-    (hyprshot.override { hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland; })
+    (hyprshot.override {
+      hyprland = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    })
     jq
     libnotify
     networkmanagerapplet
