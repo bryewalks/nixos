@@ -26,6 +26,7 @@
       den.aspects.workstation
       den.aspects.cachyos-kernel
       den.aspects.backups
+      den.aspects.backups-dropbox
     ];
     nixos.imports = [
       (inputs.import-tree.initFilter (lib.hasSuffix ".nix") ./_config)

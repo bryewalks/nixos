@@ -10,20 +10,29 @@
 
   den.aspects.workstation.includes = [ den.aspects.sops ];
 
-  den.aspects.sops.nixos =
+  den.aspects.sops =
     { host, ... }:
     let
       sopsDir = "${host.persistRoot}/system/var/lib/sops";
     in
     {
-      imports = [ inputs.sops-nix.nixosModules.sops ];
+      nixos = {
+        imports = [ inputs.sops-nix.nixosModules.sops ];
 
-      sops = {
-        age.keyFile = "${sopsDir}/keys.txt";
+        sops = {
+          age.keyFile = "${sopsDir}/keys.txt";
+        };
+
+        systemd.tmpfiles.rules = [
+          "d ${sopsDir} 0755 root root -"
+        ];
       };
 
-      systemd.tmpfiles.rules = [
-        "d ${sopsDir} 0755 root root -"
-      ];
+      provides.to-users.homeManager =
+        { pkgs, ... }:
+        {
+          home.packages = [ pkgs.sops ];
+          home.sessionVariables.SOPS_AGE_KEY_FILE = "${sopsDir}/keys.txt";
+        };
     };
 }

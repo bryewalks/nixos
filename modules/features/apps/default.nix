@@ -5,7 +5,10 @@
 
   den.aspects.apps = {
     nixos = {
-      unfree.packages = [ "discord" ];
+      unfree.packages = [
+        "discord"
+        "discord-unwrapped"
+      ];
 
       # bitwarden-desktop pins an electron marked insecure upstream.
       permittedInsecurePackages.packages = [ "electron-39.8.10" ];
@@ -16,7 +19,8 @@
       {
         home.packages = with pkgs; [
           bitwarden-desktop
-          discord
+          # xwayland: native wayland ozone breaks discord's global keybinds (push to talk)
+          (discord.override { commandLineArgs = "--ozone-platform=x11"; })
         ];
       };
   };
