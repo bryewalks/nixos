@@ -33,10 +33,23 @@
                   --exclude ".btrbk/**" \
                   --exclude ".Trash-1000/**" \
                   --exclude "**/Thumbs.db" \
-                  --exclude "**/.DS_Store"
+                  --exclude "**/.DS_Store" \
+                  --exclude "**/desktop.ini"
               '';
+              ExecStartPost = "-${lib.getExe' pkgs.procps "pkill"} -SIGRTMIN+10 waybar";
+              ExecStopPost = "-${lib.getExe' pkgs.procps "pkill"} -SIGRTMIN+10 waybar";
             };
           };
+
+          security.polkit.extraConfig = ''
+            polkit.addRule(function(action, subject) {
+              if (action.id == "org.freedesktop.systemd1.manage-units" &&
+                  action.lookup("unit") == "rclone-dropbox-storage.service" &&
+                  subject.user == "brye") {
+                return polkit.Result.YES;
+              }
+            });
+          '';
 
           systemd.timers."rclone-dropbox-storage" = {
             wantedBy = [ "timers.target" ];

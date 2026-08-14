@@ -87,6 +87,7 @@ in
 
     # ── System ────────────────────────────────────────────────────────────
     (bind (mod "U") (script "idle-inhibit-toggle"))
+    (bind (modShift "U") (script "dropbox-backup-start"))
     (bindOpts "XF86AudioRaiseVolume" (execCmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+") {
       locked = true;
       repeating = true;

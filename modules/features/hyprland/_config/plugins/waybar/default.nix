@@ -23,6 +23,7 @@ in
           "custom/snapshot"
           "custom/record"
           "custom/idle-inhibit"
+          "custom/dropbox-backup"
           "tray"
         ];
         modules-center = [ "hyprland/workspaces" ];
@@ -92,6 +93,14 @@ in
           tooltip = true;
           tooltip-format = "Idle inhibit on · SUPER + U to disable";
           on-click = scriptPath "idle-inhibit-toggle.sh";
+        };
+        "custom/dropbox-backup" = {
+          interval = 86400; # once a day; real updates come via signal
+          signal = 10;
+          exec = scriptPath "dropbox-backup-status.sh";
+          tooltip = true;
+          tooltip-format = "Dropbox backup running · SUPER + SHIFT + U to start manually";
+          on-click = scriptPath "dropbox-backup-start.sh";
         };
         tray = {
           icon-size = 18;
