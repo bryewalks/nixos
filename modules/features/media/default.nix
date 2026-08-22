@@ -14,7 +14,15 @@
         home.packages = with pkgs; [
           loupe
           vlc
-          stremio-linux-shell
+          # BUG: MangoHud's overlay_CreateDevice segfaults on mpv's headless
+          # Vulkan hwdec device (ffmpeg 9.0 widened Vulkan hwaccel use). Retry
+          # stremio without this once MangoHud handles non-swapchain devices.
+          (stremio-linux-shell.overrideAttrs (old: {
+            postFixup = ''
+              ${old.postFixup or ""}
+              wrapProgram $out/bin/stremio --set DISABLE_MANGOHUD 1
+            '';
+          }))
         ];
 
         xdg.mimeApps = {
