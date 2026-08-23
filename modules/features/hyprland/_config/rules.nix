@@ -52,6 +52,11 @@
         match.class = "^com\\.stremio\\.[Ss]tremio$";
         workspace = "special:movies silent";
       }
+      {
+        name = "hotkeys-workspace";
+        match.class = "^imv$";
+        workspace = "special:hotkeys silent";
+      }
     ];
   };
 }

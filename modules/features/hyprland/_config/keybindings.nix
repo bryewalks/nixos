@@ -85,6 +85,9 @@ in
     (bind (modShift "Y") (launch "claude"))
     (bind (modCtrl "Y") (launchTerminal "claude"))
 
+    (bind (mod "F1") (toggleSpecial "hotkeys"))
+    (bind (mod "F1") (script "hotkeys-cheatsheet-launch"))
+
     # ── System ────────────────────────────────────────────────────────────
     (bind (mod "U") (script "idle-inhibit-toggle"))
     (bind (modShift "U") (script "dropbox-backup-start"))

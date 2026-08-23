@@ -4,6 +4,8 @@ Install notes for this [NixOS](https://nixos.org/) flake. Built on [flake-parts]
 
 ![Fastfetch](assets/fastfetch.png)
 
+![Hyprland hotkeys](assets/hotkeys-cheatsheet.png)
+
 ## Layout
 
 Everything lives under [modules/](./modules), loaded by import-tree — every file is a flake-parts module. `flake.nix` itself is generated (see [Flake inputs](#flake-inputs-flake-file)).

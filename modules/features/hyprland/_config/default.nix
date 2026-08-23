@@ -24,6 +24,7 @@
     (hyprshot.override {
       hyprland = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     })
+    imv
     jq
     libnotify
     networkmanagerapplet
@@ -46,5 +47,6 @@
       recursive = true;
       executable = true;
     };
+    "hypr/hotkeys-cheatsheet.png".source = ../../../../assets/hotkeys-cheatsheet.png;
   };
 }
