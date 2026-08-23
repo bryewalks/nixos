@@ -19,11 +19,11 @@
           };
 
         apps = {
-          counter-strike_2 = {
-            id = 730;
+          "730" = {
+            name = "counter-strike_2";
           };
-          super_battle_golf = {
-            id = 4069520;
+          "4069520" = {
+            name = "super_battle_golf";
             compatTool = "GE-Proton";
           };
         };
