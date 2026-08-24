@@ -86,7 +86,9 @@ in
     (bind (modCtrl "Y") (launchTerminal "claude"))
 
     (bind (mod "F1") (toggleSpecial "hotkeys"))
-    (bind (mod "F1") (script "hotkeys-cheatsheet-launch"))
+    (bind (mod "F1") (execCmd "~/.config/hypr/scripts/cheatsheet-launch.sh hotkeys"))
+    (bind (mod "F2") (toggleSpecial "nvimkeys"))
+    (bind (mod "F2") (execCmd "~/.config/hypr/scripts/cheatsheet-launch.sh nvimkeys"))
 
     # ── System ────────────────────────────────────────────────────────────
     (bind (mod "U") (script "idle-inhibit-toggle"))

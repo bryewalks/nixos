@@ -48,5 +48,6 @@
       executable = true;
     };
     "hypr/hotkeys-cheatsheet.png".source = ../../../../assets/hotkeys-cheatsheet.png;
+    "hypr/nvimkeys-cheatsheet.png".source = ../../../../assets/nvim-keymaps-cheatsheet.png;
   };
 }

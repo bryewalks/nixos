@@ -54,8 +54,13 @@
       }
       {
         name = "hotkeys-workspace";
-        match.class = "^imv$";
+        match.class = "^imv-hotkeys$";
         workspace = "special:hotkeys silent";
+      }
+      {
+        name = "nvim-keymaps-workspace";
+        match.class = "^imv-nvimkeys$";
+        workspace = "special:nvimkeys silent";
       }
     ];
   };

@@ -6,6 +6,8 @@ Install notes for this [NixOS](https://nixos.org/) flake. Built on [flake-parts]
 
 ![Hyprland hotkeys](assets/hotkeys-cheatsheet.png)
 
+![Neovim keymaps](assets/nvim-keymaps-cheatsheet.png)
+
 ## Layout
 
 Everything lives under [modules/](./modules), loaded by import-tree — every file is a flake-parts module. `flake.nix` itself is generated (see [Flake inputs](#flake-inputs-flake-file)).
