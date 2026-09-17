@@ -1,4 +1,4 @@
-# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# DO-NOT-EDIT. This file was auto-generated using github:denful/flake-file.
 # Use `nix run .#write-flake` to regenerate it.
 {
   description = "Brye's NixOS";
@@ -15,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-file.url = "github:vic/flake-file";
+    flake-file.url = "github:denful/flake-file";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -44,7 +44,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    import-tree.url = "github:vic/import-tree";
+    import-tree.url = "github:denful/import-tree";
 
     mcp-servers-nix = {
       url = "github:natsukium/mcp-servers-nix";
