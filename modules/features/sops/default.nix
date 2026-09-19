@@ -19,12 +19,6 @@
       nixos = {
         imports = [ inputs.sops-nix.nixosModules.sops ];
 
-        # TODO(sops-nix): drop once sops-nix bumps off buildGo125Module.
-        # sops-install-secrets hardcodes it (pkgs/sops-install-secrets/default.nix
-        # in Mic92/sops-nix), but nixpkgs removed it once Go 1.25 went EOL
-        # (nixpkgs#563177, 2026-09-15). Restore it as an alias in the meantime.
-        nixpkgs.overlays = [ (final: prev: { buildGo125Module = prev.buildGoModule; }) ];
-
         sops = {
           age.keyFile = "${sopsDir}/keys.txt";
         };
