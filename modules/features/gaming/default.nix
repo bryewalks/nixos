@@ -21,6 +21,21 @@
         apps = {
           "730" = {
             name = "counter-strike_2";
+            files.game.place."game/csgo/cfg/autoexec.cfg".text = ''
+              sensitivity "0.49"
+              cl_crosshair_code "CSGO-QpWBx-hXGN2-CwYG6-X6Nym-LNwLA"
+              cl_righthand "0"
+
+              mm_dedicated_search_maxping "25"
+
+              unbind "mwheelup"
+              unbind "mwheeldown"
+
+              bind "z" "slot7; buy flashbang"
+              bind "x" "slot8; buy smokegrenade"
+              bind "c" "slot6; buy hegrenade"
+              bind "v" "slot10; buy incgrenade; buy molotov"
+            '';
           };
           "4069520" = {
             name = "super_battle_golf";
