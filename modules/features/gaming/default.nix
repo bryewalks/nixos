@@ -52,6 +52,12 @@
         ];
 
         programs.gamemode.enable = true;
+
+        hardware.openrazer = {
+          enable = true;
+          users = [ "brye" ];
+        };
+
         programs.steam = {
           enable = true;
           package = pkgs.steam.override {
@@ -81,6 +87,7 @@
       {
         home.packages = with pkgs; [
           mangohud
+          polychromatic # Openrazer GUI
         ];
 
         programs.mangohud = {
