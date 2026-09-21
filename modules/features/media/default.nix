@@ -12,8 +12,9 @@
       { pkgs, ... }:
       {
         home.packages = with pkgs; [
-          loupe
-          vlc
+          calibre # Books
+          loupe # Images
+          vlc # Videos
           # BUG: MangoHud's overlay_CreateDevice segfaults on mpv's headless
           # Vulkan hwdec device (ffmpeg 9.0 widened Vulkan hwaccel use). Retry
           # stremio without this once MangoHud handles non-swapchain devices.
