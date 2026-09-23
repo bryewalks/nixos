@@ -23,7 +23,7 @@
             name = "counter-strike_2";
             files.game.place."game/csgo/cfg/autoexec.cfg".text = ''
               sensitivity "0.49"
-              cl_crosshair_code "CSGO-qrkR7-TfTZu-yXfFt-FqpJy-W9AMK"
+              cl_crosshair_code "CSGO-oMKyb-aop54-Ufc8T-ByO5z-DKOMB"
               cl_righthand "0"
 
               mm_dedicated_search_maxping "25"
