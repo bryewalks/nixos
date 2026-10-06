@@ -27,12 +27,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland/v0.55.4";
-
-    hyprland-easymotion = {
-      url = "github:bryewalks/hyprland-easymotion";
-      inputs.hyprland.follows = "hyprland";
-    };
+    hyprland.url = "github:hyprwm/Hyprland/19fb395d45314960e6f79f17994a84094f1cd4f6";
 
     hyprland-plugins = {
       url = "github:bryewalks/hyprland-plugins";
