@@ -10,6 +10,16 @@
         enable = true;
         users = [ "brye" ];
       };
+
+      # Side button -> F9 for push-to-talk (see hyprland/_config/keybindings.nix).
+      services.keyd = {
+        enable = true;
+        keyboards.mouse = {
+          # Razer Basilisk V3 35K (wired). m: limits the match to the mouse interface.
+          ids = [ "m:1532:00cb" ];
+          settings.main.mouse2 = "f9";
+        };
+      };
     };
 
     provides.to-users.homeManager =

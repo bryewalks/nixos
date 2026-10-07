@@ -1,12 +1,10 @@
 { lib, hyprlandLib, ... }:
 with hyprlandLib;
 let
+  # Push-to-talk on F9. Mouse side button is remapped to F9 by keyd (gaming/mouse.nix).
   pushToTalk = class: [
-    (bind "mouse:276" ''hl.dsp.send_key_state({ mods = "", key = "f9", state = "down", window = "class:^(${class})$" })'')
-    (bindOpts "mouse:276"
-      ''hl.dsp.send_key_state({ mods = "", key = "f9", state = "up", window = "class:^(${class})$" })''
-      { release = true; }
-    )
+    (bind "f9" ''hl.dsp.pass({ window = "class:^(${class})$" })'')
+    (bindOpts "f9" ''hl.dsp.pass({ window = "class:^(${class})$" })'' { release = true; })
   ];
 in
 {
@@ -125,10 +123,6 @@ in
   ]
 
   # Discord/Vesktop push to talk
-  # pass() instantly releases using work around in the meantime.
-  # https://github.com/hyprwm/Hyprland/discussions/14417
-  # (bind "mouse:276" ''hl.dsp.pass({ window = "class:^(discord)$" })'')
-  # (bind "mouse:276" ''hl.dsp.pass({ window = "class:^(vesktop)$" })'')
   ++ pushToTalk "discord"
   ++ pushToTalk "vesktop"
 
