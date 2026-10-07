@@ -29,6 +29,11 @@
 
     hyprland.url = "github:hyprwm/Hyprland/19fb395d45314960e6f79f17994a84094f1cd4f6";
 
+    hyprland-easymotion = {
+      url = "github:bryewalks/hyprland-easymotion";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     hyprland-plugins = {
       url = "github:bryewalks/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";

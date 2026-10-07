@@ -46,7 +46,7 @@ in
     lib.optionalString (easymotionFromInput != null) ''
       hl.plugin.load("${easymotionFromInput}/lib/libhyprland-easymotion.so")
       hl.bind(mainMod .. " + F", function()
-        hl.plugin.easymotion.dispatch([[action:dispatch:focuswindow address:{}]])
+        hl.plugin.easymotion.dispatch([[action:hyprctl dispatch 'hl.dsp.focus({{window = "address:{}"}})']])
       end)
     ''
     + lib.optionalString (hyprfocusFromInput != null) ''

@@ -16,11 +16,10 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    # BUG: no working version for 0.56 yet
-    # hyprland-easymotion = {
-    #   url = "github:bryewalks/hyprland-easymotion?ref=fix/hyprland-0.56";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
+    hyprland-easymotion = {
+      url = "github:bryewalks/hyprland-easymotion";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   den.aspects.workstation.includes = [ den.aspects.hyprland ];
