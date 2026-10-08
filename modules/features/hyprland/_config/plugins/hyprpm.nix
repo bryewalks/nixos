@@ -48,6 +48,9 @@ in
       hl.bind(mainMod .. " + F", function()
         hl.plugin.easymotion.dispatch([[action:hyprctl dispatch 'hl.dsp.focus({{window = "address:{}"}})']])
       end)
+      hl.bind(mainMod .. " + SHIFT + C", function()
+        hl.plugin.easymotion.dispatch([[textcolor:${rgba.yellow},action:hyprctl dispatch 'hl.dsp.window.close({{window = "address:{}"}})']])
+      end)
     ''
     + lib.optionalString (hyprfocusFromInput != null) ''
       hl.plugin.load("${hyprfocusFromInput}/lib/libhyprfocus.so")
