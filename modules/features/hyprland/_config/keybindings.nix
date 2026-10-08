@@ -49,6 +49,7 @@ in
     # ── Applications ──────────────────────────────────────────────────────
     (bind (mod "A") (launch "audio"))
     (bind (modShift "B") (launch "browser"))
+    (bind (modCtrl "B") (moveWorkspace "special:browser"))
     (bind (mod "D") (launch "voip"))
     (bind (modShift "F") (launch "fileManager"))
     (bind (mod "I") (launchTerminal "btop"))
