@@ -26,17 +26,6 @@
         };
         no_focus = true;
       }
-      # Remove to keep zen-beta confined to special:browser workspace
-      {
-        name = "zen-beta-current-workspace";
-        match.class = "^zen-beta$";
-        workspace = "current";
-      }
-      {
-        name = "thunar-current-workspace";
-        match.class = "^thunar$";
-        workspace = "current";
-      }
       {
         name = "launchers-workspace";
         match.class = "^(steam|com.valvesoftware.Steam|itch|io.itch.itch|heroic|com.heroicgameslauncher.hgl|r2modman)$";
