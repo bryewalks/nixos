@@ -16,7 +16,7 @@ in
       {
         layer = "top";
         modules-left = [
-          "custom/launcher"
+          "custom/nixdatifier"
           "cpu"
           "memory"
           "custom/media"
@@ -42,6 +42,13 @@ in
           on-click = "rofi -show drun";
           tooltip = false;
           on-click-right = "killall rofi";
+        };
+        "custom/nixdatifier" = {
+          exec = "nixdatifier --status";
+          return-type = "json";
+          interval = 60;
+          format = "";
+          on-click = "nixdatifier --toggle";
         };
         cpu = {
           interval = 15;

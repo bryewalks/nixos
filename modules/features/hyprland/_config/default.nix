@@ -31,7 +31,6 @@
     pavucontrol
     playerctl
     slurp
-    swaynotificationcenter
     wf-recorder
     wireplumber
     wl-clipboard
