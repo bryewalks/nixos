@@ -39,8 +39,7 @@
       (lib.optionalAttrs (host.nixGithubAuthConfigured or false) {
         nix.settings.netrc-file = config.sops.secrets.githubNetrc.path;
         sops.secrets.githubNetrc = {
-          owner = "root";
-          group = "root";
+          owner = "brye";
           mode = "0400";
         };
       })
