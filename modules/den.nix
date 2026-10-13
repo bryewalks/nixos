@@ -26,10 +26,7 @@
     inputs = {
       nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-      # BUG: commit dd59a4c ("migrate to gen-schema's options-first API")
-      # introduced infinite recursion evaluating den.default.includes.
-      # Unpin once den ships a fix past that commit.
-      den.url = "github:denful/den/65c9fd40e958109f5a352c1a93ae8254bf1ed29f";
+      den.url = "github:denful/den";
 
       # Consumed by den's home-manager battery.
       home-manager = {
