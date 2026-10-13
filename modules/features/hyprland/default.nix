@@ -26,7 +26,12 @@
 
   den.aspects.hyprland = {
     nixos =
-      { pkgs, ... }:
+      {
+        config,
+        pkgs,
+        lib,
+        ...
+      }:
       {
         imports = [ inputs.hyprland.nixosModules.default ];
 
@@ -34,6 +39,10 @@
           enable = true;
           xwayland.enable = true;
         };
+
+        #BUG: security.wrappers.Hyprland points at a wrapProgram script, not an ELF.
+        # https://github.com/NixOS/nixpkgs/issues/573049
+        security.wrappers.Hyprland.source = lib.mkForce "${config.programs.hyprland.package}/bin/.Hyprland-wrapped";
 
         xdg.portal = {
           enable = true;

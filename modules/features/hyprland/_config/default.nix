@@ -19,6 +19,7 @@
 
   home.packages = with pkgs; [
     brightnessctl
+    hyprland-qtutils
     hyprpicker
     hyprpolkitagent
     (hyprshot.override {

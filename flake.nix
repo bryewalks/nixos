@@ -8,7 +8,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    den.url = "github:denful/den";
+    den.url = "github:denful/den/65c9fd40e958109f5a352c1a93ae8254bf1ed29f";
 
     disko = {
       url = "github:nix-community/disko";
