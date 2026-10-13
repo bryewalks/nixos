@@ -12,6 +12,7 @@
   den.hosts.x86_64-linux.desktop = {
     users.brye = { };
     passwordConfigured = true;
+    nixGithubAuthConfigured = true;
     persistRoot = "/persist";
     storageRoot = "/mnt/storage";
     backupRoot = "/mnt/backups";

@@ -12,6 +12,7 @@
   den.hosts.x86_64-linux.laptop = {
     users.brye = { };
     passwordConfigured = true;
+    nixGithubAuthConfigured = true;
     persistRoot = "/persist";
     swapSizeGiB = 8;
     themeName = "dracula";
