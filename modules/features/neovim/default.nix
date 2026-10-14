@@ -19,6 +19,24 @@
         "github-copilot-cli"
         "git-conflict.nvim"
       ];
+
+      # BUG: nixos-unstable was stuck (as of 2026-10-14) on a nixpkgs commit
+      # predating the fix for a bad pnpmDeps hash on typescript-language-server
+      # 6.0.2 (nixpkgs PR #572951, commit eabfbbcf1f).
+      nixpkgs.overlays = [
+        (final: prev: {
+          typescript-language-server =
+            if prev.typescript-language-server.version == "6.0.2" then
+              prev.typescript-language-server.overrideAttrs (old: {
+                pnpmDeps = old.pnpmDeps.overrideAttrs (_: {
+                  outputHash = "sha256-xR/EF60lVBsITKgH7wCM2wHM46PFQevD51KfCENSUH4=";
+                });
+              })
+            else
+              prev.typescript-language-server;
+        })
+      ];
+      # End BUG
     };
 
     provides.to-users.homeManager = {
