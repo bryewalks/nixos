@@ -785,11 +785,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792097597,
-        "narHash": "sha256-9UKzacOB1CspnPojhyLaiYj7592d7E2HkyRMErDIIAw=",
+        "lastModified": 1792146727,
+        "narHash": "sha256-WMw+liSrSoEkWKYOYjgLi2/vMdow216UkkgaLPdsDks=",
         "owner": "natsukium",
         "repo": "mcp-servers-nix",
-        "rev": "8443d67297538436b6c87b8c9039709003b8e3d8",
+        "rev": "1cba7df106cb8ddf92f73c09ea725283bd470675",
         "type": "github"
       },
       "original": {
@@ -805,11 +805,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792107842,
-        "narHash": "sha256-yPEYrfjqMVFMcDFFonr2zk8vON0YmqC1SuvE0pGUI80=",
+        "lastModified": 1792163926,
+        "narHash": "sha256-Ruu9W6GwmXV1zeWptzHGmPXDX2EdU+eAuh4Ry9U92hE=",
         "owner": "Muddyblack",
         "repo": "nixdatifier",
-        "rev": "995dea57f59ea8f772fd518e660943ccb84505cb",
+        "rev": "0cd90f5c7fe499a249396f6130acb50a8ebbe867",
         "type": "github"
       },
       "original": {
@@ -987,11 +987,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1791681241,
-        "narHash": "sha256-C/8PIONtGasAcP9hZsr5mJIztQyx4FI9AayPkzhOtDM=",
+        "lastModified": 1792111133,
+        "narHash": "sha256-UGPRL5Lo+QTvQC1s5IPd+NIhDF48Zd6eKuzjbFIcFeI=",
         "owner": "different-name",
         "repo": "steam-config-nix",
-        "rev": "cc74c24818e1be3d1a80442ba20b1e1feb8276e6",
+        "rev": "ae75eb33cfd73929f519882cc8ec8294bfdc3c0d",
         "type": "github"
       },
       "original": {
