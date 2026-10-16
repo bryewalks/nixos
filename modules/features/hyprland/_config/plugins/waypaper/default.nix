@@ -11,6 +11,22 @@
     pkgs.waypaper
   ];
 
+  wayland.windowManager.hyprland.settings.window_rule = [
+    {
+      name = "waypaper-popup";
+      match.class = "^waypaper$";
+      float = true;
+      move = [
+        "monitor_w - window_w - 8"
+        "42"
+      ];
+      size = [
+        900
+        700
+      ];
+    }
+  ];
+
   xdg.dataFile."wallpapers" = {
     source = "${inputs.self}/assets/wallpapers";
     recursive = true;
