@@ -20,6 +20,7 @@
             "m:1532:00cb" # Razer Basilisk V3 35K (wired)
             "m:1532:00e2" # Razer Basilisk V4 Pro (wired)
             "m:1532:00e3" # Razer Basilisk V4 Pro (wireless)
+            "m:1532:00f1" # Razer Mouse Dock V2 Pro
           ];
           settings.main.mouse2 = "f9";
         };
