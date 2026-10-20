@@ -65,6 +65,7 @@
         frametime_color=${palette.green}
 
         arch
+        display_server
         fps_limit_method=early
         toggle_fps_limit=Shift_L+F1
 

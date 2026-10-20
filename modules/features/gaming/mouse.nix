@@ -7,7 +7,8 @@
   den.aspects.mouse = {
     nixos = {
       hardware.openrazer = {
-        enable = true;
+        # BUG: Temp disable openrazer due to missing certs.
+        enable = false;
         users = [ "brye" ];
       };
 

@@ -12,7 +12,8 @@
       { pkgs, ... }:
       {
         home.packages = with pkgs; [
-          calibre # Books
+          # BUG: calibre -> piper-tts -> pyopenjtalk-plus fails its own test temp disable
+          # calibre # Books
           loupe # Images
           vlc # Videos
           # BUG: MangoHud's overlay_CreateDevice segfaults on mpv's headless
