@@ -72,6 +72,9 @@
         ## Wine ##
         wine
         wine_color=${palette.purple}
+
+        ## Blacklist ##
+        blacklist=stremio
       '';
     };
 }
