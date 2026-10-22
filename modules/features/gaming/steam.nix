@@ -24,7 +24,7 @@
           # 1600 mouse dpi x 0.49 sens = (784 edpi)
           files.game.place."game/csgo/cfg/autoexec.cfg".text = ''
             sensitivity "0.49"
-            cl_crosshair_code "CSGO-oMKyb-aop54-Ufc8T-ByO5z-DKOMB"
+            cl_crosshair_code "CSMVMCEpi5zd97ZhQQnTcCrJ64t568hVKQA7io27ExBGdR"
             cl_righthand "0"
 
             mm_dedicated_search_maxping "25"
