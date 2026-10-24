@@ -11,7 +11,7 @@
       _var = "thunar";
     };
     menu = {
-      _var = "rofi -show drun";
+      _var = "noctalia msg panel-toggle launcher";
     };
     audio = {
       _var = "qpwgraph";

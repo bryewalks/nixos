@@ -25,14 +25,8 @@
         let
           inherit (hyprlandLib) startupHook;
           inherit (config.theme) palette hexNoHash;
-          # Display only in waybar
-          nixdatifier =
-            (inputs.nixdatifier.packages.${pkgs.stdenv.hostPlatform.system}.nixdatifier).overrideAttrs
-              (old: {
-                postPatch = (old.postPatch or "") + ''
-                  substituteInPlace Host.cpp --replace-fail 'tray.show();' ""
-                '';
-              });
+          # Tray icon enabled for noctalia's dedicated nixdatifier tray.
+          nixdatifier = inputs.nixdatifier.packages.${pkgs.stdenv.hostPlatform.system}.nixdatifier;
         in
         {
           home.packages = [ nixdatifier ];
