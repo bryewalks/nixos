@@ -28,6 +28,11 @@
         ];
       in
       {
+        home.packages = with pkgs; [
+          bitwarden-cli
+          wtype
+        ];
+
         systemd.user.services.noctalia.Service.ExecStartPre =
           "${pkgs.coreutils}/bin/rm -f %S/noctalia/settings.toml";
 
