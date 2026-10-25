@@ -12,7 +12,7 @@ in
       hl.exec_cmd("[workspace special:aichat silent] "   .. claude)
       hl.exec_cmd("[workspace special:terminal silent] " .. terminal .. " tmux")
       hl.exec_cmd("[workspace special:browser silent] zen-beta")
-      hl.exec_cmd("[workspace special:texts silent] gapplication action ca.andyholmes.Valent messages-window")
+      hl.exec_cmd("[workspace special:texts silent] kdeconnect-sms")
     '')
   ];
 }

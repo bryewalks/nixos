@@ -32,8 +32,8 @@
         workspace = "special:steam silent";
       }
       {
-        name = "valent-workspace";
-        match.class = "^valent$";
+        name = "kdeconnect-sms-workspace";
+        match.class = "^(org\\.kde\\.)?kdeconnect[.-]sms$";
         workspace = "special:texts silent";
       }
       {

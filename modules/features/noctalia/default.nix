@@ -4,7 +4,16 @@
   den.aspects.workstation.includes = [ den.aspects.noctalia ];
 
   den.aspects.noctalia = {
-    nixos.services.upower.enable = true;
+    nixos =
+      { pkgs, ... }:
+      {
+        services.upower.enable = true;
+        programs.kdeconnect.enable = true;
+        environment.systemPackages = with pkgs; [
+          glib
+          sshfs
+        ];
+      };
 
     provides.to-users.homeManager =
       { config, pkgs, ... }:
@@ -143,6 +152,15 @@
               thickness = 36;
             };
 
+            control_center.shortcuts = map (type: { inherit type; }) [
+              "wifi"
+              "bluetooth"
+              "caffeine"
+              "notification"
+              "power_profile"
+              "icefish/phone-connect:tile"
+            ];
+
             weather.unit = "imperial";
 
             widget = {
@@ -205,7 +223,12 @@
 
             lockscreen_widgets.enabled = false;
 
-            plugins.enabled = [ "noctalia/bitwarden" ];
+            plugins.enabled = [
+              "noctalia/bitwarden"
+              "icefish/phone-connect"
+            ];
+
+            plugin_settings."icefish/phone-connect".panel_placement = "widget";
 
             wallpaper = {
               directory = wallpapers;
