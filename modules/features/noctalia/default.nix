@@ -119,9 +119,9 @@
                 "launcher"
                 "cpu"
                 "ram"
+                "network"
                 "screenshot"
                 "tray"
-                "network"
               ];
               center = [
                 "workspaces"

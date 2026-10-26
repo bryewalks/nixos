@@ -15,8 +15,6 @@
       swapDir = builtins.dirOf path;
     in
     lib.optionalAttrs (host ? swapSizeGiB) {
-      boot.initrd.systemd.enable = true;
-
       systemd.tmpfiles.rules = [
         "d ${swapDir} 0755 root root -"
       ];
