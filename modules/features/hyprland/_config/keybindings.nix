@@ -55,10 +55,9 @@ in
     (bind (mod "I") (launchTerminal "btop"))
     (bind (modShift "M") (launch "music"))
     (bind (mod "N") (launchTerminal "nvim"))
-    (bind (mod "Q") (execCmd "pkill waybar || true; waybar"))
+    (bind (mod "Q") (execCmd "systemctl --user restart noctalia"))
     (bind (mod "W") (launch "passwordManager"))
     (bind (mod "SPACE") (launch "menu"))
-    (bind (modShift "SPACE") (script "webapp-rofi"))
     (bind (mod "RETURN") (launch "terminal"))
 
     (bind (mod "P") (script "screenshot-monitor"))
@@ -90,7 +89,7 @@ in
     (bind (mod "F2") (execCmd "~/.config/hypr/scripts/cheatsheet-launch.sh nvimkeys"))
 
     # ── System ────────────────────────────────────────────────────────────
-    (bind (mod "U") (script "idle-inhibit-toggle"))
+    (bind (mod "U") (execCmd "noctalia msg caffeine-toggle"))
     (bind (modShift "U") (script "dropbox-backup-start"))
     (bindOpts "XF86AudioRaiseVolume" (execCmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+") {
       locked = true;

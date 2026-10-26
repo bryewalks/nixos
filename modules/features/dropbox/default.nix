@@ -32,7 +32,7 @@ in
               "graphical-session.target"
               "dbus.service"
             ];
-            Wants = [ "graphical-session.target" ];
+            PartOf = [ "graphical-session.target" ];
           };
 
           Service = {

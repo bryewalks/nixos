@@ -85,6 +85,18 @@ in
             targets.zen-browser.enable = true;
           };
 
+          xdg.configFile."kdeglobals".source =
+            let
+              kdeTheme = lib.findFirst (
+                p: (p.name or "") == "stylix-kde-theme"
+              ) (throw "stylix-kde-theme not in home.packages") config.home.packages;
+              # Same slug derivation as stylix's kde module.
+              slug = lib.concatStrings (
+                lib.filter lib.isString (builtins.split "[^a-zA-Z]" config.lib.stylix.colors.scheme)
+              );
+            in
+            "${kdeTheme}/share/color-schemes/${slug}.colors";
+
           # gtk.gtk4.theme = null;
         };
     in
