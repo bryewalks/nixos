@@ -16,9 +16,7 @@
     provides.to-users.homeManager = {
       imports = [ inputs.mcp-servers-nix.homeManagerModules.default ];
 
-      # BUG: Disabled: mcp-nixos depends on fastmcp -> fastmcp-slim, which
-      # nixpkgs currently marks broken
-      mcp-servers.programs.nixos.enable = false;
+      mcp-servers.programs.nixos.enable = true;
 
       programs.mcp = {
         enable = true;

@@ -12,8 +12,7 @@
       { pkgs, ... }:
       {
         home.packages = with pkgs; [
-          # BUG: calibre -> piper-tts -> pyopenjtalk-plus fails its own test temp disable
-          # calibre # Books
+          calibre # Books
           loupe # Images
           vlc # Videos
           stremio-linux-shell # Streaming
