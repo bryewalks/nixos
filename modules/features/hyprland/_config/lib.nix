@@ -34,6 +34,7 @@ in
   launchTerminal = cmd: ''hl.dsp.exec_cmd(terminal .. " ${cmd}")'';
   execCmd = cmd: ''hl.dsp.exec_cmd("${cmd}")'';
   script = name: ''hl.dsp.exec_cmd("~/.config/hypr/scripts/${name}.sh")'';
+  global = id: ''hl.dsp.global("${id}")'';
 
   focusDirection = dir: ''hl.dsp.focus({ direction = "${dir}" })'';
   focusWorkspace = ws: "hl.dsp.focus({ workspace = ${luaWs ws} })";

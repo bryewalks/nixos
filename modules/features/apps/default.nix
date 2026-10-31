@@ -19,8 +19,7 @@
       {
         home.packages = with pkgs; [
           bitwarden-desktop
-          # xwayland: native wayland ozone breaks discord's global keybinds (push to talk)
-          (discord.override { commandLineArgs = "--ozone-platform=x11"; })
+          discord
         ];
       };
   };

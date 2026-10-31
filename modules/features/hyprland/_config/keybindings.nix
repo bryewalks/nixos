@@ -1,12 +1,5 @@
 { lib, hyprlandLib, ... }:
 with hyprlandLib;
-let
-  # Push-to-talk on F9. Mouse side button is remapped to F9 by keyd (gaming/mouse.nix).
-  pushToTalk = class: [
-    (bind "f9" ''hl.dsp.pass({ window = "class:^(${class})$" })'')
-    (bindOpts "f9" ''hl.dsp.pass({ window = "class:^(${class})$" })'' { release = true; })
-  ];
-in
 {
   wayland.windowManager.hyprland.settings.bind = [
     # ── Windows ───────────────────────────────────────────────────────────
@@ -87,6 +80,7 @@ in
     (bind (mod "F1") (execCmd "~/.config/hypr/scripts/cheatsheet-launch.sh hotkeys"))
     (bind (mod "F2") (toggleSpecial "nvimkeys"))
     (bind (mod "F2") (execCmd "~/.config/hypr/scripts/cheatsheet-launch.sh nvimkeys"))
+    (bind "f9" (global "discord:discord-push-to-talk"))
 
     # ── System ────────────────────────────────────────────────────────────
     (bind (mod "U") (execCmd "noctalia msg caffeine-toggle"))
@@ -121,10 +115,6 @@ in
     (bindOpts "XF86AudioPlay" (execCmd "playerctl play-pause") { locked = true; })
     (bindOpts "XF86AudioPrev" (execCmd "playerctl previous") { locked = true; })
   ]
-
-  # Discord/Vesktop push to talk
-  ++ pushToTalk "discord"
-  ++ pushToTalk "vesktop"
 
   ++ lib.concatMap (
     i:
